@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Le retour de height et width</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Le retour de <code>height</code> et <code>width</code></h1>
+<p>
+    Fin 2018, Eric Portis publiait <a href="https://24ways.org/2018/jank-free-image-loads/" hreflang="en">un article</a>
+    sur la problématique du <i lang="en">jank</i> dû à l’affichage tardif d’une image, qui pousse alors brusquement le
+    contenu de la hauteur de cette dernière. Tant pis si vous aviez commencé votre lecture.
+</p>
+<video controls src="assets/le-retour-de-height-et-width/jank.mp4" height="720" width="930"></video>
+<p>
+    Le problème n’est pas nouveau puisqu’une solution est proposée avec HTML 3.2 : utiliser les attributs
+    <code>height</code> et <code>width</code> pour permettre au navigateur de réserver la surface nécessaire avant le
+    téléchargement de l’image.
+</p>
+<aside>
+    <blockquote lang="en">
+        When given together with the height, [width] allows user agents to reserve screen space for the image before the
+        image data has arrived over the network.
+        <footer><a href="https://www.w3.org/TR/2018/SPSD-html32-20180315/#img" hreflang="en">https://www.w3.org/TR/2018/SPSD-html32-20180315/#img</a></footer>
+    </blockquote>
+</aside>
+<p>Trois ans plus tard, HTML 4 renchérit :</p>
+<blockquote lang="en">
+    The height and width attributes give user agents an idea of the size of an image or object so that they may reserve
+    space for it and continue rendering the document while waiting for the image data.
+    <footer><a href="https://www.w3.org/TR/html401/struct/objects.html#adef-width-IMG" hreflang="en">https://www.w3.org/TR/html401/struct/objects.html#adef-width-IMG</a></footer>
+</blockquote>
+<p>
+    Cependant, même des années avant l’essor du <i lang="en">responsive design</i>, on se rend bien compte qu’on ne va
+    pas pouvoir se contenter d’images aux dimensions fixes. Pour preuve : les attributs <code>width</code> et
+    <code>height</code> acceptent alors un pourcentage, relatif à la dimension correspondante du parent. En spécifiant
+    une largeur fluide, le navigateur calcule automatiquement la hauteur grâce au ratio d’aspect de l’image.
+    Problème : il faut télécharger l’image pour obtenir ce ratio. La hauteur n’est donc calculée qu’après et va pousser
+    le contenu déjà présent.
+</p>
+<p>HTML5 va ensuite restreindre l’utilisation de ces attributs avec les règles suivantes :</p>
+<ul>
+    <li>un pourcentage n’est plus une valeur valide</li>
+    <li>ils ne peuvent être spécifiés que pour une ressource possédant des dimensions intrinsèques</li>
+    <li>leur ratio d’aspect doit être le même que celui de la ressource</li>
+</ul>
+<p>
+    L’idée est d’empêcher toute utilisation de <code>width</code> et <code>height</code> à des fins stylistiques, les
+    seules valeurs admises étant désormais des multiples des dimensions intrinsèques d’une ressource. On peut donc en
+    déduire le ratio d’aspect intrinsèque ; précisément la donnée qu’il nous manquait !
+</p>
+<p>
+    C’est pourquoi le <abbr lang="en" title="Web Platform Incubator Community Group">WICG</abbr> a songé à utiliser ces
+    attributs à la place
+    d’<a href="https://googlechrome.github.io/samples/intrinsic-size/" hreflang="en"><code>intrinsicsize</code></a>
+    qui devait répondre à la même problématique. La proposition se résume à une unique ligne de CSS dans la feuille de
+    style des navigateurs :
+</p>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-css">img, video { aspect-ratio: attr(width) / attr(height); }</code></pre>
+<p>
+    Pour le moment, <code>aspect-ratio</code> n’est qu’au statut de
+    <a href="https://drafts.csswg.org/css-sizing-4/#aspect-ratio" hreflang="en">draft</a> et <code>attr</code>
+    <a href="https://caniuse.com/#feat=css3-attr" hreflang="en">inutilisable de la sorte</a>, mais les navigateurs
+    peuvent tout de même émuler cette règle pour les images, comme Firefox dès sa version 69 (derrière le flag
+    <code>layout.css.width-and-height-map-to-aspect-ratio.enabled</code>) et Chrome Canary (derrière le flag
+    <code>enable-experimental-web-platform-features</code>).
+</p>
+<p>
+    Ce comportement a également été formalisé par le
+    <abbr lang="en" title="Web Hypertext Application Technology">WHATWG</abbr> :
+</p>
+<blockquote lang="en">
+    If <code>img</code>’s <code>width</code> and <code>height</code> attribute values […] are both not an error,
+    not a percentage, and non-zero, then use the ratio resulting from dividing the <code>width</code> attribute
+    value by the <code>height</code> attribute value [as its intrinsic aspect ratio].
+    <footer><a href="https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images" hreflang="en">https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images</a></footer>
+</blockquote>
+<p>
+    Il est donc temps de (re)prendre les vieilles habitudes : <strong>ajoutez <code>height</code> et
+    <code>width</code> à toutes vos images</strong> !
+    <a href="https://github.com/whatwg/html/pull/4952#issuecomment-537300669" hreflang="en">Il faudra encore
+    patienter pour les vidéos.</a>
+</p>
+</html>

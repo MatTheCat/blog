@@ -1,0 +1,104 @@
+h1, h2, h3, p, ul, ol, figcaption, blockquote {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 35rem;
+    padding: 0 2rem;
+}
+p, ul, ol, figure {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+img, video {
+    display: block;
+    height: auto;
+    margin: auto;
+    max-width: 100%;
+}
+h2, h3 {
+    break-after: avoid;
+}
+figure, blockquote, p, li {
+    break-inside: avoid;
+}
+h1 + :not(h2) {
+    margin-top: 2rem;
+}
+figure {
+    margin-left: 0;
+    margin-right: 0;
+}
+li {
+    margin: .5rem 0;
+}
+pre {
+    background: #212529;
+    color: #f8f9fa;
+    margin: 0;
+    overflow: auto;
+    padding: 1rem 2rem;
+}
+pre code, pre samp {
+    display: block;
+    margin: auto;
+    max-width: 35rem;
+}
+code, kbd, samp {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+a {
+    color: #1864ab;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+q::before {
+    content: '« '
+}
+q::after {
+    content: ' »'
+}
+table {
+    border-spacing: 0;
+    margin: auto;
+}
+tr:nth-child(odd) {
+    background: #f1f3f5;
+}
+th, td {
+    padding: 1rem;
+}
+tbody th {
+    text-align: right;
+}
+mark {
+    background: #ffe066;
+    color: inherit;
+}
+blockquote {
+    background: #f1f3f5;
+    font-style: italic;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+footer a {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+figcaption, footer {
+    font-size: .74rem;
+    font-style: normal;
+    line-height: 1rem;
+    margin-top: .5rem;
+}
+figcaption, .math {
+    text-align: center;
+}
+hr {
+    border: 0 solid #868e96;
+    border-top-width: 1px;
+    margin: calc(2rem - 1px) 0 2rem;
+    padding: 0;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Comprendre font-size</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Comprendre <code>font-size</code></h1>
+<p>Le W3C nous informe que <code>font-size</code> indique la hauteur désirée des glyphes de la police.</p>
+<aside>
+    <blockquote lang="en">
+        This property indicates the desired height of glyphs from the font.
+        <footer><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-size" hreflang="en">https://drafts.csswg.org/css-fonts-3/#propdef-font-size</a></footer>
+    </blockquote>
+</aside>
+<p>
+    Un glyphe est la représentation graphique d’un signe typographique. Par exemple « A »,
+    « <span style="font-style: italic;">A</span> » et « <span style="font-weight: 700;">A</span> » sont trois glyphes
+    différents représentant un seul et même caractère (ce sont des <em>allographes</em>).
+</p>
+<p>
+    Si la hauteur des glyphes dépend de <code>font-size</code>,
+    ce sont toutefois deux valeurs distinctes.
+</p>
+<figure>
+    <link rel="stylesheet" href="assets/prism.css">
+    <pre><code class="language-markup">&lt;span style=&quot;font-size: 16px;&quot;&gt;A&lt;span&gt;</code></pre>
+    <img src="assets/comprendre-font-size/a-source-sans-16px.png" alt="" width="389" height="322">
+</figure>
+<p>Nos 16 pixels ont en réalité servi à dimensionner l’<i lang="en">EM box</i>.</p>
+
+<h2 lang="en">EM box</h2>
+<p>
+    Attention nous ne parlons pas ici de
+    <a href="https://www.w3.org/TR/css-values-4/#em" hreflang="en">l’unité CSS</a>. En typographie,
+    l’<i lang="en">EM</i> est une unité qui référence la taille (aussi appelée corps) d’une fonte.
+    Chaque glyphe est positionné dans un cadre d’un <i lang="en">EM</i> de haut, d’où le terme
+    <i lang="en">EM box</i>.
+    Prenons un caractère typographique :
+</p>
+<figure>
+    <img src="assets/comprendre-font-size/Garamond_type_ſi-ligature_2.jpg" alt="" width="736" height="982">
+    <figcaption>Daniel Ullrich, <a href="https://de.wikipedia.org/wiki/Benutzer:Threedots" hreflang="de">Threedots</a> [<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC BY-SA 3.0</a>]</figcaption>
+</figure>
+<p>
+    Son glyphe est gravé sur une surface appelée <em>épaule</em> dont les contours illustrent l’<i lang="en">EM box</i>.
+    Le caractère typographique ci-dessus provient d’une fonte de 12 points ; c’est donc la hauteur de son épaule ainsi
+    que la valeur de son <i lang="en">EM</i>.
+</p>
+
+<h2>Polices vectorielles</h2>
+<p>
+    Cependant le web utilise des polices numériques dont les glyphes n’ont ni existence physique,
+    ni dimensions intrinsèques. Au lieu d’être gravés sur un caractère typographique (ou
+    <a href="https://en.wikipedia.org/wiki/Phototypesetting#/media/File:Neue_Helvetica_phototypesetting_lower_case_a_with_circumflex_(8277798760).jpg" hreflang="en">coupés dans une frisquette</a>),
+    ils sont définis comme des images vectorielles dont le canevas est l’<i lang="en">EM box</i>.
+</p>
+<aside>
+    <img src="assets/comprendre-font-size/a-source-sans.png" alt="" width="556" height="791">
+</aside>
+<p>
+    Pour afficher un tel glyphe il faut donner une valeur à son <i lang="en">EM</i>. C’est exactement ce que fait
+    <code>font-size</code> !
+</p>
+<aside>
+    <blockquote lang="en">
+        For scalable fonts, the font-size is a scale factor applied to the EM unit of the font.
+        <footer><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-size" hreflang="en">https://drafts.csswg.org/css-fonts-3/#propdef-font-size</a></footer>
+    </blockquote>
+</aside>
+<aside>
+    <img src="assets/comprendre-font-size/a-source-sans-16px-em.png" alt="" width="389" height="434">
+</aside>
+
+<h2>Polices matricielles</h2>
+<p>
+    Les polices matricielles — également appelées polices <i lang="en">bitmap</i> — constituent un cas
+    à part. Les fontes d’une telle police nécessitent un fichier par taille, car leurs glyphes sont
+    définis comme des images matricielles. En conséquence, chaque police n’implémente qu’une sélection
+    de fontes. Par exemple <a href="http://terminus-font.sourceforge.net/" hreflang="en">Terminus</a>
+    implémente 19 fontes, combinaisons de neuf tailles et trois graisses.
+</p>
+<aside>
+    <img src="assets/comprendre-font-size/a-terminus-12px.png" alt="" height="560" width="370">
+</aside>
+<p>
+    Leur seul cas d’usage sur le web est de les définir comme police par défaut sur les navigateurs qui
+    les supportent. C’est très limité, mais des adeptes existent toujours !
+</p>
+<p>
+    Dans ce cas, le navigateur va devoir piocher dans la liste des fontes disponibles celle qu’il juge
+    le mieux correspondre à notre CSS.
+</p>
+<aside>
+    <blockquote lang="en">
+        For non-scalable fonts, the font-size is converted into absolute units and matched against the declared ‘font-size’ of the font.
+        <footer><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-size" hreflang="en">https://drafts.csswg.org/css-fonts-3/#propdef-font-size</a></footer>
+    </blockquote>
+</aside>
+</html>

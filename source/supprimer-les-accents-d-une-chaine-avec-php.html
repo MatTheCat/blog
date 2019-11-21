@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Supprimer les accents d’une chaîne avec PHP</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Supprimer les accents d’une chaîne avec PHP</h1>
+<p>
+    Si vous lisez ceci, vous ne voulez probablement pas supprimer que les accents,
+    mais également les <strong><a href="http://fr.wikipedia.org/wiki/Diacritique">diacritiques</a></strong> d’une chaîne.
+    (Par exemple la cédille de « ç » est un diacritique.)
+</p>
+<p>Dans ce cas, vous êtes au bon endroit :</p>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-php">echo
+    \Transliterator::create('NFD; [:Nonspacing Mark:] Remove; NFC')
+    -&gt;transliterate('Héhé, ça marche !')
+;
+// Hehe, ca marche !
+</code></pre>
+
+<h2>Comment ça marche ?</h2>
+<p>
+    Le code ci-dessus utilise la classe
+    <a href="http://php.net/manual/fr/class.transliterator.php"><code class="language-php">Transliterator</code></a>
+    de l’extension <a href="http://php.net/manual/fr/book.intl.php" lang="en">intl</a>, interface entre
+    <a href="http://site.icu-project.org/" hreflang="en"><abbr title="International Components for Unicode" lang="en">ICU</abbr></a>
+    et PHP.
+</p>
+<p>
+    Contrairement à ce que son nom indique, cette classe ne se limite pas à la translittération : elle est capable
+    d’appliquer une série de <em>transformations</em> à du texte. <code>NFD</code>,
+    <code>[:Nonspacing Mark:] Remove</code> et <code>NFC</code> sont les identifiants de trois transformations, combinés
+    en un identifiant composé.
+</p>
+
+<h3><code>NFD</code></h3>
+<p>
+    Cette transformation va normaliser le texte sous sa forme « D » (NFD est l’acronyme de
+    <i lang="en">Normalization Form D</i>) en effectuant une <strong>décomposition canonique</strong>.
+    Pour comprendre ce concept il faut savoir qu’Unicode offre la possibilité d’encoder certains caractères de
+    manières différentes. Par exemple « ç » peut s’écrire comme
+    <a href="https://graphemica.com/%C3%A7" hreflang="en">un caractère</a>, ou comme la combinaison d’un « c » et d’une
+    <a href="https://graphemica.com/0327" hreflang="en">cédille <strong>combinante</strong></a>. Cette dernière est la
+    forme décomposée du caractère, c’est donc celle qui sera produite par la NFD.
+</p>
+<aside class="svg_sizer" style="max-width: 7.3rem;">
+    <svg viewBox="0 0 128 35">
+        <path d="M10.93 24.76q-3.16 0-5.66-1.3-2.46-1.28-3.89-4Q0 16.74 0 12.5q0-4.4 1.47-7.17Q2.95 2.58 5.44 1.3 8 0 11.2 0q1.83 0 3.53.4 1.7.36 2.77.9l-1.21 3.24q-1.07-.4-2.5-.75-1.43-.36-2.68-.36-7.05 0-7.05 9.04 0 4.32 1.7 6.63 1.74 2.27 5.13 2.27 1.96 0 3.44-.4 1.51-.4 2.76-.98v3.48q-1.2.62-2.67.93-1.43.36-3.49.36zm3.66 5.74q0 2.14-1.65 3.3Q11.3 35 8 35q-1.43 0-2.23-.22v-2.45q.4.09 1.07.13.67.1 1.3.1 1.6 0 2.45-.45.85-.4.85-1.52 0-1.16-1.2-1.69-1.17-.53-2.87-.76l1.92-3.83h2.6l-1.17 2.36q1.6.36 2.72 1.25 1.16.9 1.16 2.58zM65.8 11.33l-8.56 8.55-2.62-2.61 5.08-5.07h-5.23l-7.7 7.68-2.61-2.61 5.08-5.07h-16.1V8.5h16.1l-5.08-5.06 2.61-2.6 7.7 7.67h5.23l-5.08-5.07 2.62-2.6 8.56 8.54zM95.58 24.76q-3.17 0-5.67-1.3-2.46-1.28-3.88-4-1.39-2.72-1.39-6.95 0-4.4 1.48-7.17 1.47-2.76 3.97-4.05Q92.63 0 95.84 0q1.83 0 3.53.4 1.7.36 2.77.9l-1.2 3.24q-1.08-.4-2.5-.75-1.43-.36-2.68-.36-7.06 0-7.06 9.04 0 4.32 1.7 6.63 1.74 2.27 5.13 2.27 1.97 0 3.44-.4 1.52-.4 2.77-.98v3.48q-1.2.62-2.68.93-1.43.36-3.48.36zM116.89.27q.49 0 .8.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8 0-.5.35-.8.36-.36.8-.36zm-3.75.8q.49 0 .8.35.36.32.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8 0-.5.35-.8.36-.36.8-.36zm7.5 0q.49 0 .8.35.36.32.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8 0-.5.35-.8.36-.36.8-.36zm-11.97 3.25q0-.49.36-.8.36-.36.8-.36.5 0 .8.36.37.31.37.8 0 .44-.36.8-.31.36-.8.36-.45 0-.8-.36-.37-.36-.37-.8zm14.1 0q0-.49.37-.8.35-.36.8-.36.49 0 .8.36.36.31.36.8 0 .44-.36.8-.31.36-.8.36-.45 0-.8-.36-.36-.36-.36-.8zm-16.2 3.3q0-.5.36-.8.36-.36.8-.36.5 0 .81.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8zm18.3 0q0-.5.36-.8.36-.36.8-.36.5 0 .81.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8zm-19.1 3.73q0-.48.36-.8.36-.35.8-.35.5 0 .8.35.36.32.36.8 0 .45-.35.8-.31.36-.8.36-.45 0-.8-.35-.37-.36-.37-.8zm19.9 0q0-.48.37-.8.35-.35.8-.35.5 0 .8.35.36.32.36.8 0 .45-.36.8-.3.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8zm-19.1 3.75q0-.5.36-.8.36-.36.8-.36.5 0 .81.35.36.32.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8zm18.3 0q0-.5.36-.8.36-.36.8-.36.5 0 .81.35.36.32.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8zm-16.2 3.3q0-.5.36-.81.36-.36.8-.36.5 0 .8.36.37.31.37.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.36-.37-.35-.37-.8zm14.1 0q0-.5.37-.81.35-.36.8-.36.49 0 .8.36.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.36-.36-.35-.36-.8zm-9.63.93q.49 0 .8.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.36-.36-.35-.36-.8 0-.49.35-.8.36-.35.8-.35zm7.5 0q.49 0 .8.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.36-.36-.35-.36-.8 0-.49.35-.8.36-.35.8-.35zm-3.75.8q.49 0 .8.35.36.32.36.8 0 .45-.36.8-.31.36-.8.36-.45 0-.8-.35-.36-.36-.36-.8 0-.5.35-.8.36-.36.8-.36zM121.3 28.63q0 2.14-1.65 3.3-1.65 1.2-4.95 1.2-1.43 0-2.23-.22v-2.45q.4.09 1.07.13.67.1 1.3.1 1.6 0 2.45-.45.85-.4.85-1.52 0-1.16-1.2-1.69-1.17-.53-2.86-.76l1.91-3.83h2.6l-1.17 2.36q1.6.36 2.72 1.25 1.17.9 1.17 2.58z"/>
+    </svg>
+</aside>
+
+<h3><code>[:Nonspacing Mark:] Remove</code></h3>
+<p>
+    Ici la transformation « <i lang="en">Remove</i> » ne s’appliquera qu’aux caractères faisant partie de
+    <a href="https://graphemica.com/categories/nonspacing-mark" hreflang="en">la catégorie Unicode
+    « <i lang="en">Nonspacing Mark</i> »</a>. Hors, tous les caractères combinants en font partie : puisqu’ils se lient
+    au caractère qui les précède, ils n’occupent pas leur propre espace !
+</p>
+<p>
+    La transformation précédente servait à séparer les caractères de leurs diacritiques, et celle-ci va les supprimer.
+    On se retrouve avec notre texte sans diacritique.
+</p>
+<aside class="svg_sizer" style="max-width: 7.8rem;">
+    <svg viewBox="0 0 128 33">
+        <path d="M10.88 24.66q-3.15 0-5.64-1.29-2.44-1.28-3.86-3.99Q0 16.68 0 12.46q0-4.39 1.47-7.14Q2.93 2.57 5.42 1.3 7.95 0 11.15 0q1.82 0 3.5.4 1.7.35 2.76.89l-1.2 3.23q-1.07-.4-2.49-.75-1.42-.35-2.66-.35-7.02 0-7.02 9 0 4.3 1.69 6.6 1.73 2.27 5.1 2.27 1.96 0 3.43-.4 1.5-.4 2.75-.97v3.46q-1.2.62-2.67.93-1.42.35-3.46.35zM32.08.27q.5 0 .8.35.36.31.36.8 0 .44-.36.8-.3.35-.8.35-.44 0-.8-.35-.35-.36-.35-.8 0-.49.36-.8.35-.35.8-.35zm-3.73.8q.5 0 .8.35.36.31.36.8 0 .44-.36.8-.3.35-.8.35-.44 0-.8-.35-.35-.36-.35-.8 0-.49.36-.8.35-.36.8-.36zm7.47 0q.48 0 .8.35.35.31.35.8 0 .44-.36.8-.3.35-.8.35-.44 0-.8-.35-.35-.36-.35-.8 0-.49.36-.8.35-.36.8-.36zM23.92 4.3q0-.49.35-.8.35-.35.8-.35.49 0 .8.35.35.31.35.8 0 .45-.35.8-.31.36-.8.36-.45 0-.8-.36-.36-.35-.36-.8zm14.03 0q0-.49.35-.8.36-.35.8-.35.49 0 .8.35.36.31.36.8 0 .45-.36.8-.31.36-.8.36-.44 0-.8-.36-.35-.35-.35-.8zM21.83 7.58q0-.48.35-.8.36-.35.8-.35.49 0 .8.36.36.3.36.8 0 .44-.36.8-.31.35-.8.35-.44 0-.8-.36-.35-.35-.35-.8zm18.2 0q0-.48.36-.8.35-.35.8-.35.49 0 .8.36.35.3.35.8 0 .44-.35.8-.31.35-.8.35-.45 0-.8-.36-.36-.35-.36-.8zm-19 3.73q0-.49.35-.8.36-.35.8-.35.49 0 .8.35.36.31.36.8 0 .44-.36.8-.31.35-.8.35-.44 0-.8-.35-.35-.36-.35-.8zm19.8 0q0-.49.36-.8.35-.35.8-.35.49 0 .8.35.35.31.35.8 0 .44-.35.8-.31.35-.8.35-.45 0-.8-.35-.36-.36-.36-.8zm-19 3.73q0-.5.35-.8.36-.36.8-.36.49 0 .8.36.36.3.36.8 0 .44-.36.8-.31.35-.8.35-.44 0-.8-.36-.35-.35-.35-.8zm18.2 0q0-.5.36-.8.35-.36.8-.36.49 0 .8.36.35.3.35.8 0 .44-.35.8-.31.35-.8.35-.45 0-.8-.36-.36-.35-.36-.8zm-16.12 3.28q0-.49.36-.8.35-.35.8-.35.49 0 .8.35.35.31.35.8 0 .44-.35.8-.31.35-.8.35-.45 0-.8-.35-.36-.36-.36-.8zm14.04 0q0-.49.35-.8.36-.35.8-.35.49 0 .8.35.36.31.36.8 0 .44-.36.8-.31.35-.8.35-.44 0-.8-.35-.35-.36-.35-.8zm-9.6.93q.5 0 .8.35.36.32.36.8 0 .45-.36.8-.3.36-.8.36-.44 0-.8-.36-.35-.35-.35-.8 0-.48.36-.8.35-.35.8-.35zm7.47 0q.48 0 .8.35.35.32.35.8 0 .45-.36.8-.3.36-.8.36-.44 0-.8-.36-.35-.35-.35-.8 0-.48.36-.8.35-.35.8-.35zm-3.74.8q.5 0 .8.35.36.31.36.8 0 .45-.36.8-.3.35-.8.35-.44 0-.8-.35-.35-.35-.35-.8 0-.49.36-.8.35-.35.8-.35zM36.48 28.52q0 2.13-1.64 3.28Q33.2 33 29.9 33q-1.42 0-2.22-.22v-2.44q.4.09 1.06.13.67.09 1.3.09 1.6 0 2.43-.44.85-.4.85-1.51 0-1.15-1.2-1.69-1.16-.53-2.84-.75l1.9-3.81h2.58l-1.15 2.35q1.6.35 2.7 1.24 1.16.89 1.16 2.57zM91.84 11.29l-8.52 8.51-2.6-2.6 5.05-5.05h-5.2L72.9 19.8l-2.6-2.6 5.05-5.05H59.34V8.47h16.02l-5.05-5.04 2.6-2.6 7.66 7.64h5.2l-5.05-5.04 2.6-2.6 8.52 8.5zM121.47 24.66q-3.15 0-5.64-1.29-2.44-1.28-3.86-3.99-1.38-2.7-1.38-6.92 0-4.39 1.47-7.14 1.46-2.75 3.95-4.03Q118.54 0 121.74 0q1.82 0 3.5.4 1.7.35 2.76.89l-1.2 3.23q-1.06-.4-2.49-.75-1.42-.35-2.66-.35-7.02 0-7.02 9 0 4.3 1.69 6.6 1.73 2.27 5.1 2.27 1.96 0 3.43-.4 1.5-.4 2.75-.97v3.46q-1.2.62-2.66.93-1.43.35-3.47.35z"/>
+    </svg>
+</aside>
+
+<h3><code>NFC</code></h3>
+<p>
+    <code>NFD</code> a précédemment décomposé tous nos caractères ; il peut être pertinent de recomposer ceux qui
+    restent (le sujet est débattable mais NFC semble privilégié). Par exemple les syllabes de l’alphabet
+    <a href="https://fr.wikipedia.org/wiki/Hangeul">hangeul</a> ont leur propre caractère mais peuvent également être
+    encodées par une combinaison de
+    <a href="https://fr.wikipedia.org/wiki/Hangeul#Description_de_l%E2%80%99%C3%A9criture">jamos</a>.
+    <code>NFC</code> réduirait une telle combinaison au caractère de la syllabe correspondante.
+</p>
+<aside class="svg_sizer" style="max-width: 12.8rem;">
+    <svg viewBox="0 0 128 20">
+        <path d="M0 .88v8.16h14.31V.88zM12.49 2.4V7.5H1.83V2.4zM35.72 9.18V7.2h-1.87v1.98h-8.58v1.53h19.07V9.18zM63.4 13.12h-1.94v.91c0 2.46-2.79 4.09-6.51 4.55l.7 1.42c3.05-.46 5.65-1.65 6.8-3.65 1.12 2 3.72 3.19 6.77 3.65l.7-1.42c-3.73-.46-6.51-2.09-6.51-4.55zM99.16 11.49l-4.5 4.45-1.37-1.36 2.67-2.64H93.2l-4.04 4-1.37-1.36 2.67-2.64H82v-1.93h8.46L87.8 7.37 89.17 6l4.04 4h2.75l-2.67-2.64L94.67 6l4.49 4.46zM119.5 12.33h-1.97v.63c0 2.77-3.26 4.83-7.07 5.4l.72 1.48c3.21-.54 6.04-2 7.33-4.25 1.24 2.25 4.08 3.71 7.29 4.25l.72-1.49c-3.81-.56-7.02-2.62-7.02-5.39zM113.3 1.51h10.36v4H113.3zm6.16 7.94V7.04h6.1V0h-14.13v7.04h6.11v2.41h-8.57V11H128V9.45z"/>
+    </svg>
+</aside>
+
+<h2>Pour finir</h2>
+<p>Si vous voulez approfondir les aspects d’Unicode abordés ici, je vous conseille évidemment leur documentation :</p>
+<ul>
+    <li>transformations : <a href="http://userguide.icu-project.org/transforms/general" hreflang="en">http://userguide.icu-project.org/transforms/general</a></li>
+    <li>normalisation : <a href="http://unicode.org/reports/tr15/" hreflang="en">http://unicode.org/reports/tr15/</a></li>
+</ul>
+<p>Le sujet est vaste ; bon courage !</p>
+</html>

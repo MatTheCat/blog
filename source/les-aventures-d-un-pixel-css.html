@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Les aventures d’un pixel CSS</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Les aventures d’un pixel CSS</h1>
+<p>Il était une fois un carré d’un pixel CSS de côté…</p>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-markup">&lt;style&gt;
+    div {
+        background: #1864ab;
+        height: 1px;
+        width: 1px;
+    }
+&lt;/style&gt;
+&lt;div&gt;&lt;/div&gt;</code></pre>
+<p>
+    affiché sur l’écran d’un
+    <a href="https://www.sonymobile.com/fr/products/phones/xperia-xz1-compact/specifications/">Xperia XZ1 Compact</a>.
+</p>
+<div class="svg_sizer" style="max-width: 15rem;">
+    <svg shape-rendering="crispEdges" viewBox="0 0 400 400">
+        <path fill="#fcfdfe" d="M100 100h100v100H100z"/>
+        <path fill="#edf3f9" d="M200 100h100v100H200zM100 200h100v100H100z"/>
+        <path fill="#a8c4df" d="M200 200h100v100H200z"/>
+        <path stroke="#ced4da" d="M0 100.5h400M0 200.5h400M0 300.5h400M100.5 0v400M200.5 0v400M300.5 0v400" vector-effect="non-scaling-stroke"/>
+    </svg>
+</div>
+<p>Qu’a-t-il bien pu lui arriver entre deux ? Suivons son périple du code à l’écran !</p>
+<hr>
+<p>— Bon, mon côté mesure un pixel CSS, mais combien mesure un pixel CSS au juste ?</p>
+<p>— 1/96 pouce ! s’exclame une imprimante qui passait par là. C’est le W3C qui le dit :</p>
+<blockquote lang="en">
+    1px = 1/96th of 1in
+    <footer><a href="https://www.w3.org/TR/css-values-4/#absolute-lengths" hreflang="en">https://www.w3.org/TR/css-values-4/#absolute-lengths</a></footer>
+</blockquote>
+<p>
+    C’est une unité <em>absolue</em>, donc elle est liée aux unités physiques par un ratio
+    constant, du coup ton pixel (<code>px</code>) mesure à la fois :
+</p>
+<ul>
+    <li>3/4 point (<code>pt</code>)</li>
+    <li>1/16 point pica (<code>pc</code>)</li>
+    <li>1/96 pouce (<code>in</code>)</li>
+    <li>127/4800 centimètre (<code>cm</code>)</li>
+    <li>127/480 millimètre (<code>mm</code>)</li>
+    <li>127/120 quarts de millimètre (<code>Q</code>)</li>
+</ul>
+<p>Qui utilise des quarts de millimètre sérieusement… Bref ça t’ira ?!</p>
+<p>— Hm merci, mais quelque chose me turlupine…</p>
+<p>— Quoi donc ? Si j’imprime un carré de 378 pixels CSS de côté il mesure bien 10 centimètres.</p>
+<img src="assets/les-aventures-d-un-pixel-css/print.jpg" alt="" width="1024" height="576">
+<p>— Ok je vois, mais sans vouloir t’offenser tu ne connais que les feuilles A4. Tu imagines 1/96 pouce sur l’écran
+    du <a href="https://fr.wikipedia.org/wiki/Charlotte_Motor_Speedway" lang="en">Charlotte Motor Speedway</a> ?
+</p>
+<figure>
+    <img
+        src="assets/les-aventures-d-un-pixel-css/charlotte-motor-speedway-video-screen.jpg"
+        alt=""
+        width="1024"
+        height="683"
+    >
+    <figcaption>
+        Nascar1996 [<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a>],
+        <a href="https://commons.wikimedia.org/wiki/File:Charlotte_Motor_Speedway_video_screen.jpg">via Wikimedia Commons</a>
+    </figcaption>
+</figure>
+<p>
+    Ses pixels physiques font plus d’un pouce de côté donc impossible d’afficher si petit. Et puis les spectateurs
+    sont au moins à 500 mètres, ils ne me verraient jamais !
+</p>
+<p>— Bien raisonné mon petit carré ; les imprimantes voient rarement plus loin que leur papier !</p>
+<p>— Ça fait plaisir d’aider… Débrouillez-vous sans moi si c’est comme ça.</p>
+<p>— Ouais c’est ça… Salut ! Bon, reprenons. Imprimer un document ancre ses unités physiques à leur mesure réelle, ok.
+    Mais toi tu dois être affiché sur un écran donc c’est l’inverse : on va ancrer ton pixel CSS et c’est plus
+    compliqué, donc tu as besoin d’un guide : moi, le pixel de référence !
+</p>
+<p>— Mais attendez si on ancre le pixel CSS qu’advient-il des ratios entre les unités physiques ?</p>
+<p>— Ils restent constants ! Du coup un pouce CSS ne mesurera pas forcément un pouce physique.
+    En même temps on s’en fout, ce serait bizarre de vouloir mesurer les mêmes dimensions quel que soit le support,
+    tu l’as remarqué toi-même.
+</p>
+<p>— Attendez… Reculez pour voir ?</p>
+<p>— Euh ok… Comme ça ?</p>
+<p>— C’est bien ce qui me semblait : je vous vois toujours à la même taille quelle que soit la distance entre nous !</p>
+<p>— Eh oui, je ne suis pas une simple taille mais une
+    <a href="https://fr.wikipedia.org/wiki/Taille_apparente">taille <em>apparente</em></a>. Le concept c’est que deux
+    objets de même taille apparente <em>apparaissent</em> à la même taille, quelles que soient leur taille et leur
+    distance.
+    Comme lors d’une éclipse totale par exemple : le soleil et la lune ont alors une taille apparente très proche.
+</p>
+<p>
+    Comme je suis le pixel de référence, ton but c’est d’avoir la même taille apparente <span class="math">V</span>
+    que moi. Elle est calculée par rapport à ta taille <span class="math">S</span> et la distance
+    <span class="math">D</span> à laquelle tu es vu :
+</p>
+<p class="math">V = 2×arctan(S/(2×D))</p>
+<p>
+    L’arc tangente fait de moi un angle, c’est pour ça que la taille apparente peut aussi être appelée
+    « diamètre angulaire ».
+</p>
+<p>— Ça me paraît compliqué.</p>
+<p>— Pas du tout ! Je mesure 1/96 pouce vu à une longueur de bras. Si on calcule pour 28 pouces, ça nous donne
+    <span class="math">2×arctan(1//5376)</span>, ce qui veut dire que ta taille doit être 2688 fois inférieure à ta
+    distance d’observation. Je t’épargne les maths.
+</p>
+<div class="svg_sizer" style="max-width: 35rem;">
+    <svg viewBox="0 0 512 256" stroke="#495057" font-size="12">
+        <defs fill="none">
+            <marker id="arrow-start" viewBox="0 0 7 10" refX=".5" refY="5" orient="auto" markerWidth="7" markerHeight="10">
+                <path d="M6.5.5L.5 5l6 4.5"/>
+            </marker>
+            <marker id="arrow-end" viewBox="0 0 7 10" refX="6.5" refY="5" orient="auto" markerWidth="7" markerHeight="10">
+                <path d="M.5.5l6 4.5-6 4.5"/>
+            </marker>
+        </defs>
+        <path stroke="#ced4da" d="M48 128L496 0M48 128l448 128"/>
+        <circle r="32" cx="48" cy="128" fill="none"/>
+        <g stroke-width="2">
+            <path stroke="#868e96" d="M192 64v128M384 0v256"/>
+            <path stroke="#1864ab" d="M192 87v82M384 32v192"/>
+        </g>
+        <g marker-start="url(#arrow-start)" marker-end="url(#arrow-end)">
+            <line x1="48" y1="177" x2="192" y2="177"/>
+            <line x1="48" y1="232" x2="384" y2="232"/>
+            <line x1="216" y1="87" x2="216" y2="169"/>
+            <line x1="408" y1="32" x2="408" y2="224"/>
+        </g>
+        <path d="M48 128v128M192 87h32M192 169h32M384 32h32M384 224h32" stroke-dasharray="4"/>
+        <g stroke="none">
+            <g font-family="serif" font-style="italic" font-size="16">
+                <text x="88" y="128" dy="6">V</text>
+                <text x="416" y="128" dy="6">S</text>
+                <text x="216" y="236" dx="-6" dy="12">D</text>
+            </g>
+            <text x="220" y="128" dy="5">1/96″</text>
+            <text x="120" y="181" dx="-9" dy="9">28″</text>
+        </g>
+    </svg>
+</div>
+<p>Ah et si possible on arrondit à un nombre entier de pixels physiques, ça ferait plaisir à la spécification.</p>
+<blockquote lang="en">
+    it is recommended that the pixel unit refer to the whole number of device pixels that best approximates
+    the reference pixel.
+    <footer><a href="https://www.w3.org/TR/css-values-4/#example-afc1f57e" hreflang="en">https://www.w3.org/TR/css-values-4/#example-afc1f57e</a></footer>
+</blockquote>
+<p>
+    Par exemple tu disais que les spectateurs étaient assis à 19685 pouces (500 mètres) de l’écran du
+    <i lang="en">Charlotte Motor Speedway</i> ; cette distance divisée par 2688 te donne un côté de 7,3 pouces.
+    Sachant qu’on a 720 pixels sur 960 pouces de haut, ses pixels physiques mesurent 4/3 pouces de côté
+    et il en faut donc environ 5,5 côte à côte pour cumuler cette taille. Si j’arrondis à 5, tu devrais donc être
+    affiché sur un carré de 5 × 5 pixels physiques de côté. Ce rapport entre pixels physiques et pixel CSS est appelé
+    <i lang="en">device pixel ratio</i> et exprimé en <code>dppx</code> :
+    <i lang="en"><b>d</b>ots <b>p</b>er <b>p</b>i<b>x</b>el</i>.
+</p>
+<p>
+    Enfin de toute façon c’est le navigateur qui calcule tout, mais ça te fera de la culture personnelle !
+    Bon j’y vais moi maintenant, j’ai d’autres imprimantes à fouetter. Salut !
+</p>
+<hr>
+<p>— C’est bien beau tout ça mais il est où le navigateur ?</p>
+<p>— Juste là.</p>
+<p>— Oh pardon je ne vous avais pas vu…!</p>
+<p>— Moi je vous ai entendus ; il parle un peu trop ce pixel de référence.</p>
+<p>— Possible mais le sujet est complexe alors je suppose qu’il se doit d’être rigoureux ?</p>
+<p>— Ah c’est clair que ça en jette de connaître la spécification par cœur, mais en pratique ça ne sert pas à grand
+    chose. Ta taille est censée être calculée à partir des dimensions physiques de l’écran et de sa distance
+    d’observation, et pourtant je n’ai aucun accès à ces données. Encore moins la longueur du bras de l’internaute.
+</p>
+<p>— Je peux comprendre, mais les dimensions de l’écran…?</p>
+<p>— <a href="https://fr.wikipedia.org/wiki/Extended_Display_Identification_Data"><abbr lang="en" title="Extended Display Identification Data">EDID</abbr></a>
+    n’a pas toujours existé… et puis Windows a fait le choix très tôt de
+    <a href="https://blogs.msdn.microsoft.com/fontblog/2005/11/08/where-does-96-dpi-come-from-in-windows/" hreflang="en">reporter une résolution de 96 DPI</a>.
+    L’idée était d’avoir une résolution logicielle variable qui permette à l’utilisateur de changer la taille de
+    l’affichage, mais au final tout le monde s’est mis à développer pour du 96 DPI ce qui cassait les interfaces dès
+    que cette résolution changeait… D’ailleurs je parie que le pixel de référence de 1/96 pouce vient de là.
+</p>
+<p>
+    On a galéré pendant des années mais aujourd’hui les implémentations commencent à tenir la route. La résolution
+    logicielle est toujours là mais elle devient constante. On a juste introduit un facteur d’échelle
+    (<i lang="en">device scale factor</i>) qui permet d’adapter l’affichage aux conditions d’observation. Ce facteur a
+    une valeur par défaut choisie par le système d’exploitation en fonction de la résolution physique des écrans (qui
+    est maintenant accessible), et peut être modifié par l’utilisateur dans une certaine mesure. Le concept est
+    tellement bien trouvé qu’on se base dessus pour le calcul du <i lang="en">device pixel ratio</i>.
+</p>
+<p>
+    En ce qui concerne le XZ1 Compact, son facteur d’échelle par défaut est deux.
+    L’utilisateur peut également choisir 1,7 et 2,25 dans les paramètres mais il ne l’a pas fait ici. Du coup on va
+    partir sur un <i lang="en">device pixel ratio</i> de deux. On pourra le retrouver comme valeur de
+    <code>window.devicePixelRatio</code>.
+</p>
+<style>
+    .screen {
+        height: 512px;
+        width: 288px;
+    }
+    @media (min-width: 404px) {
+        .screen {
+            background: #212529;
+            border: solid #000;
+            border-radius: 2px;
+            border-width: 1px 0;
+            box-shadow: 0 -5px 0 0 #adb5bd, 0 5px 0 0 #adb5bd;
+            height: 640px;
+            padding: 79px 22px 74px;
+            width: 360px;
+        }
+    }
+</style>
+<img
+    src="assets/les-aventures-d-un-pixel-css/scale-factor-default.png"
+    alt=""
+    class="screen"
+    width="720"
+    height="1280"
+>
+<p>— Ça veut dire que le <i lang="en">device pixel ratio</i> est identique au
+    <i lang="en">device scale factor</i> ?!
+</p>
+<p>— Presque : il reste encore à le multiplier par le zoom « navigateur ». Celui qu’on active avec <kbd>Ctrl</kbd>.
+</p>
+<figure>
+    <img src="assets/les-aventures-d-un-pixel-css/browser-zoom.png" alt="" width="508" height="322">
+</figure>
+<p>— Parce qu’il y a plusieurs types de zoom…?</p>
+<p>— Wep, et encore heureux. Celui-là provoque un <i lang="en">reflow</i> à chaque changement ; pour minimiser l’impact
+    sur les performances on ne peut le changer que par paliers. C’est à l’opposé des zooms tactiles
+    (<i lang="en">pinch zoom</i> et <i lang="en">double tap zoom</i> notamment) qui doivent être transitoires, donc on
+    ne peut pas utiliser la même technique : à la place, on va modifier les <i lang="en">viewports</i> du document.
+    D’ailleurs je n’y ai pas vu de <code>meta</code> <code>viewport</code> ?
+</p>
+<p>— En fait j’ai complètement décroché au premier « <i lang="en">viewport</i> ».</p>
+<p>— En gros c’est ce qui définit comment le document va être affiché. Sa largeur est celle de son élément
+    <code>&lt;html&gt;</code> qui est donnée par l’<i lang="en">initial containing block</i> qui prend ses dimensions
+    du <i lang="en">layout viewport</i>. Avant le web mobile cette largeur était celle de l’écran ; le
+    <i lang="en">responsive design</i> n’avait pas la côte mais ça ne posait pas de problème : un site intégré pour un
+    écran de 1 024 pixels de large s’affiche correctement sur 1 280. Mais quand les premiers smartphones sont arrivés
+    avec leur définition de 320 × 480 je te raconte pas la panique !
+</p>
+<p>— Ça me rappelle l’histoire des 96 DPI !</p>
+<p>— Ouais c’est quand même un comble pour des développeurs de prendre des variables pour des constantes…
+    Du coup on a introduit le <i lang="en">layout viewport</i> : un canevas virtuel dans lequel le document est mis en
+    page avant d’être dézoomé aux dimensions de l’écran.
+</p>
+<p>
+    Prend <a href="https://960.gs" hreflang="en">960.gs</a> par exemple. Comme son nom l’indique il est prévu pour une
+    largeur minimale de 960 pixels CSS. Notre XZ1 affiche un écran de 720 × 1280 pixels physiques et un
+    <i lang="en">device pixel ratio</i> de deux, ce qui nous donne 360 × 640 pixels CSS. Si le
+    <i lang="en">layout viewport</i> avait ces dimensions le site apparaîtrait tronqué.
+</p>
+<img
+    src="assets/les-aventures-d-un-pixel-css/layout-viewport-screen.png"
+    alt=""
+    class="screen"
+    width="360"
+    height="640"
+>
+<p>
+    En pratique, la largeur minimale de mon <i lang="en">layout viewport</i> est de 980 pixels CSS,
+    ce qui est suffisant ici. Comme sa hauteur respecte toujours le ratio de l’écran, il faudra un zoom de 360/980
+    (environ 36,73%) pour l’y afficher entièrement. On pourra retrouver cette valeur avec
+    <code>window.visualViewport.scale</code>.
+</p>
+<img
+    src="assets/les-aventures-d-un-pixel-css/layout-viewport-default.png"
+    alt=""
+    class="screen"
+    width="360"
+    height="640"
+>
+<p>
+    C’est cette même propriété qui sera modifiée lors d’un zoom tactile. Si le <i lang="en">layout viewport</i> est
+    agrandi il s’étendra au-delà de la surface de l’écran. La zone du document restant visible est celle contenue
+    dans le <i lang="en">visual viewport</i>. Plus simplement : le <i lang="en">visual viewport</i> est la surface du
+    document affichée à l’écran.
+</p>
+<p><code>window.visualViewport</code> nous donne également</p>
+<ul>
+    <li>sa taille (<code>width</code>, <code>height</code>)</li>
+    <li>sa position par rapport au document (<code>pageTop</code>, <code>pageLeft</code>)</li>
+    <li>
+        sa position par rapport au <i lang="en">layout viewport</i>
+        (<code>offsetTop</code>, <code>offsetLeft</code>)
+    </li>
+</ul>
+<p>
+    Je vais te passer une vidéo pour illustrer tout ça. Les contours rouges représentent le
+    <i lang="en">visual viewport</i>, et le rectangle vert le <i lang="en">layout viewport</i>. On y remarque que les
+    éléments fixes sont positionnés par rapport à ce dernier ; c’est pour leur éviter de couvrir tout l’écran lors
+    d’un zoom tactile !
+</p>
+<iframe
+    class="screen"
+    style="display: block; margin: auto;"
+    src="https://www.youtube.com/embed/S38WTbtgqlY?rel=0&amp;showinfo=0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+></iframe>
+<p>— Ah je crois avoir compris. Mais la <code>meta</code> <code>viewport</code> dans tout ça ?</p>
+<p>— Actuellement, c’est le meilleur moyen pour configurer la largeur du <i lang="en">layout viewport</i>. On peut
+    faire des trucs
+    <a href="http://adrianroselli.com/2015/10/dont-disable-zoom.html" hreflang="en">plus ou moins discutables</a> avec
+    mais dans la majorité des cas on l’utilisera seulement pour donner au <i lang="en">layout viewport</i> la largeur
+    de l’écran grâce à la valeur <code>device-width</code>, comme ceci :
+</p>
+<pre><code class="language-markup">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code></pre>
+<p>
+    Cette ligne est un genre d’<i lang="en">opt-in</i> au web mobile… Du coup les navigateurs peuvent appliquer des
+    optimisations en sa présence, comme
+    <a href="https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away" hreflang="en">accélérer les
+    interactions en désactivant le <i lang="en">double tap zoom</i></a>.
+</p>
+<p>— Ça veut dire que je ne suis pas fait pour le web mobile…?</p>
+<p>— Roh fais pas cette tête, tu vas être un peu dézoomé c’est tout ! Résumons : l’appareil a un
+    <i lang="en">device scale factor</i> de deux, un écran de 720 pixels de large et aucun zoom n’est appliqué à la
+    page. Le <i lang="en">device pixel ratio</i> est donc également de deux et l’écran large de 360 pixels CSS. Tu
+    tiens largement sur 980 pixels CSS donc ce sera la largeur de ton <i lang="en">layout viewport</i>, que je vais
+    zoomer à 36,73% pour l’afficher. Tu seras donc rendu sur un carré de 2 × 36,73% soit 0,74 pixels physiques.
+</p>
+<p>— Et comment on fait pour allumer une fraction de pixel ?</p>
+<p>— <a href="https://fr.wikipedia.org/wiki/Anticr%C3%A9nelage"><i lang="en">Anti-aliasing</i></a> !
+    On va interpoler la couleur dudit pixel et de ses voisins pour approximer le visuel attendu.
+    En pratique je n’ai aucune idée de comment ça se passe ; je laisse ça à mon rastériseur :
+    <a href="https://fr.wikipedia.org/wiki/Skia">Skia</a>. Je te l’aurais bien présenté mais on est déjà pas mal
+    à la bourre ; il va falloir que je réponde si on veut éviter un <samp>ERR_TIMED_OUT</samp>.
+</p>
+<p>— Ah… mais on ne pourra plus discuter alors ?</p>
+<p>— Hm… allez je te fais une place dans mon cache.</p>
+<p>— C’est quoi un cache ?</p>
+<p>— Je te raconterai la prochaine fois !</p>
+</html>

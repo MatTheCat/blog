@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Et les espaces insécables bordel !?</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Et les espaces insécables bordel<br>!?</h1>
+<h2>Le problème</h2>
+<p>
+    La typographie française impose des espaces avant et après certains signes de ponctuation.
+    Notez maintenant qu’une espace constitue une opportunité de passage à la ligne
+    (« <i lang="en">soft wrap opportunity</i> »), ce qui veut dire qu’un logiciel pourra la
+    remplacer par un saut de ligne pour honorer l’alignement du texte dans son conteneur.
+    Enfin, imaginez que cette espace est adjacente à un signe de ponctuation… c’est moche.
+</p>
+<video controls loop src="assets/et-les-espaces-insecables-bordel/espace-secable.mp4" width="520" height="200"></video>
+
+<h2>La solution</h2>
+<p>
+    Si on jette un coup d’œil aux
+    <a href="https://fr.wikipedia.org/wiki/Ponctuation#En_fran%C3%A7ais">règles d’écriture</a>,
+    on peut s’apercevoir qu’en général une espace doit être <strong>insécable</strong> quand elle se trouve devant
+    un signe double ou fermant, ou après un signe ouvrant :
+</p>
+<ul>
+    <li>Vous avez des bagages Simon<mark>⍽</mark>?</li>
+    <li>«<mark>⍽</mark>Choucroute interdite<mark>⍽</mark>»</li>
+    <li>Barrez-vous, cons de mimes<mark>⍽</mark>!</li>
+    <li>À votre avis<mark>⍽</mark>: c’est qui le plus fort, l’hippopotame ou l’éléphant<mark>⍽</mark>?</li>
+    <li>Le prince Patrice de Moldavie, je l’ai baisé —<mark>⍽</mark>j’étais bourré<mark>⍽</mark>!</li>
+</ul>
+<p>
+    La particularité d’une espace insécable vient du fait que les caractères qu’elle sépare seront toujours sur la même
+    ligne. Ainsi quelles que soient les conditions d’affichage vous éviterez un rendu… gênant.
+</p>
+<p>Pensez-y !</p>
+
+<h2>On trouve ça où ?</h2>
+<p>
+    Si vous faites du traitement de texte, il y a des chances que votre logiciel remplace vos espaces par des espaces
+    insécables au besoin, comme sur LibreOffice Writer par exemple.
+</p>
+<img src="assets/et-les-espaces-insecables-bordel/writer_spaces.png" alt="" width="691" height="327">
+<p>Si non, vous pouvez généralement utiliser une combinaison de touches propre à votre système :</p>
+<table>
+    <tbody>
+    <tr>
+        <th>Windows</th>
+        <td><kbd>Alt</kbd> + <kbd>255</kbd> (au pavé numérique)</td>
+    </tr>
+    <tr>
+        <th>UNIX</th>
+        <td>
+            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd> puis <kbd>00A0</kbd>
+        </td>
+    </tr>
+    <tr>
+        <th>Mac</th>
+        <td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Espace</kbd></td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    255 identifie l’espace insécable dans la
+    <a href="https://fr.wikipedia.org/wiki/Page_de_code_437">page de code 437</a> et U+00A0 dans
+    <a href="https://fr.wikipedia.org/wiki/Unicode">Unicode</a>.
+</p>
+<p>
+    Notez que votre éditeur peut désactiver les combinaisons selon les raccourcis qu’il définit.
+    S’il ne permet pas d’insérer une espace insécable, vous pouvez la copier via la table des caractères de votre
+    système.
+</p>
+<p>
+    Enfin si vous écrivez du HTML, vous pouvez utiliser l’entité <code>&amp;nbsp;</code>
+    (<i lang="en">no-break space</i>). Toutefois prenez garde au fait qu’une espace insécable dans du code HTML est
+    rendue par le navigateur comme une simple espace, comportement qui remonte à l’époque où ce caractère n’existait pas
+    et permettait de l’émuler (<a href="https://www.w3.org/MarkUp/html3/specialchars.html">c’était il y a longtemps</a>).
+    Par conséquent, vous ne pouvez pas copier une espace insécable sur une page web,
+    sauf si elle se trouve dans un champ de formulaire comme ici :
+    <input
+        type="text"
+        value=" "
+        readonly
+        onclick="select()"
+        size="1"
+        style="
+            background: #fff;
+            border: 0;
+            box-shadow: 0 0 0 1px #868e96;
+            border-radius: 1px;
+            font: inherit;
+            padding: 0;
+            text-align: center;
+        "
+    >
+</p>
+
+<h2>Différencier les espaces</h2>
+<p>
+    Vous venez de copier l’espace juste au-dessus ; comment pouvez vous savoir si elle est insécable ?
+    Eh bien vous pouvez
+</p>
+
+<ul>
+    <li>me faire confiance sur parole ;</li>
+    <li>la coller dans un texte à la place d’une espace utilisé comme saut de ligne ;</li>
+    <li>
+        la soumettre à <a href="https://graphemica.com">Graphemica</a>.
+        Si vous obtenez <q><i lang="en">no-break space (U+00A0)</i></q>, c’est gagné !
+    </li>
+</ul>
+
+<h2>Une dernière chose…</h2>
+<p>
+    Si vous avez consulté la
+    <a href="https://fr.wikipedia.org/wiki/Ponctuation#En_fran%C3%A7ais">liste des signes de ponctuation</a>
+    mentionnée plus haut, vous avez remarqué qu’est parfois mentionnée l’espace <em>fine</em>.
+    <strong>Évitez la</strong> : elle sera remplacée par un tofu (▯) si aucune police ne la supporte.
+</p>
+<p>
+    Maintenant que vous savez tout, je compte sur vous pour vous mettre à jour et répandre la bonne parole.
+    Bon courage !
+</p>
+</html>

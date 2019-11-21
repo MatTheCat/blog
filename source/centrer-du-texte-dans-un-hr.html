@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Centrer du texte dans un &lt;hr&gt;</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Centrer du texte dans un <code>&lt;hr&gt;</code></h1>
+<p>Comment intègreriez-vous le visuel suivant ?</p>
+<style>
+    .hr {
+        align-items: center;
+        display: flex;
+        font: 2rem serif;
+        text-align: center;
+    }
+
+    .hr::before,
+    .hr::after {
+        border-top: .0625em solid;
+        content: "";
+        flex: 1;
+        margin: 0 .5em;
+    }
+</style>
+<div class="hr">Les arômes du vin</div>
+<p>
+    Le trait horizontal nous rappelle probablement l’élément <code>&lt;hr&gt;</code>, après tout il
+    signifie <i lang="en">horizontal rule</i> qui se traduit par… trait horizontal ! Mais il ne peut pas être utilisé
+    pour deux raisons :
+</p>
+<ul>
+    <li>Son modèle de contenu est « rien », ce qui veut dire qu’il ne peut contenir ni texte, ni élément.</li>
+    <li>Il possède sa propre sémantique : une césure thématique entre deux paragraphes.</li>
+</ul>
+<p>Notre visuel évoque plutôt un titre de niveau un. Le <abbr>HTML</abbr> approprié serait donc</p>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-markup">&lt;h1 class=&quot;hr&quot;&gt;Les arômes du vin&lt;/h1&gt;</code></pre>
+<p>
+    Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser une bordure sur les pseudo-éléments
+    <code>::before</code> et <code>::after</code> pour tracer les deux parties du trait. Il faudra ensuite faire en
+    sorte que ces derniers se partagent la largeur restante tout en étant verticalement centrés par rapport au texte.
+    Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet !
+</p>
+<pre><code class="language-css">.hr {
+    /* centre verticalement les enfants entre eux */
+    align-items: center;
+
+    /* active flexbox */
+    display: flex;
+
+    /* garde le texte centré s’il passe sur plusieurs lignes ou si flexbox n’est pas supporté */
+    text-align: center;
+}
+
+.hr::before,
+.hr::after {
+    /* la couleur est volontairement absente ; ainsi elle sera celle du texte */
+    border-top: .0625em solid;
+
+    /* nécessaire pour afficher les pseudo-éléments */
+    content: "";
+
+    /* partage le reste de la largeur disponible */
+    flex: 1;
+
+    /* espace les traits du texte */
+    margin: 0 .5em;
+}</code></pre>
+<p>
+    Cette solution est simple, courte, polyvalente, <i lang="en">responsive</i>, et se dégrade gracieusement en plus
+    d’<a href="https://caniuse.com/#feat=flexbox" hreflang="en">un support déjà excellent</a>. Faites vous une faveur
+    et utilisez la !
+</p>
+</html>

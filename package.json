@@ -1,0 +1,13 @@
+{
+  "name": "blog",
+  "license": "UNLICENSED",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "jsdom": "^15.2.1",
+    "mathjax-node": "^2.1.1",
+    "postcss": "^7.0.21",
+    "prismjs": "^1.17.1"
+  }
+}
