@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="fr-FR"><head><title>Centrer du texte dans un &lt;hr&gt;</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/f324e4d749e986f27deebbfe7a64fc14.css">
+<link rel="stylesheet" href="assets/04fdfe2323cd71d87cdca4d163df3e5f.css">
+</head><body><h1>Centrer du texte dans un <code>&lt;hr&gt;</code></h1>
+<p>Comment intègreriez-vous le visuel suivant&nbsp;?</p>
+<style>
+    .hr {
+        align-items: center;
+        display: flex;
+        font: 2rem serif;
+        text-align: center;
+    }
+
+    .hr::before,
+    .hr::after {
+        border-top: .0625em solid;
+        content: "";
+        flex: 1;
+        margin: 0 .5em;
+    }
+</style>
+<div class="hr">Les arômes du vin</div>
+<p>
+    Le trait horizontal nous rappelle probablement l’élément <code>&lt;hr&gt;</code>, après tout il
+    signifie <i lang="en">horizontal rule</i> qui se traduit par… trait horizontal&nbsp;! Mais il ne peut pas être utilisé
+    pour deux raisons&nbsp;:
+</p>
+<ul>
+    <li>Son modèle de contenu est «&nbsp;rien&nbsp;», ce qui veut dire qu’il ne peut contenir ni texte, ni élément.</li>
+    <li>Il possède sa propre sémantique&nbsp;: une césure thématique entre deux paragraphes.</li>
+</ul>
+<p>Notre visuel évoque plutôt un titre de niveau un. Le <abbr>HTML</abbr> approprié serait donc</p>
+<link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
+<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Les arômes du vin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span></code></pre>
+<p>
+    Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser une bordure sur les pseudo-éléments
+    <code>::before</code> et <code>::after</code> pour tracer les deux parties du trait. Il faudra ensuite faire en
+    sorte que ces derniers se partagent la largeur restante tout en étant verticalement centrés par rapport au texte.
+    Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet&nbsp;!
+</p>
+<pre class=" language-css"><code class=" language-css"><span class="token selector">.hr</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* centre verticalement les enfants entre eux */</span>
+    <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+
+    <span class="token comment">/* active flexbox */</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+
+    <span class="token comment">/* garde le texte centré s’il passe sur plusieurs lignes ou si flexbox n’est pas supporté */</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.hr::before,
+.hr::after</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* la couleur est volontairement absente ; ainsi elle sera celle du texte */</span>
+    <span class="token property">border-top</span><span class="token punctuation">:</span> .0625em solid<span class="token punctuation">;</span>
+
+    <span class="token comment">/* nécessaire pour afficher les pseudo-éléments */</span>
+    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* partage le reste de la largeur disponible */</span>
+    <span class="token property">flex</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
+
+    <span class="token comment">/* espace les traits du texte */</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> 0 .5em<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>
+    Cette solution est simple, courte, polyvalente, <i lang="en">responsive</i>, et se dégrade gracieusement en plus
+    d’<a href="https://caniuse.com/#feat=flexbox" hreflang="en">un support déjà excellent</a>. Faites vous une faveur
+    et utilisez la&nbsp;!
+</p>
+
+</body></html>
