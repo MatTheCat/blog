@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Timeout de NGINX au boot</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Timeout de NGINX au boot</h1>
+<p>
+    Avant de passer sous GitHub Pages, ce blog a fait un malencontreux passage sur un VPS SSD 1 d’OVH où se produisait
+    un problème singulier : NGINX ne démarrait pas au boot.
+</p>
+<pre lang="en" style="font-weight: 700;"><!--
+    --><samp style="color: #d7d75f;">nginx.service: start operation timed out. Terminating.</samp><!--
+    --><samp style="color: #d7d75f;">nginx.service: Failed with result 'timeout'.</samp><!--
+    --><samp style="color: #cc0000;">Failed to start A high performance web server and a reverse proxy server.</samp><!--
+--></pre>
+<p>
+    Le timeout est donné par la valeur de
+    <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html#TimeoutStartSec=" hreflang="en"><code>TimeoutStartSec</code></a>
+    qui est de 90 secondes par défaut, ce qui est censé être largement suffisant ! De plus, l’augmenter jusqu’à
+    trois minutes ne change rien ; ce n’est probablement pas l’origine du problème.
+</p>
+<p>
+    Un indice se trouve plus loin dans les logs : <samp lang="en">crng init done</samp>.
+</p>
+<p>
+
+</p>
+</html>
