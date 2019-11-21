@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="fr-FR"><head><title>Timeout de NGINX au boot</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/f324e4d749e986f27deebbfe7a64fc14.css">
+<link rel="stylesheet" href="assets/04fdfe2323cd71d87cdca4d163df3e5f.css">
+</head><body><h1>Timeout de NGINX au boot</h1>
+<p>
+    Vu le peu de besoin de ce blog en matière de ressources, j’ai migré ce dernier sur un
+    <a href="https://www.ovh.com/fr/vps/vps-ssd.xml">VPS SSD 1 d’OVH</a>.
+    Problème&nbsp;: NGINX ne démarre pas au boot.
+</p>
+<pre lang="en" style="font-weight: 700;"><!--
+    --><samp style="color: #d7d75f;">nginx.service: start operation timed out. Terminating.</samp><!--
+    --><samp style="color: #d7d75f;">nginx.service: Failed with result 'timeout'.</samp><!--
+    --><samp style="color: #cc0000;">Failed to start A high performance web server and a reverse proxy server.</samp><!--
+--></pre>
+<p>
+    Premier réflexe&nbsp;: augmenter la valeur de <code>TimeoutStartSec</code> dans son unité systemd. La valeur par défaut
+    est de 90&nbsp;secondes, je tente donc 180 mais sans succès.
+</p>
+<p>
+    Retour dans <kbd>journalctl</kbd>. Avant le timeout, on peut trouver des
+    <samp lang="en">uninitialized urandom read</samp>. Plus loin, un log indique
+    <samp lang="en">crng init done</samp>.
+</p></body></html>
