@@ -26,6 +26,9 @@ h2, h3 {
     break-after: avoid;
     margin-top: 2rem;
 }
+h2 + h3 {
+    margin-top: 0;
+}
 h2 {
     line-height: 2rem;
     font-weight: 600;

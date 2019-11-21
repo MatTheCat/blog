@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Un scrollspy avec IntersectionObserver</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Un <i lang="en">scrollspy</i> avec <code>Intersection​Observer</code></h1>
+<style>
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 1rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+    nav {
+        bottom: 0;
+        overflow: auto;
+        overscroll-behavior: contain;
+        position: fixed;
+        right: calc(50% + 17.5rem);
+        top: 0;
+        transition: transform .25s ease;
+    }
+    .active {
+        font-weight: 700;
+    }
+    .backdrop {
+        top: 0;
+        content: '';
+        background: rgba(0, 0, 0, .5);
+        left: 0;
+        display: none;
+    }
+    input:checked ~ label .dexter {
+        transform: rotate(45deg);
+    }
+    input:checked ~ label .sinister {
+        transform: rotate(-45deg);
+    }
+    input:checked ~ label path:not(.cross-bar) {
+        fill: grey;
+    }
+    path {
+        transition: all .25s ease;
+        transform-origin: 50% 50%;
+    }
+    svg {
+        contain: strict;
+        display: block;
+        height: 2rem;
+        pointer-events: auto;
+        width: 2rem;
+    }
+    input, label {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+    @media (max-width: 71.5em) {
+        .button {
+            display: block;
+        }
+        nav {
+            background: #f8f9fa;
+            right: 0;
+            transform: translateX(100%);
+        }
+        input:checked + .backdrop {
+            display: block;
+        }
+    }
+    .button {
+        background: grey;
+        padding: 2.5rem 1rem .9rem 2.5rem;
+        border-top-left-radius: 100%;
+        z-index: 1;
+    }
+    input:checked ~ nav {
+        transform: translateX(0);
+    }
+</style>
+<input type="checkbox" id="nav-toggler">
+<label for="nav-toggler" class="backdrop"></label>
+<label for="nav-toggler" class="button">
+    <svg viewBox="0 0 7 7" fill="#212529">
+        <path d="M0 0h7v1H0z"/>
+        <path d="M0 6h7v1H0z"/>
+        <path d="M0 3h7v1H0z" class="cross-bar dexter"/>
+        <path d="M0 3h7v1H0z" class="cross-bar sinister"/>
+    </svg>
+</label>
+<nav>
+    <ol>
+        <li><a href="#Un_quoi_%3F">Un <em>quoi</em> ?</a></li>
+        <li><a href="#Avec_quoi_%3F">Avec <em>quoi</em> ?</a></li>
+        <li><a href="#Le_quoi_%3F">Le <em>quoi</em> ?</a></li>
+        <li>
+            <a href="#Codons_!">Codons !</a>
+            <ol>
+                <li><a href="#HTML">HTML</a></li>
+            </ol>
+        </li>
+    </ol>
+</nav>
+
+<h2>Un <em>quoi</em> ?</h2>
+<p>
+    Un <i lang="en">scrollspy</i> est un pattern qui traque la position de l'utilisateur dans un conteneur, généralement
+    pour mettre à jour l'interface. L'exemple le plus commun est le curseur de la barre de défilement qui indique
+    visuellement cette position.
+</p>
+<p>
+    La plupart du temps, ce pattern est utilisé pour mettre en évidence un lien vers la section consultée au sein
+    d'une navigation interne. Vous pouvez observer ce comportement via la navigation présente sur cette page.
+</p>
+
+<h2>Avec <em>quoi</em> ?</h2>
+<p>
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API"><code>IntersectionObserver</code></a>
+    est une API <a href="https://caniuse.com/#feat=intersectionobserver" hreflang="en">déjà bien supportée</a> qui
+    permet de suivre de manière asynchrone l'intersection d'éléments avec un parent. Plus précisément, une fonction
+    de callback est appelée lorsque leur ratio de visibilité passe une ou plusieurs valeurs données.
+</p>
+<p>
+    On peut donc s'attendre à de meilleures performances qu'en utilisant l'événement
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/Document/scroll_event"><code>scroll</code></a> car non
+    seulement le callback ne s'exécute jamais pour rien (<q>le code le plus rapide est celui qui ne s'exécute
+    pas</q>), mais on a plus à tester la position des éléments nous-mêmes. Cela peut sembler trivial mais permet
+    de se prémunir contre le <i lang="en">forced synchronous layout</i> (remplacez <i lang="en">layout</i> par
+    <i lang="en">reflow</i> si vous êtes sous Firefox).
+</p>
+
+<h2>Le <em>quoi</em> ?</h2>
+<p>
+    Lorsqu'un navigateur doit mettre à jour l'affichage d'une page web, il génère le rendu dans un ordre bien
+    précis :
+</p>
+<ol>
+    <li>JavaScript</li>
+    <li>Calculs de style</li>
+    <li>Mise en page</li>
+    <li>Rendu</li>
+    <li>Composition</li>
+</ol>
+<p>
+    Vous pouvez trouver la description de ces étapes dans l'article
+    <a href="https://developers.google.com/web/fundamentals/performance/rendering#le_pipeline_de_pixels"><cite>Performance de rendu</cite></a>
+    des <i lang="en">Web Fundamentals</i>.
+</p>
+<p>
+    Lors de son exécution, JavaScript dispose des informations de mise en page du rendu précédent, mais il peut
+    également la modifier. Dans ce cas, les informations deviennent périmées et leur lecture forcerait le navigateur
+    à les recalculer, ralentissant d'autant l'exécution du script. Lorsque ce cycle est répété (typiquement, dans une
+    boucle) on parle de <i lang="en">layout thrashing</i>.
+    <a href="https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing" hreflang="en">À éviter</a>.
+</p>
+<p>
+    Comme <code>IntersectionObserver</code> permet de s'affranchir de la lecture des informations de mise en page,
+    l'utiliser vous prémunit contre le <i lang="en">forced synchronous layout</i>.
+</p>
+
+<h2>Codons !</h2>
+<h3><abbr>HTML</abbr></h3>
+<p style="height: 100vh">Première étape : lier les liens.</p>
+<script>
+    const links = document.querySelectorAll("[href^='#']");
+    const linkByHeading = new Map();
+    const headingByLink = new Map();
+    const linksToToggle = new Map();
+    links.forEach((link, i) => {
+        const heading = document.getElementById(link.getAttribute("href").slice(1));
+        const level = heading.tagName.slice(1);
+
+        linkByHeading.set(heading, link);
+        headingByLink.set(link, heading);
+
+        const toggle = [];
+        let previousLink;
+
+        while (previousLink = links.item(--i)) {
+            const previousHeading = headingByLink.get(previousLink);
+            const previousLevel = previousHeading.tagName.slice(1);
+            if (previousLevel < level) {
+                break;
+            }
+            toggle.push(previousLink);
+            if (previousLevel === level) {
+                break;
+            }
+        }
+
+        linksToToggle.set(link, toggle);
+    });
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const link = linkByHeading.get(entry.target);
+
+            if (entry.boundingClientRect.y >= 0 && !link.classList.contains('active')) {
+                return;
+            }
+
+            link.classList[entry.boundingClientRect.y < 0 ? 'add' : 'remove']('active');
+
+            linksToToggle.get(link).forEach(link => {
+                link.classList[entry.boundingClientRect.y < 0 ? 'remove' : 'add']('active');
+            });
+        });
+    }, {
+        rootMargin: '0% 0% 100%',
+        threshold: 1,
+    });
+
+    for (const heading of linkByHeading.keys()) {
+        observer.observe(heading);
+    }
+
+    /*document.addEventListener('scroll', update);
+    window.addEventListener('resize', update);
+
+    function update() {
+        let section, link;
+        let hasBeenVisible = false;
+        for ([section, link] of linkBySection) {
+            const rect = section.getBoundingClientRect();
+            let visible = !hasBeenVisible && rect.top < window.innerHeight && rect.bottom > window.innerHeight/3;
+            hasBeenVisible |= visible;
+            link.classList[visible ? 'add' : 'remove']('active');
+        }
+    }*/
+</script>
+</html>
