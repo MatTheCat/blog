@@ -21,10 +21,67 @@
     Si la hauteur des glyphes dépend de <code>font-size</code>,
     ce sont toutefois deux valeurs distinctes.
 </p>
+<svg display="none"><symbol id="a" viewBox="0 0 20 20">
+        <path fill="#111310" d="M7 3h1v1H7zm1 2h1v1H8zM5 8h1v1H5zm4 0h1v1H9zm-4 2h5v1H5zm-1 1h1v1H4zm6 0h1v1H10z"/>
+        <path fill="#919390" d="M6 3h1v1H6z"/>
+        <path fill="#929491" d="M8 3h1v1H8z"/>
+        <path fill="#414240" d="M6 4h1v1H6zm2 0h1v1H8z"/>
+        <path fill="#525451" d="M7 4h1v1H7z"/>
+        <path fill="#dee0dd" d="M5 5h1v1H5zm4 0h1v1H9z"/>
+        <path fill="#141513" d="M6 5h1v1H6z"/>
+        <path fill="#d3d5d2" d="M7 5h1v1H7z"/>
+        <path fill="#8d8f8c" d="M5 6h1v1H5z"/>
+        <path fill="#444643" d="M6 6h1v1H6z"/>
+        <path fill="#363835" d="M8 6h1v1H8z"/>
+        <path fill="#8e908d" d="M9 6h1v1H9z"/>
+        <path fill="#3f403e" d="M5 7h1v1H5z"/>
+        <path fill="#868885" d="M6 7h1v1H6z"/>
+        <path fill="#797b78" d="M8 7h1v1H8z"/>
+        <path fill="#3f403e" d="M9 7h1v1H9z"/>
+        <path fill="#d9dbd7" d="M4 8h1v1H4z"/>
+        <path fill="#c7c9c6" d="M6 8h1v1H6z"/>
+        <path fill="#bbbdba" d="M8 8h1v1H8z"/>
+        <path fill="#dcdedb" d="M10 8h1v1H10z"/>
+        <path fill="#8b8d8a" d="M4 9h1v1H4z"/>
+        <path fill="#1b1c1a" d="M5 9h1v1H5z"/>
+        <path fill="#e4e6e3" d="M6 9h1v1H6z"/>
+        <path fill="#e7e9e6" d="M7 9h1v1H7z"/>
+        <path fill="#dfe1de" d="M8 9h1v1H8z"/>
+        <path fill="#171816" d="M9 9h1v1H9z"/>
+        <path fill="#8c8e8b" d="M10 9h1v1H10z"/>
+        <path fill="#3a3b39" d="M4 10h1v1H4z"/>
+        <path fill="#3c3e3b" d="M10 10h1v1H10z"/>
+        <path fill="#d8dad6" d="M3 11h1v1H3z"/>
+        <path fill="#b4b6b3" d="M5 11h1v1H5z"/>
+        <path fill="#a8aaa7" d="M9 11h1v1H9z"/>
+        <path fill="#d9dbd7" d="M11 11h1v1h-1z"/>
+        <path fill="#878986" d="M3 12h1v1H3z"/>
+        <path fill="#212320" d="M4 12h1v1H4z"/>
+        <path fill="#171816" d="M10 12h1v1H10z"/>
+        <path fill="#888a87" d="M11 12h1v1h-1z"/>
+        <path fill="#373936" d="M3 13h1v1H3z"/>
+        <path fill="#6e706d" d="M4 13h1v1H4z"/>
+        <path fill="#60625f" d="M10 13h1v1H10z"/>
+        <path fill="#373936" d="M11 13h1v1h-1z"/>
+    </symbol></svg>
+<style>
+    .svg_sizer {
+        background: linear-gradient(to right, #dee2e6 1px, transparent 1px, transparent calc(100% - 1px), #dee2e6 calc(100% - 1px)),
+            linear-gradient(to bottom, #dee2e6 1px, transparent 1px, transparent calc(100% - 1px), #dee2e6 calc(100% - 1px));
+        background-size: 5% 5%;
+        max-width: 20rem;
+    }
+</style>
 <figure>
     <link rel="stylesheet" href="assets/prism.css">
     <pre><code class="language-markup">&lt;span style=&quot;font-size: 16px;&quot;&gt;A&lt;span&gt;</code></pre>
-    <img src="assets/comprendre-font-size/a-source-sans-16px.png" alt="" width="389" height="322">
+    <div class="svg_sizer">
+        <svg viewBox="0 0 20 20">
+            <use xlink:href="#a"/>
+            <path stroke="#1864ab" stroke-width=".1" d="M14 2v13M2 3h13M2 14h13"/>
+            <text x="15" y="9" font-size="1" fill="#1864ab">11px</text>
+        </svg>
+    </div>
 </figure>
 <p>Nos 16 pixels ont en réalité servi à dimensionner l’<i lang="en">EM box</i>.</p>
 
@@ -68,7 +125,13 @@
     </blockquote>
 </aside>
 <aside>
-    <img src="assets/comprendre-font-size/a-source-sans-16px-em.png" alt="" width="389" height="434">
+    <div class="svg_sizer">
+        <svg viewBox="0 0 20 20">
+            <use xlink:href="#a"/>
+            <path stroke="#1864ab" stroke-width=".1" d="M14 1v18M2 2h13M2 18h13"/>
+            <text x="15" y="10.5" font-size="1" fill="#1864ab">16px</text>
+        </svg>
+    </div>
 </aside>
 
 <h2>Polices matricielles</h2>
