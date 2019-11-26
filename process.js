@@ -156,7 +156,7 @@ function rewriteMath(document) {
   })).then(() => {
     if (state.defs) {
       let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.style.display = "none";
+      svg.setAttribute("display", "none");
       svg.innerHTML = state.defs.outerHTML;
       document.body.prepend(svg);
     }
