@@ -1,5 +1,5 @@
 const fs = require("fs");
-const compile = require("./compile");
+const compile = require("../compile");
 
 const compileTimeouts = new Map();
 
