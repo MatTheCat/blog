@@ -14,14 +14,30 @@ img, video {
     margin: auto;
     max-width: 100%;
 }
+h1, h2, h3 {
+    margin-bottom: 0;
+}
+h1 + :not(h2), h2, h3 {
+    margin-top: 2rem;
+}
+h1 + h2, h2 + h3 {
+    margin-top: .5rem;
+}
 h2, h3 {
     break-after: avoid;
 }
+h2 {
+    line-height: 2rem;
+    font-weight: 600;
+    font-size: 1.84rem;
+}
+h3 {
+    line-height: 1.5rem;
+    font-weight: 700;
+    font-size: 1.36rem;
+}
 figure, blockquote, p, li {
     break-inside: avoid;
-}
-h1 + :not(h2) {
-    margin-top: 2rem;
 }
 figure {
     margin-left: 0;
