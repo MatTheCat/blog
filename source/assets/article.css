@@ -20,7 +20,7 @@ h1, h2, h3 {
 h1 + :not(h2), h2, h3 {
     margin-top: 2rem;
 }
-h1 + h2, h2 + h3 {
+h1 + h2, h2 + h3, li ul, li ol {
     margin-top: .5rem;
 }
 h2, h3 {
