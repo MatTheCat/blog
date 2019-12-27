@@ -59,7 +59,7 @@ pre code, pre samp {
     max-width: 35rem;
 }
 code, kbd, samp {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 a {
     color: #1864ab;
