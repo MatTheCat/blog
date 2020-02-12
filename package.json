@@ -5,9 +5,9 @@
   "version": "1.0.0",
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.1.0",
     "mathjax-node": "^2.1.1",
     "postcss": "^7.0.26",
-    "prismjs": "^1.17.1"
+    "prismjs": "^1.19.0"
   }
 }
