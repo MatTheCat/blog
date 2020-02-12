@@ -4,9 +4,14 @@ h1, h2, h3, p, ul, ol, figcaption, blockquote {
     max-width: 35rem;
     padding: 0 2rem;
 }
-p, ul, ol, figure {
+h2, h3, p, ul, ol, figure {
     margin-bottom: 1rem;
+}
+p, ul, ol, figure {
     margin-top: 1rem;
+}
+li ul, li ol {
+    margin-top: .5rem;
 }
 img, video {
     display: block;
@@ -14,17 +19,12 @@ img, video {
     margin: auto;
     max-width: 100%;
 }
-h1, h2, h3 {
-    margin-bottom: 0;
-}
-h1 + :not(h2), h2, h3 {
-    margin-top: 2rem;
-}
-h1 + h2, h2 + h3, li ul, li ol {
-    margin-top: .5rem;
+h1 {
+    margin-bottom: 2rem;
 }
 h2, h3 {
     break-after: avoid;
+    margin-top: 2rem;
 }
 h2 {
     line-height: 2rem;
