@@ -97,9 +97,11 @@
         return;
     }
 
-    if (form.reportValidity()) {
-        form.submit();
+    if (!form.reportValidity()) {
+        return;
     }
+
+    form.submit();
 }
 </code></pre>
 <p>
