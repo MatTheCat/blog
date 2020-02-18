@@ -4,9 +4,14 @@ h1, h2, h3, p, ul, ol, figcaption, blockquote {
     max-width: 35rem;
     padding: 0 2rem;
 }
-p, ul, ol, figure {
+h2, h3, p, ul, ol, figure {
     margin-bottom: 1rem;
+}
+p, ul, ol, figure {
     margin-top: 1rem;
+}
+li ul, li ol {
+    margin-top: .5rem;
 }
 img, video {
     display: block;
@@ -14,14 +19,25 @@ img, video {
     margin: auto;
     max-width: 100%;
 }
+h1 {
+    margin-bottom: 2rem;
+}
 h2, h3 {
     break-after: avoid;
+    margin-top: 2rem;
+}
+h2 {
+    line-height: 2rem;
+    font-weight: 600;
+    font-size: 1.84rem;
+}
+h3 {
+    line-height: 1.5rem;
+    font-weight: 700;
+    font-size: 1.36rem;
 }
 figure, blockquote, p, li {
     break-inside: avoid;
-}
-h1 + :not(h2) {
-    margin-top: 2rem;
 }
 figure {
     margin-left: 0;
@@ -43,7 +59,7 @@ pre code, pre samp {
     max-width: 35rem;
 }
 code, kbd, samp {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 a {
     color: #1864ab;
@@ -57,6 +73,10 @@ q::before {
 }
 q::after {
     content: ' »'
+}
+abbr {
+    cursor: help;
+    text-decoration: none;
 }
 table {
     border-spacing: 0;

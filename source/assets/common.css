@@ -1,9 +1,17 @@
 html {
     font-size: calc(.6375rem + 1.75vw);
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(.6375rem + 1.75vw);
 }
 @media (min-width: 35rem) {
     html {
         font-size: 1.25rem;
+        scroll-padding-top: 1.25rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 }
  body {
@@ -23,30 +31,11 @@ html {
 @page {
     margin: 4rem 0;
 }
-h1, h2, h3 {
-    margin-bottom: 0;
-}
- h1 {
+h1 {
     line-height: 1;
     font-weight: 400;
     font-size: 2.5rem;
     margin-top: 0;
-}
-h2, h3 {
-    margin-top: 2rem;
-}
-h1 + h2, h2 + h3 {
-    margin-top: .5rem;
-}
-h2 {
-    line-height: 2rem;
-    font-weight: 600;
-    font-size: 1.84rem;
-}
-h3 {
-    line-height: 1.5rem;
-    font-weight: 700;
-    font-size: 1.36rem;
 }
 svg {
     pointer-events: none;

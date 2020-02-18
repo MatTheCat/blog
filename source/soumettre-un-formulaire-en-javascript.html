@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Soumettre un formulaire en JavaScript</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Soumettre un formulaire en JavaScript</h1>
+<h2><abbr lang="en" title="Too Long ; Didn’t Read">TL;DR</abbr></h2>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-javascript">form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }))
+    && form.reportValidity()
+    && form.submit();</code></pre>
+<h2><abbr lang="en" title="Too Long ; Read Anyway">TL;RA</abbr></h2>
+<p>
+    Le besoin était simple : inclure <a href="https://developers.google.com/recaptcha/docs/v3" hreflang="en">reCAPTCHA v3</a>
+    sur des formulaires de contact. À leur soumission, on leur ajoute un token qui pourra être utilisé par le backend
+    pour estimer la légitimité de l’interaction. Certains formulaires sont soumis par le navigateur, et d’autres via
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API"><code>fetch</code></a>. Pour être sûr d’ajouter le
+    token en premier, on va donc écouter l’événement
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event_"><code>submit</code></a> sur
+    <code>window</code> pendant
+    <a href="https://javascript.info/bubbling-and-capturing#capturing" hreflang="en">la phase de capture</a>.
+</p>
+<pre><code class="language-javascript">window.addEventListener("submit", includeReCaptchaToken, true);</code></pre>
+<p>
+    Le token est obtenu via une
+    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise"><code>Promise</code></a>.
+    Le temps qu’elle soit résolue il faut donc empêcher
+</p>
+<ol>
+    <li>le formulaire d’être soumis par le navigateur</li>
+    <li>tout écouteur de réagir à l’événement <code>submit</code></li>
+</ol>
+<p>On peut ensuite attendre le token et l’ajouter au formulaire, puis soumettre ce dernier.</p>
+<pre><code class="language-javascript">function includeReCaptchaToken(e) {
+    /* 1. */ e.preventDefault();
+    /* 2. */ e.stopImmediatePropagation();
+
+    const form = e.target;
+
+    grecaptcha.execute("_reCAPTCHA_site_key_", { action: "contact" }).then(function(token) {
+        form.querySelector("[name=recaptcha-token]").value = token;
+
+        submitForm(form); // 🤔
+    });
+}</code></pre>
+<p>
+    Tout formulaire dispose d’une méthode
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit" hreflang="en"><code>submit</code></a>.
+    Seulement… celle-ci <strong>ne déclenche pas l’événement
+    <code>submit</code></strong>, et <strong>ne valide pas le formulaire</strong> ; il va falloir le faire nous-même !
+</p>
+<h3>Déclencher l’événement <code>submit</code></h3>
+<p>
+    C’est la première chose à faire, car si cet événement est annulé par un écouteur on doit lui laisser le gérer.
+    Nous allons donc créer notre version la plus fidèle de l’événement natif, qui bouillonne en plus d’être annulable :
+</p>
+<pre><code class="language-javascript">const event = new Event("submit", {
+    bubbles: true,
+    cancelable: true,
+});
+</code></pre>
+<p>
+    Un événement peut être envoyé par toute cible potentielle — et donc notre formulaire — grâce à la méthode
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/EventTarget/dispatchEvent"><code>dispatchEvent</code></a>.
+    Cette dernière appelera tous les écouteurs de manière synchrone, ce qui lui permet de retourner <code>false</code>
+    si au moins un a annulé l’événement. Dans ce cas, le formulaire ne doit pas être soumis et notre fonction
+    <code>submitForm</code> peut retourner.
+</p>
+<pre><code class="language-javascript">if (!form.dispatchEvent(event)) {
+    return;
+}
+</code></pre>
+<h3>Valider le formulaire</h3>
+<p>
+    Nous allons simplement utiliser la méthode
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/reportValidity"><code>reportValidity</code></a>
+    du formulaire. En cas d’échec, elle retournera <code>false</code> et signalera les erreurs à l’utilisateur. Inutile
+    alors de soumettre le formulaire.
+</p>
+<pre><code class="language-javascript">if (!form.reportValidity()) {
+    return;
+}
+</code></pre>
+<h3>Soumettre le formulaire</h3>
+<p>
+    J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire ; c’est tout ce qu’il nous reste à
+    faire ! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code> :
+</p>
+<pre><code class="language-javascript">function submitForm(form) {
+    const event = new Event("submit", {
+        bubbles: true,
+        cancelable: true,
+    });
+
+    if (!form.dispatchEvent(event)) {
+        return;
+    }
+
+    if (form.reportValidity()) {
+        form.submit();
+    }
+}
+</code></pre>
+<p>
+    Si vous préférez les <i lang="en">one-liners</i>, vous pouvez retrouver une version plus concise
+    <a href="#TL%3BDR">en haut de cet article</a>.
+</p>
+</html>
