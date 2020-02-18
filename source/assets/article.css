@@ -74,6 +74,10 @@ q::before {
 q::after {
     content: ' »'
 }
+abbr {
+    cursor: help;
+    text-decoration: none;
+}
 table {
     border-spacing: 0;
     margin: auto;

@@ -1,9 +1,17 @@
 html {
     font-size: calc(.6375rem + 1.75vw);
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(.6375rem + 1.75vw);
 }
 @media (min-width: 35rem) {
     html {
         font-size: 1.25rem;
+        scroll-padding-top: 1.25rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 }
  body {
