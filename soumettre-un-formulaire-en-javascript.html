@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="fr-FR"><head><title>Soumettre un formulaire en JavaScript</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/f7a1cf1961dd90968397e86764ed1c71.css">
+<link rel="stylesheet" href="assets/952b9c2473edaac21c8b55834762fbe4.css">
+</head><body><h1>Soumettre un formulaire en JavaScript</h1>
+<h2 id="TL%3BDR"><abbr lang="en" title="Too Long&nbsp;; Didn’t Read">TL;DR</abbr></h2>
+<link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
+<pre class=" language-javascript"><code class=" language-javascript">form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> cancelable<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;&amp;</span> form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;&amp;</span> form<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="TL%3BRA"><abbr lang="en" title="Too Long&nbsp;; Read Anyway">TL;RA</abbr></h2>
+<p>
+    Le besoin était simple&nbsp;: inclure <a href="https://developers.google.com/recaptcha/docs/v3" hreflang="en">reCAPTCHA v3</a>
+    sur des formulaires de contact. À leur soumission, on leur ajoute un token qui pourra être utilisé par le backend
+    pour estimer la légitimité de l’interaction. Certains formulaires sont soumis par le navigateur, et d’autres via
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API"><code>fetch</code></a>. Pour être sûr d’ajouter le
+    token en premier, on va donc écouter l’événement
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event_"><code>submit</code></a> sur
+    <code>window</code> pendant
+    <a href="https://javascript.info/bubbling-and-capturing#capturing" hreflang="en">la phase de capture</a>.
+</p>
+<pre class=" language-javascript"><code class=" language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> includeReCaptchaToken<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>
+    Le token est obtenu via une
+    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise"><code>Promise</code></a>.
+    Le temps qu’elle soit résolue il faut donc empêcher
+</p>
+<ol>
+    <li>le formulaire d’être soumis par le navigateur</li>
+    <li>tout écouteur de réagir à l’événement <code>submit</code></li>
+</ol>
+<p>On peut ensuite attendre le token et l’ajouter au formulaire, puis soumettre ce dernier.</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">includeReCaptchaToken</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* 1. */</span> e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/* 2. */</span> e<span class="token punctuation">.</span><span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> form <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+
+    grecaptcha<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token string">"_reCAPTCHA_site_key_"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> action<span class="token operator">:</span> <span class="token string">"contact"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">token</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        form<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"[name=recaptcha-token]"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value <span class="token operator">=</span> token<span class="token punctuation">;</span>
+
+        <span class="token function">submitForm</span><span class="token punctuation">(</span>form<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 🤔</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>
+    Tout formulaire dispose d’une méthode
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit" hreflang="en"><code>submit</code></a>.
+    Seulement… celle-ci <strong>ne déclenche pas l’événement
+    <code>submit</code></strong>, et <strong>ne valide pas le formulaire</strong>&nbsp;; il va falloir le faire nous-même&nbsp;!
+</p>
+<h3 id="D%C3%A9clencher_l%E2%80%99%C3%A9v%C3%A9nement_submit">Déclencher l’événement <code>submit</code></h3>
+<p>
+    C’est la première chose à faire, car si cet événement est annulé par un écouteur on doit lui laisser le gérer.
+    Nous allons donc créer notre version la plus fidèle de l’événement natif,&nbsp;qui bouillonne en plus d’être annulable&nbsp;:
+</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">const</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    cancelable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>
+    Un événement peut être envoyé par toute cible potentielle&nbsp;— et donc notre formulaire&nbsp;— grâce à la méthode
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/EventTarget/dispatchEvent"><code>dispatchEvent</code></a>.
+    Cette dernière appelera tous les écouteurs de manière synchrone, ce qui lui permet de retourner <code>false</code>
+    si au moins un a annulé l’événement. Dans ce cas, le formulaire ne doit pas être soumis et notre fonction
+    <code>submitForm</code> peut retourner.
+</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Valider_le_formulaire">Valider le formulaire</h3>
+<p>
+    Nous allons simplement utiliser la méthode
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/reportValidity"><code>reportValidity</code></a>
+    du formulaire. En cas d’échec, elle retournera <code>false</code> et signalera les erreurs à l’utilisateur. Inutile
+    alors de soumettre le formulaire.
+</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Soumettre_le_formulaire">Soumettre le formulaire</h3>
+<p>
+    J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire&nbsp;; c’est tout ce qu’il nous reste à
+    faire&nbsp;! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code>&nbsp;:
+</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token parameter">form</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        cancelable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        form<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>
+    Si vous préférez les <i lang="en">one-liners</i>, vous pouvez retrouver une version plus concise
+    <a href="#TL%3BDR">en haut de cet article</a>.
+</p>
+
+</body></html>
