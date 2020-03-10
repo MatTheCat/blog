@@ -46,7 +46,7 @@ function compile(page) {
 const assetsProcessing = new Map();
 
 function processAssets(document) {
-    return Promise.all(Array.from(document.querySelectorAll("[href$='.css'], [src]:not(iframe)")).map(tag => {
+    return Promise.all(Array.from(document.querySelectorAll("[href^='assets/'], [src^='assets/']"), tag => {
         const attribute = tag.hasAttribute("href") ? "href" : "src";
         const asset = tag.getAttribute(attribute);
         const promise = assetsProcessing.get(asset) || transformAsset(`source/${asset}`).then(content => {
