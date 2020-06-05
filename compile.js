@@ -17,7 +17,7 @@ Promise.all([
     fs.writeFile("public/CNAME", "www.matthecat.com");
     fs.copyFile("source/assets/favicon.ico", "public/favicon.ico");
 
-    pages.forEach(page =>  page.isDirectory() || compile(page.name));
+    pages.forEach(page => page.isDirectory() || compile(page.name));
 });
 
 function compile(page) {
