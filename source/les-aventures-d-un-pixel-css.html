@@ -171,7 +171,7 @@
 <p>— Je peux comprendre, mais les dimensions de l’écran…?</p>
 <p>— <a href="https://fr.wikipedia.org/wiki/Extended_Display_Identification_Data"><abbr lang="en" title="Extended Display Identification Data">EDID</abbr></a>
     n’a pas toujours existé… et puis Windows a fait le choix très tôt de
-    <a href="https://blogs.msdn.microsoft.com/fontblog/2005/11/08/where-does-96-dpi-come-from-in-windows/" hreflang="en">reporter une résolution de 96 DPI</a>.
+    <a href="https://docs.microsoft.com/en-us/archive/blogs/fontblog/where-does-96-dpi-come-from-in-windows" hreflang="en">reporter une résolution de 96 DPI</a>.
     L’idée était d’avoir une résolution logicielle variable qui permette à l’utilisateur de changer la taille de
     l’affichage, mais au final tout le monde s’est mis à développer pour du 96 DPI ce qui cassait les interfaces dès
     que cette résolution changeait… D’ailleurs je parie que le pixel de référence de 1/96 pouce vient de là.
@@ -244,7 +244,7 @@
     page avant d’être dézoomé aux dimensions de l’écran.
 </p>
 <p>
-    Prend <a href="https://960.gs" hreflang="en">960.gs</a> par exemple. Comme son nom l’indique il est prévu pour une
+    Prend <a href="https://960.gs/" hreflang="en">960.gs</a> par exemple. Comme son nom l’indique il est prévu pour une
     largeur minimale de 960 pixels CSS. Notre XZ1 affiche un écran de 720 × 1280 pixels physiques et un
     <i lang="en">device pixel ratio</i> de deux, ce qui nous donne 360 × 640 pixels CSS. Si le
     <i lang="en">layout viewport</i> avait ces dimensions le site apparaîtrait tronqué.
@@ -299,7 +299,7 @@
 <p>— Ah je crois avoir compris. Mais la <code>meta</code> <code>viewport</code> dans tout ça ?</p>
 <p>— Actuellement, c’est le meilleur moyen pour configurer la largeur du <i lang="en">layout viewport</i>. On peut
     faire des trucs
-    <a href="http://adrianroselli.com/2015/10/dont-disable-zoom.html" hreflang="en">plus ou moins discutables</a> avec
+    <a href="https://adrianroselli.com/2015/10/dont-disable-zoom.html" hreflang="en">plus ou moins discutables</a> avec
     mais dans la majorité des cas on l’utilisera seulement pour donner au <i lang="en">layout viewport</i> la largeur
     de l’écran grâce à la valeur <code>device-width</code>, comme ceci :
 </p>
