@@ -5,7 +5,7 @@
 </head><body><h1>Anecdotes sur <code>meta</code> <code>charset</code></h1>
 <p>La ligne de code suivante vous est probablement familière&nbsp;:</p>
 <link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     Elle est un moyen d’indiquer aux <i lang="en">user agents</i>
     l’encodage du document HTML dans lequel elle se trouve.
@@ -17,13 +17,13 @@
     Il peut sembler étrange d’avoir introduit un nouvel attribut <code>charset</code> plutôt que d’utiliser
     <code>name</code> et <code>content</code>&nbsp;; c’est en fait un moyen ingénieux de raccourcir la déclaration
 </p>
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Content-Type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html; charset=utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Content-Type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/html; charset=utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     <code>http-equiv</code> avait à l’origine pour but de définir des directives pour le serveur, mais cela n’est
     jamais arrivé. Définir l’encodage est donc devenu le problème du navigateur, en plus du support de syntaxes
     invalides. L’absence de guillemets autour d’un attribut contenant une espace par exemple&nbsp;:
 </p>
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span>Content-Type</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span>text/html;</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span>utf-8</span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>Content-Type</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text/html;</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>utf-8</span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     <code>charset</code> devient alors un attribut&nbsp;! S’il est déjà supporté, il ne reste qu’à le rendre valide.
     On supprime également les attributs <code>http-equiv</code> et <code>content</code> devenus inutiles, et paf.
