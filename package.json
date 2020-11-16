@@ -8,6 +8,6 @@
     "jsdom": "^16.4.0",
     "mathjax-node": "^2.1.1",
     "postcss": "^7.0.35",
-    "prismjs": "^1.21.0"
+    "prismjs": "^1.22.0"
   }
 }
