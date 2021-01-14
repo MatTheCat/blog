@@ -7,7 +7,7 @@ const path = require("path");
 const postcss = require("postcss");
 const Prism = require("prismjs");
 
-require("prismjs/components/index")(["http", "php-extras"]);
+require("prismjs/components/index")(["http", "makefile", "php-extras", "shell-session"]);
 
 Promise.all([
     fs.readdir("source", {withFileTypes: true}),

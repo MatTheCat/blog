@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - docker**
+    paths:
+      - source/**
+      - package-lock.json
+      - compile.js
 jobs:
   publish:
     runs-on: ubuntu-20.04
@@ -14,9 +16,9 @@ jobs:
         with:
           persist-credentials: false
       - name: setup node
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '15'
       - name: install dependencies
         run: npm ci
       - name: build
