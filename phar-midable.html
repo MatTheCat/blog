@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="fr-FR"><head><title>Phar…midable&nbsp;!</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/f7a1cf1961dd90968397e86764ed1c71.css">
+<link rel="stylesheet" href="assets/c4d1ea42a2a9fc1648d2aa58d3da4dc2.css">
+</head><body><h1>Phar…midable&nbsp;!</h1>
+<p>
+    Si vous êtes un tant soit peu familier avec l’écosystème PHP, vous utilisez probablement
+    <a href="https://getcomposer.org/" hreflang="en">Composer</a> pour gérer les dépendances
+    de vos applications. Il y a alors des chances de trouver
+    <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer" hreflang="en">PHP&nbsp;CS&nbsp;Fixer</a> ou
+    encore <a href="https://phpunit.de/" hreflang="en">PHPUnit</a> dans vos
+    <code>composer.json</code>. Mais qu’est-ce qu’une dépendance au juste&nbsp;?
+</p>
+<blockquote>
+    Bibliothèque ou programme tiers utilisé par le programme courant.
+    <footer><a href="https://fr.wiktionary.org/wiki/d%C3%A9pendance">https://fr.wiktionary.org/wiki/d%C3%A9pendance</a></footer>
+</blockquote>
+<p>
+    Quel que soit son point d’entrée, aucune de vos applications n’utilisera ni PHP&nbsp;CS&nbsp;Fixer,
+    ni PHPUnit. Ces derniers ne sont donc pas des dépendances, juste des <q>programmes tiers</q>.
+    Lorsqu’un tel programme est codé en PHP, il est généralement disponible sous forme de
+    <strong><abbr>PHAR</abbr></strong>.
+</p>
+<p>
+    Un fichier <code>.phar</code>&nbsp;— acronyme de <b>PH</b>P <b>ar</b>chive —&nbsp;a pour particularité
+    d’être un exécutable contenant son propre code source, ce qui apporte d’emblée quelques avantages&nbsp;:
+</p>
+<ul>
+    <li>Ses dépendances y sont cloisonnées, elles ne peuvent donc pas rentrer en conflit avec les vôtres.</li>
+    <li>Son code source est indexable par un IDE.</li>
+    <li>Il consiste en un unique fichier, son installation est donc triviale.</li>
+</ul>
+<p>
+    Ce dernier point rend leur gestion particulièrement adaptée à un
+    <a href="https://fr.wikipedia.org/wiki/Make#Makefile">Makefile</a>, que nous allons créer pas à pas afin d’installer
+    et utiliser PHP&nbsp;CS&nbsp;Fixer.
+    C’est parti&nbsp;!
+</p>
+<h2 id="Cr%C3%A9er_un_dossier_commun">Créer un dossier commun</h2>
+<link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
+<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
+	mkdir <span class="token variable">$@</span></code></pre>
+<p>
+    Nous avons ici une <b>règle</b> dont <code>tools</code> est la <b>cible</b>, suivie d’une <b>commande</b>.
+    On utilise <code>make</code> pour exécuter les commandes d’une règle en lui passant sa cible en argument&nbsp;:
+</p>
+<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools</span></span>
+<span class="token output">mkdir tools</span></code></pre>
+<p>
+    <code>$@</code> est une
+    <a href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" hreflang="en">variable automatique</a>
+    dont la valeur est la cible courante. Comme <strong>les commandes d’une règle ne sont exécutées que si sa
+    cible n’existe pas</strong>, <code>make tools</code> créera un dossier <code>tools</code> seulement si ce dernier
+    n’existe pas. Sinon, vous obtiendrez simplement
+</p>
+<pre><samp>make: «&nbsp;tools&nbsp;» est à jour.</samp></pre>
+<p>
+    Y placer nos PHARs permettra de ne pas les versionner simplement en ignorant le dossier, et le cas échéant,
+    de les mutualiser entre les applications du projet.
+</p>
+
+<h2 id="Installer_le_PHAR">Installer le PHAR</h2>
+<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools/php-cs-fixer-%.phar</span><span class="token punctuation">:</span> tools
+	rm -f tools/php-cs-fixer-*.phar
+	curl -LSso <span class="token variable">$@</span> \
+		<span class="token string">"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$*/php-cs-fixer.phar"</span></code></pre>
+<p>
+    <code>tools/php-cs-fixer-%.phar</code> est une cible un peu spéciale (une
+    <a href="https://www.gnu.org/software/make/manual/html_node/Pattern-Rules.html" hreflang="en"><i lang="en">pattern
+    rule</i></a>) car son caractère <code>%</code> pourra être remplacé par n’importe quelle chaîne de caractères non
+    vide. Cette dernière est alors accessible grâce à la variable automatique <code>$*</code>.
+</p>
+<p>
+    Pour placer le PHAR dans le dossier <code>tools</code>, nous avons besoin que ce dernier existe. C’est pourquoi on
+    le retrouve à droite de la cible, comme <b>composant</b>&nbsp;: la cible d’une règle qui devra être exécutée avant les
+    commandes.
+</p>
+<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools/php-cs-fixer-2.17.3.phar</span></span>
+<span class="token output">mkdir tools
+rm -f tools/php-cs-fixer-*.phar
+curl -LsSo tools/php-cs-fixer-2.17.3.phar \
+		"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.17.3/php-cs-fixer.phar"</span></code></pre>
+<p>Ces dernières sont relativement simples&nbsp;:</p>
+<ol>
+    <li>On supprime toute autre version de PHP&nbsp;CS&nbsp;Fixer éventuellement présente dans le dossier <code>tools</code>.</li>
+    <li>On télécharge la version voulue dans ce même dossier.</li>
+</ol>
+<p>
+    Rappelez-vous que ces commandes ne seront pas exécutées si la cible existe. Ainsi la règle nous assure que seule
+    la version voulue sera à disposition, en la téléchargeant si nécessaire.
+</p>
+<p>
+    Notez que j’utilise ici une URL de la section
+    <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases" hreflang="en"><i lang="en">Releases</i></a> de
+    GitHub et pas
+    <a href="https://cs.symfony.com/download/php-cs-fixer-v2.phar">https://cs.symfony.com/download/php-cs-fixer-v2.phar</a>
+    car cette dernière ne permet pas de savoir quelle version sera téléchargée. Or, il est vivement conseillé que tous
+    les acteurs du projet utilisent la même à un instant t.
+</p>
+<p>Avant de passer à la suite, petit point sur les options de <code>curl</code>&nbsp;:</p>
+<ul>
+    <li><code>-L</code> (<code>--location</code>) indique à cURL de suivre les redirections.</li>
+    <li>
+        <code>-s</code> (<code>--silent</code>) masque l’affichage de la progression ainsi que des messages d’erreur.
+        Vous pouvez supprimer cette option ou la remplacer par <code>-#</code> (<code>--progress-bar</code>) selon vos
+        préférences.
+    </li>
+    <li>
+        <code>-S</code> (<code>--show-error</code>) active l’affichage des erreurs en présence de <code>-s</code>
+        (<code>--silent</code>). Dans le cas contraire, elle est inutile et peut être retirée.
+    </li>
+    <li><code>-o</code> (<code>--output</code>) spécifie un fichier dans lequel le corps de la réponse sera écrite.</li>
+</ul>
+<p>
+    Notez enfin que la règle <code>tools</code> pourrait être remplacée par l’option <code>--create-dirs</code> de
+    <code>curl</code>. À vous de voir&nbsp;!
+</p>
+
+<h2 id="Utiliser_le_PHAR">Utiliser le PHAR</h2>
+<pre class=" language-makefile"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> php-cs-fixer
+<span class="token symbol">php-cs-fixer</span><span class="token punctuation">:</span> tools/php-cs-fixer-2.17.3.phar
+	php <span class="token variable">$&lt;</span> <span class="token variable">$</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span></code></pre>
+<p>
+    <code>php-cs-fixer</code> est également une cible spéciale car ce n’est pas un fichier à créer, juste une action à
+    exécuter. Il est conseillé de déclarer une telle cible
+    «&nbsp;<a href="https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html" hreflang="en"><i lang="en">phony</i></a>&nbsp;»
+    en l’ajoutant comme composant de <code>.PHONY</code>. La règle sera alors toujours exécutée, car <code>make</code>
+    ne vérifiera jamais l’existence d’un fichier <code>php-cs-fixer</code>.
+    Pour la petite histoire, <i lang="en">phony</i> se traduit par «&nbsp;faux&nbsp;», ou «&nbsp;contrefait&nbsp;» en français.
+    Nous déclarons donc que notre cible n’en est pas réellement une&nbsp;!
+</p>
+<p>
+    Pour utiliser le PHAR, nous en avons bien entendu besoin et ça tombe bien, il s’agit de la cible précédente. Nous
+    l’ajoutons donc comme composant en lui spécifiant la version voulue. De manière opportune, il devient alors
+    la valeur de la variable automatique <code>$&lt;</code>.
+</p>
+<p>
+    Reste à passer d’éventuels arguments au PHAR&nbsp;:
+    <a href="https://www.gnu.org/software/make/manual/html_node/Overriding.html" hreflang="en">si un argument de
+    <code>make</code> est une assignation, la variable concernée sera accessible au sein du Makefile avec la valeur
+    spécifiée.</a> Ici nous faisons référence à une variable <code>arguments</code>, et pouvons donc écrire
+</p>
+<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> php-cs-fixer <span class="token assign-left variable">arguments</span><span class="token operator">=</span>-V</span></span>
+<span class="token output">php tools/php-cs-fixer-2.17.3.phar -V
+PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f5d)</span></code></pre>
+<p>
+    Nous avons maintenant la liberté de passer n’importe quels arguments à PHP&nbsp;CS&nbsp;Fixer, mais au prix d’une
+    syntaxe assez contraignante. La plupart du temps, le nombre de cas d’utilisation est très limité. Par exemple ici,
+    nous aurons principalement besoin de corriger le style de programmation, ou de vérifier qu’il adhère à nos
+    standards. Pour cela, nous pouvons créer des règles spécifiques qui simplifieront l’utilisation du PHAR&nbsp;:
+</p>
+<pre class=" language-makefile"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> fix-php-cs
+<span class="token symbol">fix-php-cs</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> php-cs-fixer arguments<span class="token operator">=</span><span class="token string">"fix ."</span>
+
+<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> check-php-cs
+<span class="token symbol">check-php-cs</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> php-cs-fixer arguments<span class="token operator">=</span><span class="token string">"fix . --stop-on-violation --dry-run --quiet"</span></code></pre>
+<p>
+    Pour une fois, aucune cible n’est spéciale…! Ces règles se contentent d’exécuter <code>php-cs-fixer</code> avec les
+    arguments voulus. Pour ce faire, on utilise
+    <a href="https://www.gnu.org/software/make/manual/html_node/MAKE-Variable.html" hreflang="en">la variable
+    <code>MAKE</code></a> qui contient le chemin de la version de <code>make</code> utilisée. On parle alors de
+    <i lang="en">sub-make</i>.
+</p>
+<p>
+    Notez que l’exécution d’une de ces règles provoquerait beaucoup d’affichage inutile&nbsp;: chaque commande exécutée,
+    plus un message d’entrée et sortie du <i lang="en">sub-make</i>. On s’en préviendra grâce à l’option
+    <code>-s</code>.
+</p>
+<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> -s fix-php-cs</span></span>
+<span class="token output">Loaded config default.
+Using cache file ".php_cs.cache".
+
+Fixed all files in 0.160 seconds, 12.000 MB memory used</span></code></pre>
+
+<h2 id="Le_Makefile_complet">Le Makefile complet</h2>
+<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
+	mkdir <span class="token variable">$@</span>
+
+<span class="token symbol">tools/php-cs-fixer-%.phar</span><span class="token punctuation">:</span> tools
+	rm -f tools/php-cs-fixer-*.phar
+	curl -LSso <span class="token variable">$@</span> \
+		<span class="token string">"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$*/php-cs-fixer.phar"</span>
+
+<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> php-cs-fixer
+<span class="token symbol">php-cs-fixer</span><span class="token punctuation">:</span> tools/php-cs-fixer-2.17.3.phar
+	php <span class="token variable">$&lt;</span> <span class="token variable">$</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span>
+
+<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> fix-php-cs
+<span class="token symbol">fix-php-cs</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> php-cs-fixer arguments<span class="token operator">=</span><span class="token string">"fix ."</span>
+
+<span class="token builtin">.PHONY</span><span class="token punctuation">:</span> check-php-cs
+<span class="token symbol">check-php-cs</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> php-cs-fixer arguments<span class="token operator">=</span><span class="token string">"fix . --stop-on-violation --dry-run --quiet"</span></code></pre>
+<p>Un simple <code>make fix-php-cs</code> et</p>
+<ul>
+    <li>le dossier <code>tools</code> sera créé si besoin</li>
+    <li>la version voulue de PHP CS Fixer sera téléchargée si besoin</li>
+    <li>les autres versions seront supprimées, le cas échéant</li>
+    <li>le style de programmation sera corrigé</li>
+</ul>
+<p>Ajoutons à cela qu’un PHAR local au projet</p>
+<ul>
+    <li>ne provoquera jamais de conflit de version entre différents projets</li>
+    <li>ne provoquera jamais de conflit entre ses dépendances et celles de vos applications</li>
+    <li>expose son code source à votre IDE</li>
+</ul>
+<p>
+    Ce dernier point signifie que vous pouvez profiter de l’autocomplétion, en éditant <code>.php_cs.dist</code>
+    par exemple.
+</p>
+<img src="assets/phar-midable/daddb65a3e186f0d09aee6c23119efa6.png" width="694" height="310" alt="">
+<p><a href="https://www.youtube-nocookie.com/embed/YPN0qhSyWy8"><i lang="en">It just works!</i></a></p>
+</body></html>

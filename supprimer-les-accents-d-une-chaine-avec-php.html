@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="fr-FR"><head><title>Supprimer les accents d’une chaîne avec PHP</title>
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="assets/f7a1cf1961dd90968397e86764ed1c71.css">
-<link rel="stylesheet" href="assets/c2a928520c6ef74c8132b12c46e90cdb.css">
+<link rel="stylesheet" href="assets/c4d1ea42a2a9fc1648d2aa58d3da4dc2.css">
 </head><body><h1>Supprimer les accents d’une chaîne avec PHP</h1>
 <p>
     Si vous lisez ceci, vous ne voulez probablement pas supprimer que les accents,
@@ -11,8 +11,8 @@
 <p>Dans ce cas, vous êtes au bon endroit&nbsp;:</p>
 <link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
 <pre class=" language-php"><code class=" language-php"><span class="token keyword">echo</span>
-    \<span class="token scope">Transliterator<span class="token punctuation">::</span></span><span class="token function">create</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'NFD; [:Nonspacing Mark:] Remove; NFC'</span><span class="token punctuation">)</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">transliterate</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'Héhé, ça marche !'</span><span class="token punctuation">)</span>
+    <span class="token class-name class-name-fully-qualified static-context"><span class="token punctuation">\</span>Transliterator</span><span class="token operator">::</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'NFD; [:Nonspacing Mark:] Remove; NFC'</span><span class="token punctuation">)</span>
+    <span class="token operator">-&gt;</span><span class="token function">transliterate</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'Héhé, ça marche !'</span><span class="token punctuation">)</span>
 <span class="token punctuation">;</span>
 <span class="token comment">// Hehe, ca marche !</span>
 </code></pre>
