@@ -57,9 +57,17 @@ pre code, pre samp {
     display: block;
     margin: auto;
     max-width: 35rem;
+    tab-size: 4;
 }
 code, kbd, samp {
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+
+}
+code:not([class*=language-]) {
+    background: #e9ecef;
+    border-radius: .125rem;
+    padding: 0 .25rem;
+    white-space: nowrap;
 }
 a {
     color: #1864ab;
