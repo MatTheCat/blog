@@ -225,7 +225,7 @@ check-php-cs:
 <pre><code class="language-makefile">tools/phpunit-%.phar: tools
 	rm -f tools/phpunit-*.phar
 	curl -LSso $@ \
-		"https://phar.phpunit.de/phpunit-9.5.0.phar"
+		"https://phar.phpunit.de/phpunit-$*.phar"
 
 .PHONY: phpunit
 phpunit: tools/phpunit-9.5.0.phar
