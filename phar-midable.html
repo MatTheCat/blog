@@ -223,7 +223,7 @@ Fixed all files in 0.160 seconds, 12.000 MB memory used</span></code></pre>
 <pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools/phpunit-%.phar</span><span class="token punctuation">:</span> tools
 	rm -f tools/phpunit-*.phar
 	curl -LSso <span class="token variable">$@</span> \
-		<span class="token string">"https://phar.phpunit.de/phpunit-9.5.0.phar"</span>
+		<span class="token string">"https://phar.phpunit.de/phpunit-$*.phar"</span>
 
 <span class="token builtin">.PHONY</span><span class="token punctuation">:</span> phpunit
 <span class="token symbol">phpunit</span><span class="token punctuation">:</span> tools/phpunit-9.5.0.phar
