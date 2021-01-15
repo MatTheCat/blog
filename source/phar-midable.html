@@ -34,9 +34,9 @@
 </ul>
 <p>
     Ce dernier point rend leur gestion particulièrement adaptée à un
-    <a href="https://fr.wikipedia.org/wiki/Make#Makefile">Makefile</a>, que nous allons créer pas à pas afin d’installer
-    et utiliser PHP CS Fixer.
-    C’est parti !
+    <a href="https://fr.wikipedia.org/wiki/Make#Makefile">Makefile</a>. Prenons PHP CS Fixer par exemple.
+    Si vous êtes pressé, vous pouvez le trouver <a href="#Le_Makefile_complet">plus bas</a>.
+    Sinon, suivez le guide !
 </p>
 <h2>Créer un dossier commun</h2>
 <link rel="stylesheet" href="assets/prism.css">
@@ -44,7 +44,9 @@
 	mkdir $@</code></pre>
 <p>
     Nous avons ici une <b>règle</b> dont <code>tools</code> est la <b>cible</b>, suivie d’une <b>commande</b>.
-    On utilise <code>make</code> pour exécuter les commandes d’une règle en lui passant sa cible en argument :
+    On utilise <code>make</code> (ou
+    <a href="https://docs.microsoft.com/fr-fr/cpp/build/reference/nmake-reference?view=msvc-160"><code>nmake</code></a>
+    sous Windows) pour exécuter les commandes d’une règle en lui passant sa cible en argument :
 </p>
 <pre><code class="language-shell-session">$ make tools
 mkdir tools</code></pre>
@@ -199,7 +201,7 @@ check-php-cs:
 <p>Un simple <code>make fix-php-cs</code> et</p>
 <ul>
     <li>le dossier <code>tools</code> sera créé si besoin</li>
-    <li>la version voulue de PHP CS Fixer sera téléchargée si besoin</li>
+    <li>la version voulue de PHP CS Fixer sera téléchargée si besoin</li>
     <li>les autres versions seront supprimées, le cas échéant</li>
     <li>le style de programmation sera corrigé</li>
 </ul>
@@ -214,4 +216,26 @@ check-php-cs:
     par exemple.
 </p>
 <img src="assets/phar-midable/autocompletion.png" width="694" height="310" alt="">
-<p><a href="https://www.youtube-nocookie.com/embed/YPN0qhSyWy8"><i lang="en">It just works!</i></a></p>
+
+<h2>Bonus : PHPUnit</h2>
+<p>
+    Nous venons de gérer PHP CS Fixer avec brio, mais notre Makefile est facilement extensible ; il serait
+    dommage de s’arrêter là !
+</p>
+<pre><code class="language-makefile">tools/phpunit-%.phar: tools
+	rm -f tools/phpunit-*.phar
+	curl -LSso $@ \
+		"https://phar.phpunit.de/phpunit-9.5.0.phar"
+
+.PHONY: phpunit
+phpunit: tools/phpunit-9.5.0.phar
+	php $< $(arguments)
+
+.PHONY: unit-test-php
+unit-test-php:
+	$(MAKE) phpunit arguments="."</code></pre>
+<p>
+    On change l’URL du PHAR, sa cible, et on créé les règles appropriées.
+    <a href="https://www.youtube-nocookie.com/embed/YPN0qhSyWy8"><i lang="en">It just works!</i></a>
+    À vous d’ajouter vos propres outils maintenant !
+</p>
