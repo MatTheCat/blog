@@ -85,7 +85,8 @@ async function compilePage(page) {
 
 async function processAssets(document) {
   return Promise.all(Array.from(
-      document.querySelectorAll('[href^=\'assets/\'], [src^=\'assets/\']'), tag => {
+      document.querySelectorAll('[href^=\'assets/\'], [src^=\'assets/\']'),
+      tag => {
         const attribute = tag.hasAttribute('href') ? 'href' : 'src';
 
         return manifest.get(tag.getAttribute(attribute)).
@@ -146,6 +147,12 @@ async function rewriteMath(document) {
 }
 
 (async () => {
+  fs.mkdir('public', {recursive: true}).then(() => {
+    fs.writeFile('public/.nojekyll', '');
+    fs.writeFile('public/CNAME', 'www.matthecat.com');
+    fs.copyFile('source/assets/favicon.ico', 'public/favicon.ico');
+  });
+
   for await (const asset of yieldFiles('source/assets', true)) {
     compileAsset(asset);
   }
