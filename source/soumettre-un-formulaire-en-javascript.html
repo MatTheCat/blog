@@ -17,14 +17,14 @@
     pour estimer la légitimité de l’interaction. Certains formulaires sont soumis par le navigateur, et d’autres via
     <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API"><code>fetch</code></a>. Pour être sûr d’ajouter le
     token en premier, on va donc écouter l’événement
-    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event_"><code>submit</code></a> sur
+    <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event"><code>submit</code></a> sur
     <code>window</code> pendant
     <a href="https://javascript.info/bubbling-and-capturing#capturing" hreflang="en">la phase de capture</a>.
 </p>
 <pre><code class="language-javascript">window.addEventListener("submit", includeReCaptchaToken, true);</code></pre>
 <p>
     Le token est obtenu via une
-    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise"><code>Promise</code></a>.
+    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.
     Le temps qu’elle soit résolue il faut donc empêcher
 </p>
 <ol>

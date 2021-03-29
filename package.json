@@ -4,10 +4,10 @@
   "private": true,
   "version": "1.0.0",
   "devDependencies": {
-    "cssnano": "^4.1.10",
-    "jsdom": "^16.4.0",
+    "cssnano": "^5.0.0-rc.2",
+    "jsdom": "^16.5.1",
     "mathjax-node": "^2.1.1",
-    "postcss": "^7.0.35",
+    "postcss": "^8.2.8",
     "prismjs": "^1.23.0"
   }
 }
