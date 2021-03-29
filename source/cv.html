@@ -2,82 +2,155 @@
 <html lang="fr-FR">
 <title>CV</title>
 <style>
-    body {
-        font-size: .75em;
-        margin: 0;
+    @media print {
+        html {
+            font-size: .65rem;
+        }
     }
-    hgroup {
-        text-align: center;
+    body {
+        display: grid;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        gap: 4rem;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        line-height: 1.3rem;
+        margin: 0 auto;
+        max-width: 70rem;
+        padding: 4rem;
     }
     h1 {
-        margin-bottom: 0;
+        align-items: center;
+        display: flex;
+        font-size: 2.5rem;
+        font-weight: 500;
+        gap: 0 1rem;
+        line-height: 3rem;
+        margin: 0;
+    }
+    #logo {
+        border: .16rem solid;
+        border-radius: 3rem;
+        height: 3rem;
+        padding: 1.5rem;
+        width: 3rem;
     }
     h2 {
-        line-height: 2;
-        margin-top: 0;
+        font-size: 1.84rem;
+        font-weight: 600;
+        line-height: 2rem;
+        margin: 0 0 .5rem;
     }
-    table {
-        border-collapse: collapse;
-        margin: 2em auto;
+    h3, dt {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+        margin: 0;
     }
-    td {
-        padding: 1em;
-        vertical-align: top;
+    h2 + :not(h3) {
+        margin-top: 1rem;
     }
-    td:first-child {
-        border-right: .1em solid black;
-        text-align: right;
+    h3 + * {
+        margin-top: .25rem;
     }
-    [rowspan] {
-        border: solid black;
-        border-width: .1em 0;
-        padding: 2em;
+    a {
+        color: #1864ab;
+        text-decoration: none;
     }
-    time {
-        display: block;
-        position: relative;
+    dl {
+        margin: 0;
     }
-    time::after {
-        background: black;
-        content: "";
-        display: inline-block;
-        left: calc(100% + .5em);
-        position: absolute;
-        top: calc(50% - .05em);
-        height: .1em;
-        width: .5em;
+    .tool {
+        align-items: center;
+        display: inline-flex;
+        gap: .5ch;
+    }
+    dt .tool::after {
+        content: '•';
+        color: #adb5bd;
+        margin: 0 .2rem;
+    }
+    dt .tool:last-child::after {
+        content: '…';
+        margin: 0;
+    }
+    .portrait {
+        height: 1.5rem;
+    }
+    .square {
+        height: 1.2rem;
+    }
+    .landscape {
+        height: 1rem;
+    }
+    dt, dd {
+        max-width: 28rem;
+    }
+    dd {
+        margin: .25rem 0 0;
+    }
+    dd:not(:last-child) {
+        margin-bottom: 1.5rem;
     }
     ul {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+    li {
+        margin: .5rem 0;
+    }
 </style>
-<header style="text-align: center;">
-    <hgroup>
-        <h1>Mathieu Lechat</h1>
-        <h2>
-            Développeur web <i lang="en">full stack</i>
-            <br>
-            <svg height="16" width="16" viewBox="0 0 256 361" id="html">
+<h1>
+    <svg viewBox="0 0 512 512" id="logo">
+        <path d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.42 3.64 85.22 34.58 93.36z"/>
+    </svg>
+    Mathieu Lechat
+    <br>
+    Développeur web
+</h1>
+<section>
+    <h2>Contact</h2>
+    <ul style="list-style: none; margin: 0; padding: 0;">
+        <li>06 19 73 12 73</li>
+        <li>math.lechat@gmail.com</li>
+    </ul>
+</section>
+<section>
+    <h2>Compétences</h2>
+    <dl>
+        <dt class="tool">
+            HTML
+            <svg viewBox="0 0 256 361" id="html" class="portrait">
                 <path fill="#E44D26" d="M255.6 70.8L232.3 331l-104.5 29-104.1-29L.4 70.9h255.2z"/>
                 <path fill="#F16529" d="M128 338l84.4-23.5 19.9-222.4H128V338z"/>
                 <path fill="#EBEBEB" d="M82.8 156H128v-32H48l.7 8.6 7.8 88H128v-32H85.7L82.8 156zM90 236.5H58l4.4 50.2 65.5 18.1h.1v-33.2h-.1L92.3 262 90 236.5z"/>
                 <path d="M24.2 0h16.2v16h14.9V0h16.2v48.6H55.3V32.3H40.4v16.3H24.2V0zM92.8 16.1H78.5V0h44.9v16.1H109v32.5H92.8V16zM130.5 0h16.9l10.4 17 10.4-17h17v48.6H169V24.5l-11.2 17.3h-.3l-11.2-17.3v24h-15.8V0zM193.2 0h16.2v32.5h22.9v16h-39V0z"/>
                 <path fill="#FFF" d="M127.9 220.6h39.3l-3.7 41.4-35.6 9.6v33.2l65.5-18.1.4-5.4 7.5-84 .8-8.7H128v32zM127.9 155.9H205l.7-7.1 1.4-16.2.8-8.6h-80v31.9z"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 361" id="css">
+        </dt>
+        <dd>
+            Mon premier langage ! J’ai connu la séparation, puis la réunion du W3C et du WHATWG et l’avènement
+            bienvenu de HTML5 entre deux. Je l’ai notamment utilisé pour baliser le contenu de ce CV.
+        </dd>
+
+        <dt class="tool">
+            CSS
+            <svg viewBox="0 0 256 361" id="css" class="portrait">
                 <path fill="#264DE4" d="M127.8 360L23.7 331.3.4 70.8h255.2L232.3 331l-104.5 29z"/>
                 <path fill="#2965F1" d="M212.4 314.5l19.9-222.4H128V338l84.4-23.5z"/>
                 <path fill="#EBEBEB" d="M53.7 188.6l2.8 32H128v-32H53.7zM48 124l2.8 32H128v-32H48zM128 271.6h-.1L92.3 262 90 236.5H58l4.4 50.2 65.5 18.1h.1v-33.2z"/>
                 <path d="M60.5 0h38.7v16.2H76.7v16.2h22.5v16.1H60.5V0zM106.9 0h38.7v14H123V17h22.5v32.3h-38.7V34.5h22.5v-2.9H107V0zM153.3 0H192v14h-22.5V17H192v32.3h-38.7V34.5h22.5v-2.9h-22.5V0z"/>
                 <path fill="#FFF" d="M202.1 188.6L208 124h-80v32h45l-3 32.6h-42v32h39.3l-3.7 41.4-35.6 9.6v33.2l65.5-18.1.4-5.4 7.5-84 .8-8.7z"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 256" id="javascript">
-                <path fill="#F7DF1E" d="M0 0h256v256H0V0z"/>
-                <path d="M67.3 214L87 202c3.8 6.8 7.2 12.4 15.5 12.4 7.9 0 12.9-3 12.9-15v-81.9h24v82.2c0 24.9-14.6 36.2-35.9 36.2-19.2 0-30.4-10-36-22M152.4 211.4L172 200c5.1 8.4 11.8 14.6 23.7 14.6 10 0 16.3-5 16.3-11.8 0-8.3-6.5-11.2-17.5-16l-6-2.6c-17.4-7.4-28.9-16.7-28.9-36.3 0-18 13.7-31.7 35.2-31.7 15.3 0 26.3 5.3 34.2 19.2l-18.7 12c-4.1-7.4-8.6-10.3-15.5-10.3-7 0-11.5 4.5-11.5 10.3 0 7.2 4.5 10.2 14.8 14.6l6 2.6c20.5 8.8 32 17.7 32 37.8 0 21.7-17 33.5-39.9 33.5-22.3 0-36.8-10.6-43.8-24.5"/>
-            </svg>
-            <svg height="16" width="16" viewBox="0 0 256 135" id="php">
+        </dt>
+        <dd>
+            Si ce CV est balisé avec HTML5, il est mis en forme avec CSS. Des contextes de formatage au module
+            flexbox, comptez sur moi pour résoudre les bugs les plus obscurs.
+        </dd>
+
+        <dt class="tool">
+            PHP
+            <svg viewBox="0 0 256 135" id="php" class="landscape">
                 <defs>
                     <radialGradient id="a" cx=".8" cy="-125.8" r="363.1" gradientTransform="matrix(.463 0 0 .463 76.5 82)" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#fff"/>
@@ -90,21 +163,148 @@
                 <path fill="#FFF" d="M152.9 87.5l6.1-31.4c1.4-7.1.2-12.4-3.4-15.7-3.5-3.2-9.5-4.8-18.3-4.8h-10.6l3-15.6a2 2 0 0 0-.4-1.7c-.4-.5-.9-.7-1.5-.7h-14.6a2 2 0 0 0-2 1.6l-6.5 33.3c-.6-3.8-2-7-4.4-9.6-4.3-4.9-11-7.4-20.1-7.4H52.1a2 2 0 0 0-2 1.6L37 104.7a2 2 0 0 0 .4 1.7c.4.5.9.7 1.5.7h14.7a2 2 0 0 0 2-1.6l3.2-16.3h10.9A48 48 0 0 0 84 87.4a32.3 32.3 0 0 0 16.7-14l-2.6 13.5c-.1.6 0 1.2.4 1.7s.9.7 1.5.7h14.6a2 2 0 0 0 2-1.6l7.2-37h10c4.3 0 5.5.8 5.9 1.2.3.3.9 1.5.2 5.2L134.1 87a2 2 0 0 0 .4 1.7c.4.5.9.7 1.5.7h15c.9-.3 1.7-1 1.9-1.9zm-67.6-26c-.9 4.7-2.6 8.1-5.1 10-2.5 1.9-6.6 2.9-12 2.9h-6.5l4.7-24.2h8.4c6.2 0 8.7 1.3 9.7 2.4 1.3 1.6 1.6 4.7.8 8.9zM215.3 42.9c-4.3-4.9-11-7.4-20.1-7.4h-28.3a2 2 0 0 0-2 1.6l-13.1 67.5a2 2 0 0 0 .4 1.7c.4.5.9.7 1.5.7h14.7a2 2 0 0 0 2-1.6l3.2-16.3h10.9a48 48 0 0 0 14.3-1.8 32.2 32.2 0 0 0 20.4-23.9c1.7-8.7.4-15.5-3.9-20.5zM200 61.5c-.9 4.7-2.6 8.1-5.1 10-2.5 1.9-6.6 2.9-12 2.9h-6.5l4.7-24.2h8.4c6.2 0 8.7 1.3 9.7 2.4 1.4 1.6 1.7 4.7.8 8.9z"/>
                 <path fill="#000004" d="M74.8 48.2c5.6 0 9.3 1 11.2 3.1 1.9 2.1 2.3 5.6 1.3 10.6-1 5.2-3 9-5.9 11.2-2.9 2.2-7.3 3.3-13.2 3.3h-8.9l5.5-28.2h10zM39 105h14.7l3.5-17.9h12.6c5.6 0 10.1-.6 13.7-1.8a30 30 0 0 0 19-22.4c1.6-8 .4-14.2-3.5-18.7s-10.1-6.7-18.6-6.7H52.1L39 105zM113.3 19.6h14.6l-3.5 17.9h13c8.2 0 13.8 1.4 16.9 4.3 3.1 2.9 4 7.5 2.8 13.9L151 87.1h-14.8l5.8-29.9c.7-3.4.4-5.7-.7-6.9-1.1-1.2-3.6-1.9-7.3-1.9h-11.7l-7.5 38.7h-14.6l13.1-67.5zM189.5 48.2c5.6 0 9.3 1 11.2 3.1 1.9 2.1 2.3 5.6 1.3 10.6-1 5.2-3 9-5.9 11.2-2.9 2.2-7.3 3.3-13.2 3.3H174l5.5-28.2h10zM153.7 105h14.7l3.5-17.9h12.6c5.6 0 10.1-.6 13.7-1.8a30 30 0 0 0 19-22.4c1.6-8 .4-14.2-3.5-18.7s-10.1-6.7-18.6-6.7h-28.3L153.7 105z"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 257" id="symfony">
+        </dt>
+        <dd>
+            Découvert à l’époque de sa version 5.3, c’est avec plaisir que j’ai vu ce langage évoluer.
+            Aujourd’hui, je consulte régulièrement les RFCs et suis déjà prêt pour PHP 8.1.
+        </dd>
+
+        <dt class="tool">
+            Symfony
+            <svg viewBox="0 0 256 257" id="symfony" class="square">
                 <circle fill="#1A171B" cx="128" cy="128.827077" r="128"></circle>
                 <path d="M183.7056,48.1240615 C170.720492,48.5769846 159.3856,55.7331692 150.949415,65.6344615 C141.607385,76.4888615 135.392492,89.3636923 130.914462,102.506338 C122.903631,95.9409231 116.724185,87.4417231 103.872985,83.7356308 C93.9401846,80.8841846 83.5072,82.0617846 73.9131077,89.2100923 C69.3681231,92.6050462 66.2370462,97.7368615 64.7483077,102.561477 C60.8925538,115.0976 68.8009846,126.255262 72.3928615,130.260677 L80.2461538,138.677169 C81.8648615,140.327385 85.7639385,144.632123 83.8577231,150.803692 C81.7979077,157.514831 73.7083077,161.858954 65.4099692,159.298954 C61.7038769,158.168615 56.3790769,155.407754 57.5724308,151.520492 C58.0647385,149.929354 59.2029538,148.739938 59.8134154,147.365415 C60.3726769,146.183877 60.6404923,145.297723 60.8098462,144.777846 C62.3261538,139.8272 60.2545231,133.387815 54.9533538,131.753354 C50.0066462,130.237046 44.9457231,131.438277 42.9843692,137.806769 C40.7591385,145.041723 44.2210462,158.172554 62.7672615,163.8912 C84.4957538,170.566892 102.876554,158.735754 105.483815,143.304862 C107.126154,133.639877 102.762338,126.460062 94.7672615,117.224369 L88.2530462,110.020923 C84.3067077,106.078523 82.9518769,99.3595077 87.0360615,94.1961846 C90.4822154,89.8402462 95.3895385,87.9812923 103.427938,90.1671385 C115.160615,93.3533538 120.390892,101.494154 129.118523,108.059569 C125.514831,119.878892 123.159631,131.741538 121.028923,142.379323 L119.729231,150.311385 C113.490708,183.032123 108.729108,200.999385 96.3544615,211.314215 C93.8614154,213.086523 90.2971077,215.741046 84.9250462,215.926154 C82.1090462,216.0128 81.1992615,214.075077 81.1598769,213.232246 C81.0929231,211.255138 82.7588923,210.349292 83.8656,209.4592 C85.5197538,208.557292 88.0206769,207.060677 87.8513231,202.267569 C87.6701538,196.604062 82.9794462,191.6928 76.1974154,191.917292 C71.1168,192.090585 63.3737846,196.871877 63.6652308,205.623138 C63.9684923,214.661908 72.3928615,221.436062 85.0944,221.006769 C91.8843077,220.7744 107.047385,218.0096 121.989908,200.247138 C139.382154,179.885292 144.246154,156.542031 147.904985,139.456985 L151.989169,116.901415 C154.257723,117.173169 156.683815,117.354338 159.322585,117.417354 C180.984123,117.874215 191.818831,106.653538 191.980308,98.4930462 C192.086646,93.5542154 188.738954,88.6941538 184.052185,88.8044308 C180.696615,88.8989538 176.482462,91.1320615 175.470277,95.7715692 C174.481723,100.324431 182.362585,104.432246 176.202831,108.421908 C171.8272,111.253662 163.981785,113.250462 152.9344,111.627815 L154.943015,100.525292 C159.042954,79.4702769 164.099938,53.5709538 183.284185,52.9408 C184.682338,52.8699077 189.7984,53.0038154 189.916554,56.3869538 C189.952,57.5172923 189.672369,57.8048 188.349046,60.3923692 C187.002092,62.4088615 186.494031,64.1260308 186.557046,66.0992 C186.742154,71.4752 190.830277,75.008 196.741908,74.7953231 C204.658215,74.5393231 206.934646,66.8317538 206.804677,62.8736 C206.485662,53.5748923 196.682831,47.6987077 183.7056,48.1240615 L183.7056,48.1240615 Z" fill="#FFFFFF"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 339" id="doctrine">
+        </dt>
+        <dd>
+            Depuis 2012, j’ai eu l’occasion d’utiliser toutes ses versions à partir de la deuxième.
+            Contributeur occasionnel, je me tiens constamment à jour de ses nouveautés.
+        </dd>
+
+        <dt class="tool">
+            Twig
+            <svg viewBox="0 0 73 205" id="twig" class="portrait">
+                <radialGradient id="a" cx="124" cy="220.1" r="32.6" gradientTransform="matrix(1 0 0 .237 -88 146)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#323232" stop-opacity=".9"/>
+                    <stop offset=".2" stop-color="#272727" stop-opacity=".6"/>
+                    <stop offset=".6" stop-color="#0B0B0B" stop-opacity=".2"/>
+                    <stop offset=".8" stop-opacity="0"/>
+                </radialGradient>
+                <ellipse cx="36" cy="198.1" fill="url(#a)" rx="34.1" ry="7"/>
+                <linearGradient id="b" x1="122.5" x2="122.5" y1="169.4" y2="14.7" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#3D6A06"/>
+                    <stop offset=".2" stop-color="#588710"/>
+                    <stop offset=".3" stop-color="#6D9D18"/>
+                    <stop offset=".5" stop-color="#7BAE1E"/>
+                    <stop offset=".7" stop-color="#84B721"/>
+                    <stop offset="1" stop-color="#87BA22"/>
+                </linearGradient>
+                <path fill="url(#b)" d="M24 182h23C45 153 37 58 22 0c3 40 6 174 2 182z"/>
+                <linearGradient id="c" x1="115.8" x2="115.8" y1="204.6" y2="22.1" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#BBE882"/>
+                    <stop offset=".1" stop-color="#BEE988" stop-opacity=".9"/>
+                    <stop offset=".3" stop-color="#C8EC9A" stop-opacity=".8"/>
+                    <stop offset=".6" stop-color="#D8F2B7" stop-opacity=".7"/>
+                    <stop offset=".8" stop-color="#EEF9E0" stop-opacity=".5"/>
+                    <stop offset="1" stop-color="#FFF" stop-opacity=".4"/>
+                </linearGradient>
+                <path fill="url(#c)" d="M24 183h9C34 116 22 0 22 0c3 40 6 174 2 183z" opacity=".3"/>
+                <linearGradient id="d" x1="119.3" x2="119.3" y1="195.5" y2="32.8" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#48790B"/>
+                    <stop offset=".8" stop-color="#FFF" stop-opacity=".4"/>
+                </linearGradient>
+                <path fill="url(#d)" d="M25 177l9 3s0-24 6-34C42 133 27 21 23 2l-1-2c3 37 5 151 3 177z" opacity=".3"/>
+                <linearGradient id="e" x1="107.1" x2="107.1" y1="218.8" y2="163.1" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#5E7814"/>
+                    <stop offset=".5" stop-color="#8AA21F"/>
+                    <stop offset="1" stop-color="#B1C628"/>
+                </linearGradient>
+                <path fill="url(#e)" d="M23 200h15c0-28-10-76-38-95 14 18 25 39 23 95z"/>
+                <linearGradient id="f" x1="105.2" x2="106.1" y1="209.5" y2="164.6" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#82AF10"/>
+                    <stop offset=".8" stop-color="#FFF" stop-opacity="0"/>
+                </linearGradient>
+                <path fill="url(#f)" d="M2 108c13 17 23 39 21 92h10c1-11 1-67-31-92z" opacity=".2"/>
+                <linearGradient id="g" x1="141.9" x2="141.9" y1="220.5" y2="170.5" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#5E7814"/>
+                    <stop offset=".1" stop-color="#758E1A"/>
+                    <stop offset=".3" stop-color="#8FA620"/>
+                    <stop offset=".6" stop-color="#A2B824"/>
+                    <stop offset=".8" stop-color="#ADC327"/>
+                    <stop offset="1" stop-color="#B1C628"/>
+                </linearGradient>
+                <path fill="url(#g)" d="M51 201c0 2-15 3-15 3s-11-69 37-62c-26 1-28 36-22 59z"/>
+                <linearGradient id="h" x1="129.6" x2="129.6" y1="224.4" y2="167.6" gradientTransform="translate(-88 -22)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#FFF"/>
+                    <stop offset="1" stop-color="#FFF" stop-opacity="0"/>
+                </linearGradient>
+                <path fill="url(#h)" d="M36 204l9-1c0-6-3-38 4-56-20 15-14 56-13 57z" opacity=".1"/>
+                <radialGradient id="i" cx="365" cy="190.3" r="34.7" gradientTransform="matrix(.176 0 0 .186 -24 133)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#323232"/>
+                    <stop offset=".3" stop-color="#252525" stop-opacity=".7"/>
+                    <stop offset=".8" stop-color="#040404" stop-opacity=".1"/>
+                    <stop offset=".9" stop-opacity="0"/>
+                </radialGradient>
+                <ellipse cx="40.5" cy="168" fill="url(#i)" opacity=".5" rx="6.6" ry="6.1"/>
+                <radialGradient id="j" cx="309.8" cy="190.3" r="34.7" gradientTransform="matrix(.176 0 0 .186 -24 133)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#323232"/>
+                    <stop offset=".3" stop-color="#252525" stop-opacity=".7"/>
+                    <stop offset=".8" stop-color="#040404" stop-opacity=".1"/>
+                    <stop offset=".9" stop-opacity="0"/>
+                </radialGradient>
+                <ellipse cx="30.7" cy="168" fill="url(#j)" opacity=".5" rx="6.6" ry="6.1"/>
+                <circle cx="30.7" cy="168" r="3.8" fill="#fff"/>
+                <circle cx="40.3" cy="168" r="3.8" fill="#fff"/>
+                <path fill="#a0cb29" d="M4 191l5 9h3m7 4h6l-9-26m40 24h5l3-20m3 15h4l2-7"/>
+            </svg>
+        </dt>
+        <dd>
+            Si pour vous <i lang="en">Server-Side Rendering</i> n’est pas forcément synonyme de framework
+            JavaScript, vous pourriez être intéressé par le fait que Twig n’a (presque) plus de secret pour moi.
+        </dd>
+
+        <dt class="tool">
+            Doctrine
+            <svg viewBox="0 0 256 339" id="doctrine" class="square">
                 <path fill="#FE8439" d="M208.493 111.5c-.294-.317-.562-.651-.872-.96L106.545 9.904C94.453-2.131 74.89-2.091 62.85 10.002c-12.04 12.092-11.997 31.655.095 43.694L96.348 86.95C40.966 101.041 0 151.233 0 211c0 70.692 57.308 128 128 128 70.692 0 128-57.308 128-128 0-40.189-18.535-76.032-47.507-99.5"/>
                 <path fill="#FFF" d="M203.633 195.181l-73.048-72.165c-9.711-9.594-25.36-9.495-34.955.212-9.594 9.712-9.5 25.362.213 34.956l30.23 29.864H62.235c-13.652 0-24.718 11.066-24.718 24.717 0 13.652 11.066 24.718 24.718 24.718h64.493L96.012 268.39c-9.622 9.682-9.572 25.332.109 34.957a24.644 24.644 0 0017.424 7.184c6.35 0 12.702-2.433 17.533-7.293l70.73-71.173c.13-.13.24-.274.366-.407a24.648 24.648 0 006.952-9.503 24.718 24.718 0 00-5.493-26.974"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 170" id="mariadb">
+        </dt>
+        <dd>
+            J’ai dû épargner plusieurs milliers de requêtes à des projets impactés par le
+            <i lang="en">N+1 selects problem</i> ! Je suis assez familier avec les concepts de ces librairies, et j’y
+            contribue de temps à autre.
+        </dd>
+
+        <dt class="tool">
+            SQL
+            <svg viewBox="0 0 256 170" id="mariadb" class="landscape">
                 <path fill="#002B64" d="M250.4 0c-4 .1-2.7 1.3-11.2 3.4-8.7 2-19.2 1.4-28.5 5.3-27.7 11.7-33.2 51.4-58.4 65.6-18.9 10.6-37.8 11.5-55 16.8a100.4 100.4 0 0 0-33.6 19.5c-7.9 6.8-8 12.8-16.3 21.3-8.9 9.2-35 .2-47 14.2 3.8 3.8 5.5 5 13 4-1.5 2.9-10.7 5.4-8.9 9.7 1.9 4.6 24.2 7.7 44.4-4.5 9.4-5.7 17-13.9 31.6-15.9 19-2.5 41 1.7 63 4.8-3.3 9.8-9.9 16.2-15.1 24-1.6 1.7 3.2 2 8.8.9a88 88 0 0 0 24.8-9c9.3-5.3 10.8-19.2 22.2-22.2 6.3 9.8 23.6 12 34.3 4.3-9.4-2.7-12-22.7-8.8-31.6 3-8.3 6-21.7 9-32.8C222 66 223.2 51 227.1 45c6-9.1 12.5-12.2 18.2-17.4 5.7-5.1 10.9-10 10.7-21.8 0-3.8-2-6-5.6-5.8z"/>
                 <path fill="#FFF" d="M8.6 159c14.4 2 23.2 0 34.8-5 9.8-4.3 19.3-13.1 31-16.8 17-5.5 35.8 0 54 1 4.5.3 9 .3 13.3-.1 6.8-4.2 6.6-19.9 13.3-21.3-.2 22-9.2 35.1-18.6 47.8a53.3 53.3 0 0 0 39.7-30.3 112 112 0 0 0 6.3-14.8c2.9 2.1 1.2 8.8 2.7 12.4 13.6-7.6 21.4-25 26.6-42.6 6-20.3 8.5-40.9 12.3-46.9 3.8-5.9 9.7-9.5 15-13.2 6.1-4.3 11.6-8.8 12.5-17-6.4-.5-8-2-8.9-5.2a19.2 19.2 0 0 1-9.5 2.3c-2.9 0-6 0-10 .3C191 13 187 48.4 166.4 68.5a48.3 48.3 0 0 1-4.8 4c-7.3 5.5-16.1 9.3-24.3 12.4-13.1 5-25.7 5.4-38 9.8a114 114 0 0 0-31 16.8 51.3 51.3 0 0 0-10 11.6c-3 4.2-5.7 8.6-10 12.7-6.8 6.7-32.3 2-41.3 8.2-1 .7-1.8 1.5-2.3 2.5 4.9 2.2 8.2.9 13.8 1.5.7 5.4-11.6 8.5-9.8 11zM203.4 120.4c.4 6.2 4 18.4 7.1 21.3-6.1 1.5-16.8-1-19.5-5.3 1.4-6.3 8.7-12 12.4-16z"/>
                 <path fill="#002B64" d="M212.5 23c4.5 3.9 14 .7 12.4-7.1-7.1-.6-11.2 1.8-12.4 7zM244.2 13.7c-1.2 2.6-3.5 5.9-3.5 12.3 0 1.1-.9 1.9-.9.2 0-6.3 1.8-9 3.5-12.7.9-1.4 1.4-.8 1 .2z"/>
                 <path fill="#002B64" d="M243 12.8c-1.4 2.4-4.9 6.8-5.4 13.3-.2 1-1 1.8-1 0 .7-6.2 3.5-10.2 5.5-13.6 1-1.4 1.4-.7.9.3zM241.9 11.5c-1.7 2.3-7 7.6-8 14-.3 1-1.2 1.7-1 0 1.2-6.2 5.8-11.1 8.2-14.3 1-1.3 1.4-.7.8.3zM240.9 10.1c-2 2-8.3 8.8-10.3 15-.3 1-1.3 1.5-.8-.1 2-6 7.5-12.5 10.3-15.4 1.3-1.1 1.5-.4.8.5z"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 255.06 144.82" id="docker">
+        </dt>
+        <dd>
+            Je connais les faiblesses des ORMs, et je sais donc écrire du SQL moi-même. Sans être un expert, je n’ai de
+            problème ni à requêter, ni à optimiser.
+        </dd>
+
+        <dt class="tool">
+            JavaScript
+            <svg viewBox="0 0 256 256" id="javascript" class="square">
+                <path fill="#F7DF1E" d="M0 0h256v256H0V0z"/>
+                <path d="M67.3 214L87 202c3.8 6.8 7.2 12.4 15.5 12.4 7.9 0 12.9-3 12.9-15v-81.9h24v82.2c0 24.9-14.6 36.2-35.9 36.2-19.2 0-30.4-10-36-22M152.4 211.4L172 200c5.1 8.4 11.8 14.6 23.7 14.6 10 0 16.3-5 16.3-11.8 0-8.3-6.5-11.2-17.5-16l-6-2.6c-17.4-7.4-28.9-16.7-28.9-36.3 0-18 13.7-31.7 35.2-31.7 15.3 0 26.3 5.3 34.2 19.2l-18.7 12c-4.1-7.4-8.6-10.3-15.5-10.3-7 0-11.5 4.5-11.5 10.3 0 7.2 4.5 10.2 14.8 14.6l6 2.6c20.5 8.8 32 17.7 32 37.8 0 21.7-17 33.5-39.9 33.5-22.3 0-36.8-10.6-43.8-24.5"/>
+            </svg>
+        </dt>
+        <dd>
+            Adepte de l’amélioration progressive, je suis plus attiré par Stimulus que par React.
+            Mes réalisations se limitent donc à de simples scripts, que ce soit pour Node.js ou le navigateur.
+        </dd>
+
+        <dt class="tool">
+            Docker
+            <svg viewBox="0 0 255.06 144.82" id="docker" class="landscape">
                 <path fill="#364548" d="M147.49 45.73h22.86v23.38h11.57c5.33 0 10.83-.95 15.88-2.67a40.7 40.7 0 0 0 7.73-3.49c-3.23-4.21-4.88-9.53-5.36-14.78-.66-7.13.78-16.42 5.6-22l2.4-2.78 2.87 2.3c7.21 5.8 13.28 13.89 14.35 23.12 8.68-2.56 18.87-1.95 26.53 2.47l3.14 1.8-1.65 3.23c-6.48 12.64-20 16.55-33.24 15.86-19.8 49.3-62.9 72.65-115.16 72.65-27 0-51.77-10.1-65.87-34.05l-.23-.39-2.06-4.18c-4.77-10.54-6.35-22.1-5.28-33.64l.33-3.45h19.55V45.73h22.86V22.87h45.74V0h27.44v45.73"/>
                 <path fill="#22a0c8" d="M221.57 54.38c1.53-11.92-7.38-21.28-12.91-25.72-6.38 7.37-7.37 26.68 2.63 34.8-5.58 4.96-17.34 9.46-29.37 9.46H35.37c-1.17 12.56 1.04 24.14 6.07 34.04l1.67 3.05c1.06 1.8 2.21 3.52 3.46 5.19 6.02.38 11.58.52 16.66.4 9.99-.22 18.14-1.4 24.31-3.54a1.76 1.76 0 1 1 1.16 3.33c-.83.29-1.68.55-2.57.8a76.5 76.5 0 0 1-16.8 2.74c.4 0-.42.06-.42.06l-.75.06c-2.65.15-5.5.18-8.43.18-3.2 0-6.34-.06-9.86-.24l-.09.06c12.21 13.73 31.3 21.96 55.23 21.96 50.65 0 93.61-22.45 112.64-72.86 13.5 1.39 26.46-2.06 32.36-13.57-9.4-5.43-21.48-3.7-28.44-.2"/>
                 <path fill="#37b1d9" d="M221.57 54.38c1.53-11.92-7.38-21.28-12.91-25.72-6.38 7.37-7.37 26.68 2.63 34.8-5.58 4.96-17.34 9.46-29.37 9.46H44.05c-.6 19.24 6.54 33.85 19.18 42.68 9.99-.22 18.14-1.4 24.31-3.54a1.76 1.76 0 1 1 1.16 3.33c-.83.29-1.68.55-2.57.8a80.43 80.43 0 0 1-17.25 2.86l-.17-.15c17.24 8.84 42.23 8.8 70.89-2.2 32.13-12.34 62.03-35.86 82.89-62.76l-.92.44"/>
@@ -122,183 +322,206 @@
                 <path fill="#bdd9d7" d="M111.24 140.89c-13.54-6.43-20.97-15.16-25.1-24.7-5.04 1.44-11.08 2.36-18.1 2.75-2.66.15-5.44.23-8.36.23-3.37 0-6.92-.1-10.64-.3 12.41 12.4 27.69 21.96 55.97 22.14 2.1 0 4.16-.04 6.23-.12"/>
                 <path fill="#d3ecec" d="M91.16 125a47.42 47.42 0 0 1-5.03-8.8c-5.03 1.43-11.07 2.35-18.1 2.74 4.83 2.62 11.73 5.05 23.13 6.05"/>
             </svg>
-            <svg height="16" width="16" viewBox="0 0 256 256" id="phpstorm">
-                <defs>
-                    <linearGradient id="b" x1="1.4%" x2="75.6%" y1="144.1%" y2="24.6%">
-                        <stop offset="2%" stop-color="#765AF8"/>
-                        <stop offset="38%" stop-color="#B345F1"/>
-                        <stop offset="76%" stop-color="#FA3293"/>
-                        <stop offset="94%" stop-color="#FF318C"/>
-                    </linearGradient>
-                    <linearGradient id="c" x1="60%" x2="25.4%" y1="98.5%" y2="6.7%">
-                        <stop offset="18%" stop-color="#765AF8"/>
-                        <stop offset="24%" stop-color="#8655F6"/>
-                        <stop offset="34%" stop-color="#9F4CF3"/>
-                        <stop offset="44%" stop-color="#AE47F2"/>
-                        <stop offset="52%" stop-color="#B345F1"/>
-                    </linearGradient>
-                    <linearGradient id="d" x1="87.8%" x2="17.9%" y1="80.8%" y2="35.5%">
-                        <stop offset="2%" stop-color="#765AF8"/>
-                        <stop offset="38%" stop-color="#B345F1"/>
-                    </linearGradient>
-                </defs>
-                <path fill="url(#b)" d="M0 49.2L43.6 0l89.2 19.2 12 36.4-8.8 63.2-35.5-18.1 1.9 50.5v44l-78 .8L0 49.2z"/>
-                <path fill="url(#c)" d="M80.8 150l4.8-60.4L158 15.2l64.8 12L256 110l-34.8 34.4-56.4-9.2-35.6 36.8z"/>
-                <path fill="url(#d)" d="M158 15.2L54 107.6 74 226l86.4 30 95.6-57.2z"/>
-                <path d="M48 48h160v160H48z"/>
-                <path fill="#FFF" d="M63.2 178h60v10h-60v-10zm-.8-109.2h27.2c16 0 25.6 9.2 25.6 22.8 0 15.2-12 23.2-26.8 23.2H77.2v20H62.4v-66zm26.4 34c7 0 11.6-4.8 11.6-10.4 0-6.4-4.4-10-12-10H77.2v20.4h11.6zm30 22.8l8.8-10.4c6 4.8 12.4 8 20 8 6 0 9.6-2.4 9.6-6.4 0-3.6-2.4-5.6-13.6-8.4-13.6-3.6-22-7.2-22-20.4v-.4c0-12 9.6-20 23.2-20 9 0 17.7 3 24.8 8.4L162 87.2c-6-4-11.6-6.4-17.2-6.4s-8.4 2.4-8.4 6c0 4.4 2.8 6 14.4 8.8 13.6 3.6 21.2 8.4 21.2 20 0 13.2-10 20.8-24.4 20.8a42.3 42.3 0 01-28.8-10.8z"/>
-            </svg>
-            <svg height="16" width="16" viewBox="0 0 256 236" id="gitlab">
-                <path fill="#E24329" d="M128 236l47.2-144.9H81l47 145z"/>
-                <path fill="#FC6D26" d="M128 236L81 91.2H15l113 145z"/>
-                <path fill="#FCA326" d="M15 91.1l-14.4 44c-1.3 4 .2 8.5 3.6 11L128 236 15 91z"/>
-                <path fill="#E24329" d="M15 91.1h66L52.6 3.8a4.9 4.9 0 00-9.3 0L15 91z"/>
-                <path fill="#FC6D26" d="M128 236l47.2-144.9h66L128 236.1z"/>
-                <path fill="#FCA326" d="M241.2 91.1l14.3 44c1.3 4-.1 8.5-3.5 11l-124 90L241.3 91z"/>
-                <path fill="#E24329" d="M241.2 91.1h-66l28.3-87.3a4.9 4.9 0 019.3 0L241.2 91z"/>
-            </svg>
-        </h2>
-    </hgroup>
-    0619731273
-    <br>
-    math.lechat@gmail.com
-    <br>
-    https://www.matthecat.com
-</header>
-<table>
-    <tr>
-        <td>
-            <time>02/09/2020</time>
-            Départ de JoliCode
-        </td>
-        <td rowspan="2">
-            <ul class="works">
-                <li>Démarrage du projet abonnement lentille d’Afflelou</li>
-                <li>Développement du nouvel espace client/conseiller d’Orpi</li>
-                <li>Évolutions sur le site fr.parisrental.com</li>
-                <li>Évolutions sur le site immobilier.cushmanwakefield.fr</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>07/10/2019</time>
-            Arrivée chez JoliCode
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>31/01/2019</time>
-            Départ de Sendinblue
-        </td>
-        <td rowspan="2">
-            <ul class="works">
-                <li>Mise en place d’une <i lang="en">pattern library</i></li>
-                <li>Refactorisation de l’authentication des utilisateurs</li>
-                <li>Mise à jour du modèle de données</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>07/08/2017</time>
-            Arrivée chez Sendinblue
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>04/08/2017</time>
-            Départ de Digital No Limit
-        </td>
-        <td rowspan="2">
-            <ul class="works">
-                <li>Factorisation des bases de code sous un projet <i lang="en">Composer</i></li>
-                <li>Abstraction des processus existants en <i lang="en">bundles</i> Symfony</li>
-                <li>Mise en place d’une intégration continue</li>
-                <li>Développement d’un extranet pour Siaci Saint Honoré</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>01/03/2017</time>
-            Arrivée chez Digital No Limit
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>28/02/2017</time>
-            Départ de Sogec Informatique
-        </td>
-        <td rowspan="6">
-            Développement du site web Plyce
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>01/11/2016</time>
-            Transfert vers Sogec Informatique
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>13/01/2016</time>
-            Rachat de CheckAndTake par Sogec
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>10/05/2015</time>
-            Première contribution à Symfony
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>31/10/2012</time>
-            Première <i lang="en">issue</i> ouverte sur GitHub
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>27/06/2012</time>
-            Arrivée chez CheckAndTake
-        </td>
-    </tr>
-    <!--<tr>
-        <td>
-            <time>25/05/2012</time>
-            Départ de Netplus
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>19/05/2011</time>
-            Publication de tronatic-studio.com
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>09/09/2010</time>
-            LPSIL
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>19/07/2010</time>
-            Arrivée chez Netplus
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>13/06/2010</time>
-            Création du domaine matthecat.com
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <time>09/09/2009</time>
-            DUT informatique
-        </td>
-    </tr>-->
-</table>
+        </dt>
+        <dd>
+            J’ai eu l’occasion d’améliorer l’environnement de développement de plusieurs projets avec docker-compose
+            sous Linux. Je caresse toujours l’espoir que cela devienne viable pour Mac et Windows…
+        </dd>
+
+        <dt class="tools">
+            <span class="tool">
+                Webpack
+                <svg viewBox="0 0 256 290" class="square" id="webpack">
+                  <path fill="#FFF" d="M128 0l128 72v145l-128 73L0 217V72z"/>
+                  <path fill="#8ED6FB" d="M233 212l-101 57v-44l63-35 38 22zm7-6V87l-37 21v77l37 21zm-218 6l101 57v-44l-63-35-38 22zm-6-6V87l36 21v77l-36 21zm4-127l103-59v43l-66 37-37-21zm216 0L132 20v43l67 37 37-21z"/>
+                  <path fill="#1C78C0" d="M123 215l-62-34v-68l62 36v66zm9 0l62-34v-68l-62 36v66zM65 105l63-34 62 34-62 36-63-36z"/>
+                </svg>
+            </span>
+            <span class="tool">
+                API Platform
+                <svg viewBox="0 0 1200 1200" class="square" id="api-platform">
+                    <circle cx="600" cy="600" r="600" fill="#67cece"/>
+                    <ellipse cx="428.1" cy="768.4" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="263.3" cy="764.1" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="302.5" cy="882.6" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="151.3" cy="826" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <path d="M341 758h-14V438l141 76-7 13-120-64v295z" fill="#1d1e1c"/>
+                    <path d="M231 821l-15-2 40-318 214 32-2 15-199-30-38 303z" fill="#1d1e1c"/>
+                    <path d="M366 866l-7-288 103-30 4 14-92 27 6 276-14 1z" fill="#1d1e1c"/>
+                    <path d="M481 745l-47-143 67-16 3 14-52 13 43 127-14 5z" fill="#1d1e1c"/>
+                    <path d="M482 743s-14-24-35-8-9 36-9 36 7 7 31 7 29 0 34-5-11-43-11-43zM209 796s-22-33-52-12-12 51-12 51 9 7 43 7c43 0 42-13 45-22 5-15-11-42-11-42zM324 743s-29-42-59-21-12 51-12 51 9 7 42 7c43 0 46-8 49-17 5-15-14-47-14-47zM364 857s-26-41-56-20-13 51-13 51 10 8 43 8c43 0 44-13 44-23 1-46-15-42-15-42zM857 760h15V440l-141 76 7 13 119-65v296z" fill="#1d1e1c"/>
+                    <path d="M968 823l15-2-41-318-213 32 2 15 199-30 38 303z" fill="#1d1e1c"/>
+                    <path d="M833 868l7-288-104-30-4 14 93 27-7 276 15 1z" fill="#1d1e1c"/>
+                    <path d="M717 747l48-143-67-16-4 14 52 13-42 127 13 5z" fill="#1d1e1c"/>
+                    <path d="M716 745s14-24 36-8 9 36 9 36-7 7-31 7-29 0-34-5 10-43 10-43zM989 798s23-33 52-12 13 51 13 51-10 7-43 7c-43 0-42-13-45-22-5-15 11-42 11-42zM874 745s30-42 60-21 12 51 12 51-10 7-43 7c-43 0-45-9-48-17-5-15 14-47 14-47zM834 858s27-40 57-19 12 51 12 51-10 8-43 8c-43 0-43-14-43-23-1-46 15-43 15-43z" fill="#1d1e1c"/>
+                    <path fill="#38a9b4" d="M762 494c0 88-70 134-157 134s-152-46-152-134 66-118 152-118 157 30 157 118z"/>
+                    <path d="M603 635c-45 0-84-12-113-36-30-25-46-61-46-105 0-82 55-126 159-126 106 0 164 45 164 126 0 44-17 80-49 106-28 23-69 35-115 35zm0-252c-96 0-144 37-144 111 0 78 55 127 144 127 91 0 149-50 149-127 0-92-81-111-149-111z" fill="#1d1e1c"/>
+                    <ellipse cx="546.3" cy="400.6" fill="#fff" rx="97.5" ry="100.8"/>
+                    <path d="M544 506c-56 0-102-47-102-105s46-106 102-106 103 47 103 106-46 105-103 105zm0-201c-51 0-92 43-92 96s41 95 92 95 93-43 93-95-42-96-93-96z" fill="#1d1e1c"/>
+                    <ellipse cx="691.9" cy="417" fill="#fff" rx="80.4" ry="78.9"/>
+                    <path d="M690 501c-47 0-86-38-86-84s39-84 86-84 86 38 86 84-39 84-86 84zm0-158c-42 0-75 33-75 74s33 74 75 74 75-33 75-74-33-74-75-74z" fill="#1d1e1c"/>
+                    <circle cx="552.6" cy="405.9" r="44.9" fill="#1d1e1c"/>
+                    <circle cx="576.7" cy="399.1" r="12.4" fill="#fff"/>
+                    <ellipse cx="698.4" cy="421.7" fill="#1d1e1c" rx="36.4" ry="34.9"/>
+                    <circle cx="691.3" cy="415.4" r="10" fill="#fff"/>
+                    <ellipse cx="771.9" cy="771.1" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="936.7" cy="766.8" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="897.5" cy="885.2" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                    <ellipse cx="1048.7" cy="828.7" fill="#1d1e1c" opacity="0.2" rx="79.6" ry="20.1"/>
+                </svg>
+            </span>
+            <span class="tool">
+                Sylius
+                <svg viewBox="0 0 49 49" id="sylius" class="square" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#30BA9D" d="M6.8 28.7l9.8 19.6h18l4.4-6.2L6.8 28.7z"/>
+                      <path fill="#1A9F83" d="M0 30.8L13.2 49h21.5l4.3-6.7L0 30.8zm15.8-22l6.4 5L28 2.7l-2-1.3-10.2 7.4z"/>
+                      <path fill="#30BA9D" d="M34.7 49l-19-40.2L19.9 6l22 32-7.1 11zM24.2 2.6l12.3 10L27.9 0l-3.7 2.7z"/>
+                </svg>
+            </span>
+            <span class="tool">
+                MongoDB
+                <svg viewBox="0 0 64 142" id="mongodb" class="portrait">
+                    <path fill="#fff" d="M35 142l-4-1s1-19-6-21c-5-5 1-227 17-1 0 0-6 3-7 8v15z"/>
+                    <path fill="#a6a385" d="M35 142l-4-1s1-19-6-21c-5-5 1-227 17-1 0 0-6 3-7 8v15z"/>
+                    <path fill="#fff" d="M37 123s33-21 25-67C55 23 37 13 35 8l-4-8 2 92s-3 28 4 31"/>
+                    <path fill="#499d4a" d="M37 123s33-21 25-67C55 23 37 13 35 8l-4-8 2 92s-3 28 4 31"/>
+                    <path fill="#fff" d="M29 125S-2 103 0 66 24 10 28 7c3-3 3-4 3-7 2 4 2 62 2 69 1 26-2 51-4 56z"/>
+                    <path fill="#58aa50" d="M29 125S-2 103 0 66 24 10 28 7c3-3 3-4 3-7 2 4 2 62 2 69 1 26-2 51-4 56z"/>
+                </svg>
+            </span>
+            <span class="tool">
+                RabbitMQ
+                <svg viewBox="0 0 256 257" id="rabbitmq" class="square">
+                    <path fill="#F60" d="M246 102h-82a10 10 0 01-10-10V10a10 10 0 00-11-10h-30a10 10 0 00-11 10v82a10 10 0 01-10 10H61a10 10 0 01-10-10V10A10 10 0 0041 0H10A10 10 0 000 10v236a10 10 0 0010 10h236a10 10 0 0010-10V113a10 10 0 00-10-11zm-41 87a15 15 0 01-16 16h-20a15 15 0 01-16-16v-20a15 15 0 0116-15h20a15 15 0 0116 15v20z"/>
+                </svg>
+            </span>
+            <span class="tool">
+                Elasticsearch
+                <svg viewBox="0 0 256 286" id="elasticsearch" class="square">
+                    <path fill="#F0BF1A" d="M14 80h190c20 0 39-9 52-24A142 142 0 0014 80"/>
+                    <path fill="#07A5DE" d="M188 102H6a143 143 0 000 81h182c21 0 40-18 40-40 0-23-18-41-40-41"/>
+                    <path fill="#3EBEB0" d="M256 229a68 68 0 00-52-24H14a143 143 0 00242 24"/>
+                    <path fill="#231F20" d="M6 102a142 142 0 000 81h119a159 159 0 000-81H6z"/>
+                    <path fill="#D7A229" d="M71 19C47 33 27 55 14 80h105c-10-24-27-45-48-61"/>
+                    <path fill="#019B8F" d="M75 268c21-16 37-38 47-63H14c14 27 35 49 61 63"/>
+                </svg>
+            </span>
+            <span class="tool">
+                Redis
+                <svg viewBox="0 0 256 220" id="redis" class="square">
+                    <path fill="#912626" d="M246 169l-100 44c-15 8-23 8-35 2L10 173c-6-4-10-6-10-9v-26s98-21 114-27 21-6 35-1c13 5 94 20 107 24v26c0 3-3 5-10 9"/>
+                    <path fill="#C6302B" d="M246 143l-100 44c-15 8-23 8-35 2L10 147c-13-7-14-11 0-16l104-41c16-5 21-6 35-1l97 38c13 5 14 9 0 16"/>
+                    <path fill="#912626" d="M246 127l-100 44c-15 8-23 8-35 2L10 131c-6-4-10-6-10-9V96s98-21 114-27c16-5 21-6 35-1 13 5 94 20 107 25v25c0 3-3 5-10 9"/>
+                    <path fill="#C6302B" d="M246 101l-100 44c-15 8-23 8-35 3L10 105c-13-7-14-11 0-16l104-41c16-5 21-5 35 0l97 37c13 5 14 9 0 16"/>
+                    <path fill="#912626" d="M246 84l-100 44c-15 8-23 8-35 2L10 87c-6-3-10-6-10-8V53s98-22 114-27c16-6 21-6 35-1 13 5 94 19 107 24v26c0 2-3 5-10 9"/>
+                    <path fill="#C6302B" d="M246 58l-100 44c-15 8-23 8-35 2L10 61c-13-6-14-10 0-16L114 5c16-6 21-6 35-1l97 38c13 5 14 9 0 16"/>
+                    <path fill="#FFF" d="M159 33l-22 2-5 12-8-13-25-3 19-6-6-11 18 7 17-5-5 10 17 7M131 90L90 73l59-9-18 26M74 39c17 0 32 6 32 13 0 6-15 12-32 12s-31-6-31-12c0-7 14-13 31-13"/>
+                    <path fill="#621B1C" d="M185 36l35 14-35 14V36"/>
+                    <path fill="#9A2928" d="M147 51l38-15v28l-3 1-35-14"/>
+                </svg>
+            </span>
+            <span class="tool">
+                GitHub Actions
+                <svg viewBox="0 0 48 48" fill="none" id="github-actions" class="square">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C14.9707 1 19 5.02932 19 10C19 14.9707 14.9707 19 10 19C5.02932 19 1 14.9707 1 10C1 5.02932 5.02932 1 10 1Z" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23 19C26.3137 19 29 21.6863 29 25C29 28.3137 26.3137 31 23 31C19.6863 31 17 28.3137 17 25C17 21.6863 19.6863 19 23 19Z" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23 35C26.3137 35 29 37.6863 29 41C29 44.3137 26.3137 47 23 47C19.6863 47 17 44.3137 17 41C17 37.6863 19.6863 35 23 35Z" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M41 35C44.3137 35 47 37.6863 47 41C47 44.3137 44.3137 47 41 47C37.6863 47 35 44.3137 35 41C35 37.6863 37.6863 35 41 35Z" stroke="var(--color-marketing-icon-secondary, #79B8FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25.0365 23.6069L21.9673 26.672L20.4766 25.1866" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M41 19C44.3137 19 47 21.6863 47 25C47 28.3137 44.3137 31 41 31C37.6863 31 35 28.3137 35 25C35 21.6863 37.6863 19 41 19Z" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M43.0365 23.6069L39.9673 26.672L38.4766 25.1866" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 6.81201C7 6.02498 7.86709 5.54641 8.533 5.9659L13.6462 9.18692C14.2715 9.58082 14.2682 10.4935 13.6402 10.8829L8.52697 14.0534C7.8608 14.4664 7 13.9873 7 13.2035V6.81201Z" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 19V34C9 37.866 12.1772 41 16 41H17" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.949 26C17.5013 26 17.949 25.5523 17.949 25C17.949 24.4477 17.5013 24 16.949 24V26ZM8 19.0352C8 22.8817 11.1183 26 14.9648 26V24C12.2228 24 10 21.7772 10 19.0352H8ZM14.9648 26H16.949V24H14.9648V26Z" fill="var(--color-marketing-icon-primary, #2088FF)"/>
+                    <path d="M29.0547 25H34.9993" stroke="var(--color-marketing-icon-primary, #2088FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21 40C21.5518 40 22 40.4482 22 41C22 41.5526 21.5518 42 21 42C20.4482 42 20 41.5526 20 41C20 40.4482 20.4482 40 21 40Z" fill="var(--color-marketing-icon-secondary, #79B8FF)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M25 40C25.5518 40 26 40.4482 26 41C26 41.5526 25.5518 42 25 42C24.4482 42 24 41.5526 24 41C24 40.4482 24.4482 40 25 40Z" fill="var(--color-marketing-icon-secondary, #79B8FF)"/>
+                    <path d="M34.0048 41.0069L32.9922 41.0399" stroke="var(--color-marketing-icon-secondary, #79B8FF)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </span>
+            <span class="tool">
+                GitLab CI
+                <svg viewBox="0 0 256 236" id="gitlab-ci" class="square">
+                    <path fill="#E24329" d="M128 236l47.2-144.9H81l47 145z"/>
+                    <path fill="#FC6D26" d="M128 236L81 91.2H15l113 145z"/>
+                    <path fill="#FCA326" d="M15 91.1l-14.4 44c-1.3 4 .2 8.5 3.6 11L128 236 15 91z"/>
+                    <path fill="#E24329" d="M15 91.1h66L52.6 3.8a4.9 4.9 0 00-9.3 0L15 91z"/>
+                    <path fill="#FC6D26" d="M128 236l47.2-144.9h66L128 236.1z"/>
+                    <path fill="#FCA326" d="M241.2 91.1l14.3 44c1.3 4-.1 8.5-3.5 11l-124 90L241.3 91z"/>
+                    <path fill="#E24329" d="M241.2 91.1h-66l28.3-87.3a4.9 4.9 0 019.3 0L241.2 91z"/>
+                </svg>
+            </span>
+            <span class="tool">
+                NGINX
+                <svg viewBox="0 0 256 291" id="nginx" class="square">
+                    <path fill="#009639" d="M2 218c1 3 3 4 6 6l113 65c4 3 10 3 15 0l113-65c4-3 7-8 7-13V80c0-5-3-10-7-13L136 2c-5-3-11-3-15 0L8 67c-5 3-8 8-8 13v131l2 7"/>
+                    <path fill="#FFF" d="M92 195c0 8-7 15-15 15s-14-7-14-15V96c0-8 7-15 16-15 7 0 15 3 20 9l4 6 61 72V96c0-8 7-15 15-15s14 7 14 15v99c0 8-7 15-16 15-7 0-15-3-20-9l-65-78v72z"/>
+                </svg>
+            </span>
+        </dt>
+        <dd>
+            Au fil de mes développements j’ai utilisé de nombreux outils sans forcément les approfondir, et il y a
+            encore plus d’outils que je n’ai jamais utilisés. Que cela ne vous arrête pas : je peux me former
+            à tout !
+        </dd>
+    </dl>
+</section>
+<section>
+    <h2>Expériences</h2>
+    <h3>Personnelle</h3>
+    <p>
+        Mon site (<a href="https://www.matthecat.com">https://www.matthecat.com</a>) m’a permis de tester diverses
+        technologies et designs depuis 2010. Il a pris la forme d’un blog technique quatre ans plus tard et après un
+        passage sous <i lang="en">ghost</i> j’ai décidé d’en reprendre le contrôle total. Ses sources sont
+        accessibles sur <a href="https://github.com/MatTheCat/blog">https://github.com/MatTheCat/blog</a>.
+    </p>
+    <h3>JoliCode</h3>
+    <p>
+        Démarrage du projet « abonnement lentille » sur <a href="https://www.afflelou.com/">afflelou.com</a>.
+        Le cahier des charges fourni ainsi que les dialogues aisés avec les <i lang="en">product owners</i> m’ont
+        permis d’implémenter le <i lang="en">Domain Driven Design</i> au sein d’une application Symfony.
+    </p>
+    <p>
+        Développement d’un nouvel espace client pour <a href="https://www.orpi.com/">orpi.com</a> avec notamment une
+        façade conséquente destinée à masquer les nombreuses incohérences de l’API SOAP utilisée.
+    </p>
+    <p>
+        Implémentation de diverses évolutions sur les sites
+        <a href="https://immobilier.cushmanwakefield.fr/">immobilier.cushmanwakefield.fr</a> et
+        <a href="https://fr.parisrental.com/">parisrental.com</a>.
+    </p>
+    <h3>Sendinblue</h3>
+    <p>
+        Référent technique de l’application web, j’ai tout d’abord refactorisé et documenté le système
+        d’authentification afin qu’il soit plus sécurisé et implémentable sur tous les environnements utilisés.
+        Cela m’a permis au passage de corriger la déconnexion des <i lang="en">stateless firewalls</i> sur Symfony.
+        J’ai également débuté l’implémentation de la 2FA avec sendinblue/base-32 et sendinblue/otp.
+    </p>
+    <p>
+        Côté <i lang="en">front</i>, j’ai découpé l’interface existante implémentée avec Bootstrap en composants mis à
+        disposition via une <i lang="en">pattern library</i>. Ces derniers étaient développés en même temps que leur
+        documentation grâce à webpack-dev-server, puis cette documentation était rendue accessible par GitHub Pages avec
+        un manifest permettant le <i lang="en">long-term caching</i>.
+    </p>
+    <h3>Digital No Limit</h3>
+    <p>
+        Fort de l’expérience acquise sur Symfony j’ai créé bon nombre de bundles pour factoriser du code copié-collé
+        entre les différents projets de l’agence.
+    </p>
+    <p>
+        Suite à l’annonce des <i lang="en">subgroups</i> par GitLab, j’ai contribué à leur support par Composer pour
+        pouvoir mieux organiser nos dépôts.
+    </p>
+    <p>
+        J’ai également développé un module pour rendre la visibilité de chaque élément de l’interface de l’extranet de
+        Siaci Saint Honoré configurable en fonction des données relatives à l’utilisateur connecté.
+    </p>
+    <h3>CheckAndTake</h3>
+    <p>
+        J’y ai découvert Symfony pour développer Plyce (aujourd’hui disparu) : un site de couponing géolocalisé
+        dupliqué en marque blanche pour nos partenaires. J’occupais un poste de
+        « <i lang="en">front-of-the-back</i> » : de l’intégration des maquettes à la conception du modèle de
+        données.
+    </p>
+</section>
 </html>
