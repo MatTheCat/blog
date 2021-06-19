@@ -1,7 +1,7 @@
 version: "3"
 services:
     nginx:
-        image: nginx:1.20.0-alpine
+        image: nginx:1.21.0-alpine
         ports:
             - '443:443'
         volumes:
@@ -10,7 +10,7 @@ services:
             - './docker/certs:/etc/ssl/certs:ro'
 
     node:
-        image: node:16.1.0-alpine3.13
+        image: node:16.3.0-alpine3.13
         command: node docker/watch.js
         volumes:
             - '.:/home/node/app'
