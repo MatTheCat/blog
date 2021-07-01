@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="fr-FR"><head><title>Attendre l’initialisation d’un conteneur MySQL</title>
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="assets/3ceb5dda8b97a23e2a24461879b5e090.css">
-<link rel="stylesheet" href="assets/e91467a54dec6fd405d24415156dfb7e.css">
+<link rel="stylesheet" href="assets/e6f590ef90e35bf66cca50abbbe57216.css">
 </head><body><h1>Attendre l’initialisation d’un conteneur MySQL</h1>
 <p>
     Lorsqu’un conteneur MySQL est lancé pour la première fois (plus précisément, quand
@@ -56,7 +56,7 @@ bash: /dev/tcp/127.0.0.1/3306: Connection refused</samp></pre>
 </p>
 <pre class=" language-bash"><code class=" language-bash">docker <span class="token builtin class-name">exec</span> CONTAINER <span class="token function">bash</span> -c <span class="token string">'until echo 2&gt; /dev/null &gt;/dev/tcp/127.0.0.1/3306; do sleep 2; done'</span></code></pre>
 <p>
-    Une fois terminée, vous êtes certain de pouvoir accèder à votre conteneur MySQL&nbsp;!
+    Une fois terminée, vous êtes certain de pouvoir accéder à votre conteneur MySQL&nbsp;!
 </p>
 
 </body></html>
