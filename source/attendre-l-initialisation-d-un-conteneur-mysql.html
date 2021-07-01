@@ -58,6 +58,6 @@ bash: /dev/tcp/127.0.0.1/3306: Connection refused</samp></pre>
 </p>
 <pre><code class="language-bash">docker exec CONTAINER bash -c 'until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done'</code></pre>
 <p>
-    Une fois terminée, vous êtes certain de pouvoir accèder à votre conteneur MySQL !
+    Une fois terminée, vous êtes certain de pouvoir accéder à votre conteneur MySQL !
 </p>
 </html>
