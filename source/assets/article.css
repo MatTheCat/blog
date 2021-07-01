@@ -61,9 +61,8 @@ pre code, pre samp {
 }
 code, kbd, samp {
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-
 }
-code:not([class*=language-]) {
+:not(pre):not(h1):not(h2):not(h3) > code {
     background: #e9ecef;
     border-radius: .125rem;
     padding: 0 .25rem;
