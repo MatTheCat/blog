@@ -49,34 +49,43 @@
     déduire le ratio d’aspect intrinsèque ; précisément la donnée qu’il nous manquait !
 </p>
 <p>
-    C’est pourquoi le <abbr lang="en" title="Web Platform Incubator Community Group">WICG</abbr> a songé à utiliser ces
-    attributs à la place
-    d’<a href="https://googlechrome.github.io/samples/intrinsic-size/" hreflang="en"><code>intrinsicsize</code></a>
-    qui devait répondre à la même problématique. La proposition se résume à une unique ligne de CSS dans la feuille de
-    style des navigateurs :
-</p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-css">img, video { aspect-ratio: attr(width) / attr(height); }</code></pre>
-<p>
-    Pour le moment, <code>aspect-ratio</code> n’est qu’au statut de
-    <a href="https://drafts.csswg.org/css-sizing-4/#aspect-ratio" hreflang="en">draft</a> et <code>attr</code>
-    <a href="https://caniuse.com/#feat=css3-attr" hreflang="en">inutilisable de la sorte</a>, mais les navigateurs
-    peuvent tout de même émuler cette règle pour les images, comme Firefox ≥ 71 et Chrome ≥ 79.
-</p>
-<p>
-    Ce comportement a également été formalisé par le
-    <abbr lang="en" title="Web Hypertext Application Technology">WHATWG</abbr> :
+    C’est pourquoi à la place
+    d’<a href="https://googlechrome.github.io/samples/intrinsic-size/" hreflang="en"><code>intrinsicsize</code></a>,
+    le <abbr lang="en" title="Web Platform Incubator Community Group">WICG</abbr> a songé à utiliser ces attributs dans
+    un nouveau <a href="https://html.spec.whatwg.org/multipage/rendering.html#presentational-hints" hreflang="en">
+    <i lang="en">presentational hint</i></a> pour la propriété CSS
+    <a href="https://drafts.csswg.org/css-sizing-4/#aspect-ratio" hreflang="en"><code>aspect-ratio</code></a> :
 </p>
 <blockquote lang="en">
-    If <code>img</code>’s <code>width</code> and <code>height</code> attribute values […] are both not an error,
-    not a percentage, and non-zero, then use the ratio resulting from dividing the <code>width</code> attribute
-    value by the <code>height</code> attribute value [as its intrinsic aspect ratio].
-    <footer><a href="https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images" hreflang="en">https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images</a></footer>
+    The <code>width</code> and <code>height</code> attributes map to the aspect-ratio property […] on <code>img</code>
+    [, <code>canvas</code>] and <code>video</code> elements, and <code>input</code> elements with a <code>type</code>
+    attribute in the Image Button state.
+    <footer><a href="https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images" hreflang="en">https://html.spec.whatwg.org/multipage/rendering.html#attributes-for-embedded-content-and-images</a> </footer>
 </blockquote>
 <p>
-    Il est donc temps de (re)prendre les vieilles habitudes : <strong>ajoutez <code>height</code> et
-    <code>width</code> à toutes vos images</strong> !
-    <a href="https://github.com/whatwg/html/issues/4961" hreflang="en">Il faudra encore
-    patienter pour les vidéos.</a>
+    Par exemple, cela signifie qu’une image définie avec <code>width="200"</code> et <code>height="100"</code> se verra
+    attribuer la déclaration
+</p>
+<link rel="stylesheet" href="assets/prism.css">
+<pre><code class="language-css">aspect-ratio: auto 200 / 100;</code></pre>
+<p>
+    par la feuille de style du navigateur. La première valeur <code>auto</code> signifie que le ratio intrinsèque sera
+    utilisé dès qu’il sera disponible, d’où l’importance de spécifier correctement les attributs <code>width</code> et
+    <code>height</code> (sinon vous provoqueriez vous-même un <i lang="en">jank</i> !)
+</p>
+<p>
+    Notez qu’une telle image ferait par défaut 200 × 100 pixels, car les attributs <code>width</code> et
+    <code>height</code> sont respectivement des <i lang="en">presentational hints</i> des propriétés CSS
+    <code>width</code> et <code>height</code>. Surcharger une de ces dernières implique donc de spécifier l’autre à
+    <code>auto</code>. Par exemple :
+</p>
+<pre><code class="language-css">img {
+    width: 100%;
+    height: auto;
+}</code></pre>
+<p>
+    Ainsi, le navigateur pourra réserver l’espace correspondant avant même le téléchargement de l’image !
+    Plus récemment, ceci est également valable pour les vidéos, canevas et boutons. Alors pensez à ajouter leurs
+    attributs <code>width</code> et <code>height</code> !
 </p>
 </html>
