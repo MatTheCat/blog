@@ -26,8 +26,8 @@
 <p>
     Idéalement, on voudrait tester le port 3306 de l’intérieur du conteneur puisque cela n’imposerait ni de le publier,
     ni aux développeurs d’installer un outil pour réaliser ce test. Si vous pensez à
-    <a href="https://fr.wikipedia.org/wiki/Netcat">Netcat</a>, ce dernier n’est malheureusement pas disponible dans le
-    conteneur. Par contre ce dernier étant basé sur Debian, il est garanti d’y trouver
+    <a href="https://fr.wikipedia.org/wiki/Netcat">Netcat</a>, cet utilitaire n’est malheureusement pas disponible dans
+    le conteneur. Par contre ce dernier étant basé sur Debian, il est garanti d’y trouver
     <a href="https://fr.wikipedia.org/wiki/Bourne-Again_shell">Bash</a> qui nous offre une solution basée sur les
     <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html" hreflang="en">redirections</a> :
     si le chemin spécial <code>/dev/tcp/<var>host</var>/<var>port</var></code> est utilisé, Bash va tenter d’ouvrir
