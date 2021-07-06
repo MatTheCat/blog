@@ -5,7 +5,7 @@
 </head><body><h1>Soumettre un formulaire en JavaScript</h1>
 <h2 id="TL%3BDR"><abbr lang="en" title="Too Long&nbsp;; Didn’t Read">TL;DR</abbr></h2>
 <link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
-<pre class=" language-javascript"><code class=" language-javascript">form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> cancelable<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript">form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> cancelable<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token operator">&amp;&amp;</span> form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token operator">&amp;&amp;</span> form<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="TL%3BRA"><abbr lang="en" title="Too Long&nbsp;; Read Anyway">TL;RA</abbr></h2>
@@ -19,7 +19,7 @@
     <code>window</code> pendant
     <a href="https://javascript.info/bubbling-and-capturing#capturing" hreflang="en">la phase de capture</a>.
 </p>
-<pre class=" language-javascript"><code class=" language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> includeReCaptchaToken<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> includeReCaptchaToken<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>
     Le token est obtenu via une
     <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.
@@ -30,7 +30,7 @@
     <li>tout écouteur de réagir à l’événement <code>submit</code></li>
 </ol>
 <p>On peut ensuite attendre le token et l’ajouter au formulaire, puis soumettre ce dernier.</p>
-<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">includeReCaptchaToken</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">includeReCaptchaToken</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">/* 1. */</span> e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">/* 2. */</span> e<span class="token punctuation">.</span><span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -53,7 +53,7 @@
     C’est la première chose à faire, car si cet événement est annulé par un écouteur on doit lui laisser le gérer.
     Nous allons donc créer notre version la plus fidèle de l’événement natif,&nbsp;qui bouillonne en plus d’être annulable&nbsp;:
 </p>
-<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">const</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript"><span class="token keyword">const</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
     cancelable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -65,7 +65,7 @@
     si au moins un a annulé l’événement. Dans ce cas, le formulaire ne doit pas être soumis et notre fonction
     <code>submitForm</code> peut retourner.
 </p>
-<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -76,7 +76,7 @@
     du formulaire. En cas d’échec, elle retournera <code>false</code> et signalera les erreurs à l’utilisateur. Inutile
     alors de soumettre le formulaire.
 </p>
-<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>form<span class="token punctuation">.</span><span class="token function">reportValidity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -85,7 +85,7 @@
     J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire&nbsp;; c’est tout ce qu’il nous reste à
     faire&nbsp;! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code>&nbsp;:
 </p>
-<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token parameter">form</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-javascript" tabindex="0"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token parameter">form</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
         bubbles<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
         cancelable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>

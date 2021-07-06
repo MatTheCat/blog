@@ -5,7 +5,7 @@
 </head><body><h1>Anecdotes sur <code>meta</code> <code>charset</code></h1>
 <p>La ligne de code suivante vous est probablement familière&nbsp;:</p>
 <link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup" tabindex="0"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     Elle est un moyen d’indiquer aux <i lang="en">user agents</i>
     l’encodage du document HTML dans lequel elle se trouve.
@@ -17,13 +17,13 @@
     Il peut sembler étrange d’avoir introduit un nouvel attribut <code>charset</code> plutôt que d’utiliser
     <code>name</code> et <code>content</code>&nbsp;; c’est en fait un moyen ingénieux de raccourcir la déclaration
 </p>
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Content-Type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/html; charset=utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup" tabindex="0"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Content-Type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/html; charset=utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     <code>http-equiv</code> avait à l’origine pour but de définir des directives pour le serveur, mais cela n’est
     jamais arrivé. Définir l’encodage est donc devenu le problème du navigateur, en plus du support de syntaxes
     invalides. L’absence de guillemets autour d’un attribut contenant une espace par exemple&nbsp;:
 </p>
-<pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>Content-Type</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text/html;</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>utf-8</span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class=" language-markup" tabindex="0"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>Content-Type</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text/html;</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>utf-8</span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>
     <code>charset</code> devient alors un attribut&nbsp;! S’il est déjà supporté, il ne reste qu’à le rendre valide.
     On supprime également les attributs <code>http-equiv</code> et <code>content</code> devenus inutiles, et paf.
@@ -89,7 +89,7 @@
     réception du document.
 </p>
 <aside>
-    <pre class=" language-http"><code class=" language-http"><span class="token header-name keyword">Content-Type:</span> text/html; charset=utf-8</code></pre>
+    <pre class=" language-http" tabindex="0"><code class=" language-http"><span class="token header-name keyword">Content-Type:</span> text/html; charset=utf-8</code></pre>
 </aside>
 <p>Si vous n’êtes pas en mesure de configurer le serveur, deux solutions&nbsp;:</p>
 <ul>
@@ -123,7 +123,7 @@
 <h3 id="Character_set"><i lang="en">Character set</i></h3>
 <p>
     Ce terme vient de la terminologie d’IBM&nbsp;:
-    <a href="https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_74/nls/rbagsencodingscheme.htm" hreflang="en"><abbr title="Character Data Representation Architecture" lang="en">CDRA</abbr></a>
+    <a href="https://www.ibm.com/docs/en/i/7.4?topic=representation-encoding-scheme" hreflang="en"><abbr title="Character Data Representation Architecture" lang="en">CDRA</abbr></a>
     où il désigne un ensemble de caractères à encoder. Par exemple
     <a href="https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange#Table_des_128_caract%C3%A8res_ASCII">ASCII</a>
     définit un jeu de 128 caractères fermé, ce qui signifie qu’aucun caractère ne lui sera ajouté.

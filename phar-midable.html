@@ -38,7 +38,7 @@
 </p>
 <h2 id="Cr%C3%A9er_un_dossier_commun">Créer un dossier commun</h2>
 <link rel="stylesheet" href="assets/80093db9d5bfe2547a43a78cff65b177.css">
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
 	mkdir <span class="token variable">$@</span></code></pre>
 <p>
     Nous avons ici une <b>règle</b> dont <code>tools</code> est la <b>cible</b>, suivie d’une <b>commande</b>.
@@ -46,7 +46,7 @@
     <a href="https://docs.microsoft.com/fr-fr/cpp/build/reference/nmake-reference?view=msvc-160"><code>nmake</code></a>
     sous Windows) pour exécuter les commandes d’une règle en lui passant sa cible en argument&nbsp;:
 </p>
-<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools</span></span>
+<pre class=" language-shell-session" tabindex="0"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools</span></span>
 <span class="token output">mkdir tools</span></code></pre>
 <p>
     <code>$@</code> est une
@@ -62,7 +62,7 @@
 </p>
 
 <h2 id="Installer_le_PHAR">Installer le PHAR</h2>
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools/php-cs-fixer-%.phar</span><span class="token punctuation">:</span> tools
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token symbol">tools/php-cs-fixer-%.phar</span><span class="token punctuation">:</span> tools
 	rm -f tools/php-cs-fixer-*.phar
 	curl -LSso <span class="token variable">$@</span> \
 		<span class="token string">"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$*/php-cs-fixer.phar"</span></code></pre>
@@ -77,7 +77,7 @@
     le retrouve à droite de la cible, comme <b>composant</b>&nbsp;: la cible d’une règle qui devra être exécutée avant les
     commandes.
 </p>
-<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools/php-cs-fixer-2.17.3.phar</span></span>
+<pre class=" language-shell-session" tabindex="0"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> tools/php-cs-fixer-2.17.3.phar</span></span>
 <span class="token output">mkdir tools
 rm -f tools/php-cs-fixer-*.phar
 curl -LsSo tools/php-cs-fixer-2.17.3.phar \
@@ -119,7 +119,7 @@ curl -LsSo tools/php-cs-fixer-2.17.3.phar \
 </p>
 
 <h2 id="Utiliser_le_PHAR">Utiliser le PHAR</h2>
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> php-cs-fixer
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> php-cs-fixer
 <span class="token symbol">php-cs-fixer</span><span class="token punctuation">:</span> tools/php-cs-fixer-2.17.3.phar
 	php <span class="token variable">$&lt;</span> <span class="token variable">$</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span></code></pre>
 <p>
@@ -142,7 +142,7 @@ curl -LsSo tools/php-cs-fixer-2.17.3.phar \
     <code>make</code> est une assignation, la variable concernée sera accessible au sein du Makefile avec la valeur
     spécifiée.</a> Ici nous faisons référence à une variable <code>arguments</code>, et pouvons donc écrire
 </p>
-<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> php-cs-fixer <span class="token assign-left variable">arguments</span><span class="token operator">=</span>-V</span></span>
+<pre class=" language-shell-session" tabindex="0"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> php-cs-fixer <span class="token assign-left variable">arguments</span><span class="token operator">=</span>-V</span></span>
 <span class="token output">php tools/php-cs-fixer-2.17.3.phar -V
 PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f5d)</span></code></pre>
 <p>
@@ -151,7 +151,7 @@ PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f
     nous aurons principalement besoin de corriger le style de programmation, ou de vérifier qu’il adhère à nos
     standards. Pour cela, nous pouvons créer des règles spécifiques qui simplifieront l’utilisation du PHAR&nbsp;:
 </p>
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> fix-php-cs
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token builtin">.PHONY</span><span class="token punctuation">:</span> fix-php-cs
 <span class="token symbol">fix-php-cs</span><span class="token punctuation">:</span>
 	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> php-cs-fixer arguments<span class="token operator">=</span><span class="token string">"fix ."</span>
 
@@ -170,14 +170,14 @@ PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f
     plus un message d’entrée et sortie du <i lang="en">sub-make</i>. On s’en préviendra grâce à l’option
     <code>-s</code>.
 </p>
-<pre class=" language-shell-session"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> -s fix-php-cs</span></span>
+<pre class=" language-shell-session" tabindex="0"><code class=" language-shell-session"><span class="token command"><span class="token shell-symbol important">$</span> <span class="token bash language-bash"><span class="token function">make</span> -s fix-php-cs</span></span>
 <span class="token output">Loaded config default.
 Using cache file ".php_cs.cache".
 
 Fixed all files in 0.160 seconds, 12.000 MB memory used</span></code></pre>
 
 <h2 id="Le_Makefile_complet">Le Makefile complet</h2>
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token symbol">tools</span><span class="token punctuation">:</span>
 	mkdir <span class="token variable">$@</span>
 
 <span class="token symbol">tools/php-cs-fixer-%.phar</span><span class="token punctuation">:</span> tools
@@ -220,7 +220,7 @@ Fixed all files in 0.160 seconds, 12.000 MB memory used</span></code></pre>
     Nous venons de gérer PHP&nbsp;CS&nbsp;Fixer avec brio, mais notre Makefile est facilement extensible&nbsp;; il serait
     dommage de s’arrêter là&nbsp;!
 </p>
-<pre class=" language-makefile"><code class=" language-makefile"><span class="token symbol">tools/phpunit-%.phar</span><span class="token punctuation">:</span> tools
+<pre class=" language-makefile" tabindex="0"><code class=" language-makefile"><span class="token symbol">tools/phpunit-%.phar</span><span class="token punctuation">:</span> tools
 	rm -f tools/phpunit-*.phar
 	curl -LSso <span class="token variable">$@</span> \
 		<span class="token string">"https://phar.phpunit.de/phpunit-$*.phar"</span>
