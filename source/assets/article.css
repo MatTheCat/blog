@@ -53,6 +53,9 @@ pre {
     overflow: auto;
     padding: 1rem 2rem;
 }
+pre:focus {
+    outline: .25rem solid #339af0;
+}
 pre code, pre samp {
     display: block;
     margin: auto;

@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "private": true,
   "version": "1.0.0",
-  "devDependencies": {
+  "dependencies": {
     "cssnano": "^5.0.6",
     "jsdom": "^16.6.0",
     "mathjax-node": "^2.1.1",

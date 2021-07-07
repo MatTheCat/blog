@@ -37,6 +37,10 @@ h1 {
     font-size: 2.5rem;
     margin-top: 0;
 }
+a:focus {
+    outline: .125rem solid;
+    outline-offset: .125rem;
+}
 svg {
     pointer-events: none;
 }
