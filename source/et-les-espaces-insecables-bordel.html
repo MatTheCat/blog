@@ -70,6 +70,20 @@
     S’il ne permet pas d’insérer une espace insécable, vous pouvez la copier via la table des caractères de votre
     système.
 </p>
+<style>
+    input {
+        background: #fff;
+        border: 0;
+        box-shadow: 0 0 0 1px #868e96;
+        border-radius: 1px;
+        font: inherit;
+        padding: 0;
+        text-align: center;
+    }
+    input:focus {
+        outline: .125rem solid #1864ab;
+    }
+</style>
 <p>
     Enfin si vous écrivez du HTML, vous pouvez utiliser l’entité <code>&amp;nbsp;</code>
     (<i lang="en">no-break space</i>). Toutefois prenez garde au fait qu’une espace insécable dans du code HTML est
@@ -77,22 +91,7 @@
     et permettait de l’émuler (<a href="https://www.w3.org/MarkUp/html3/specialchars.html">c’était il y a longtemps</a>).
     Par conséquent, vous ne pouvez pas copier une espace insécable sur une page web,
     sauf si elle se trouve dans un champ de formulaire comme ici :
-    <input
-        type="text"
-        value=" "
-        readonly
-        onclick="select()"
-        size="1"
-        style="
-            background: #fff;
-            border: 0;
-            box-shadow: 0 0 0 1px #868e96;
-            border-radius: 1px;
-            font: inherit;
-            padding: 0;
-            text-align: center;
-        "
-    >
+    <input type="text" value=" " readonly onclick="select()" size="1">
 </p>
 
 <h2>Différencier les espaces</h2>
