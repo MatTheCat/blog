@@ -8,7 +8,7 @@
 <p>
     Lorsqu’un conteneur MySQL est lancé pour la première fois (plus précisément, quand
     <a href="https://dev.mysql.com/doc/refman/8.0/en/data-directory.html" hreflang="en">son dossier
-    <code>mysql</code></a> n'existe pas), ce dernier va, entre autres
+    <code>mysql</code></a> n'existe pas), ce dernier va, entre autres :
 </p>
 <ol>
     <li>initialiser son dossier de données ;</li>
@@ -53,7 +53,7 @@ bash: /dev/tcp/127.0.0.1/3306: Connection refused</samp></pre>
 </p>
 <pre><code class="language-bash">until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done</code></pre>
 <p>
-    Reste à exécuter ce script dans le conteneur démarré. Comme il s’agît d’un script Bash, on va utiliser la commande
+    Reste à exécuter ce script dans le conteneur démarré. Comme il s’agit d’un script Bash, on va utiliser la commande
     <code>bash</code> avec son option <code>-c</code> à qui on va passer notre script sous forme de chaîne :
 </p>
 <pre><code class="language-bash">docker exec CONTAINER bash -c 'until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done'</code></pre>
