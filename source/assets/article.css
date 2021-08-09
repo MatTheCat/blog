@@ -68,6 +68,7 @@ code, kbd, samp {
 :not(pre):not(h1):not(h2):not(h3) > code {
     background: #e9ecef;
     border-radius: .125rem;
+    line-height: 1;
     padding: 0 .25rem;
     white-space: nowrap;
 }
