@@ -114,9 +114,11 @@ blockquote {
 }
 footer a {
     display: block;
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: min-content;
 }
 figcaption, footer {
     font-size: .74rem;
