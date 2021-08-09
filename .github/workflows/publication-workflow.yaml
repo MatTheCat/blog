@@ -22,7 +22,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: build
-        run: node compile.js
+        run: node scripts/compile.js
       - name: deploy
         uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0
         with:

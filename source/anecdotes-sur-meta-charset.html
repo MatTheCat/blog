@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="assets/article.css">
 <h1>Anecdotes sur <code>meta</code> <code>charset</code></h1>
 <p>La ligne de code suivante vous est probablement familière :</p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-markup">&lt;meta charset=&quot;utf-8&quot;&gt;</code></pre>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" text.html.basic">&lt;meta charset=&quot;utf-8&quot;&gt;</code></pre>
 <p>
     Elle est un moyen d’indiquer aux <i lang="en">user agents</i>
     l’encodage du document HTML dans lequel elle se trouve.
@@ -19,13 +19,13 @@
     Il peut sembler étrange d’avoir introduit un nouvel attribut <code>charset</code> plutôt que d’utiliser
     <code>name</code> et <code>content</code> ; c’est en fait un moyen ingénieux de raccourcir la déclaration
 </p>
-<pre><code class="language-markup">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
+<pre><code class=" text.html.basic">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
 <p>
     <code>http-equiv</code> avait à l’origine pour but de définir des directives pour le serveur, mais cela n’est
     jamais arrivé. Définir l’encodage est donc devenu le problème du navigateur, en plus du support de syntaxes
     invalides. L’absence de guillemets autour d’un attribut contenant une espace par exemple :
 </p>
-<pre><code class="language-markup">&lt;meta http-equiv=Content-Type content=text/html; charset=utf-8&gt;</code></pre>
+<pre><code class=" text.html.basic">&lt;meta http-equiv=Content-Type content=text/html; charset=utf-8&gt;</code></pre>
 <p>
     <code>charset</code> devient alors un attribut ! S’il est déjà supporté, il ne reste qu’à le rendre valide.
     On supprime également les attributs <code>http-equiv</code> et <code>content</code> devenus inutiles, et paf.
@@ -96,7 +96,7 @@
     réception du document.
 </p>
 <aside>
-    <pre><code class="language-http">Content-Type: text/html; charset=utf-8</code></pre>
+    <pre><code class=" source.http">Content-Type: text/html; charset=utf-8</code></pre>
 </aside>
 <p>Si vous n’êtes pas en mesure de configurer le serveur, deux solutions :</p>
 <ul>

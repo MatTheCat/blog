@@ -43,20 +43,20 @@ bash: /dev/tcp/127.0.0.1/3306: Connection refused</samp></pre>
     Puisque ce message d’erreur est expecté, on peut le cacher grâce à <code>2> /dev/null</code> qui redirige la sortie
     d’erreur standard vers <code>/dev/null</code>. On se retrouve avec
 </p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-bash">echo 2> /dev/null >/dev/tcp/127.0.0.1/3306</code></pre>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.shell">echo 2> /dev/null >/dev/tcp/127.0.0.1/3306</code></pre>
 <p>
     qu’on veut exécuter jusqu’au succès. Pour cela nous allons utiliser
     <a href="https://www.gnu.org/software/bash/manual/html_node/Looping-Constructs.html" hreflang="en">la boucle
     <code>until</code> de Bash</a>, et attendre deux secondes entre chaque tentative grâce à
     <a href="https://fr.wikipedia.org/wiki/Sleep_(Unix)">la commande <code>sleep</code></a> :
 </p>
-<pre><code class="language-bash">until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done</code></pre>
+<pre><code class=" source.shell">until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done</code></pre>
 <p>
     Reste à exécuter ce script dans le conteneur démarré. Comme il s’agit d’un script Bash, on va utiliser la commande
     <code>bash</code> avec son option <code>-c</code> à qui on va passer notre script sous forme de chaîne :
 </p>
-<pre><code class="language-bash">docker exec CONTAINER bash -c 'until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done'</code></pre>
+<pre><code class=" source.shell">docker exec CONTAINER bash -c 'until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done'</code></pre>
 <p>
     Une fois terminée, vous êtes certain de pouvoir accéder à votre conteneur MySQL !
 </p>

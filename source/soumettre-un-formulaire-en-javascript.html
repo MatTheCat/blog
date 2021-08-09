@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="assets/article.css">
 <h1>Soumettre un formulaire en JavaScript</h1>
 <h2><abbr lang="en" title="Too Long ; Didn’t Read">TL;DR</abbr></h2>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-javascript">form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }))
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.js">form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }))
     && form.reportValidity()
     && form.submit();</code></pre>
 <h2><abbr lang="en" title="Too Long ; Read Anyway">TL;RA</abbr></h2>
@@ -21,7 +21,7 @@
     <code>window</code> pendant
     <a href="https://javascript.info/bubbling-and-capturing#capturing" hreflang="en">la phase de capture</a>.
 </p>
-<pre><code class="language-javascript">window.addEventListener("submit", includeReCaptchaToken, true);</code></pre>
+<pre><code class=" source.js">window.addEventListener("submit", includeReCaptchaToken, true);</code></pre>
 <p>
     Le token est obtenu via une
     <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.
@@ -32,7 +32,7 @@
     <li>tout écouteur de réagir à l’événement <code>submit</code></li>
 </ol>
 <p>On peut ensuite attendre le token et l’ajouter au formulaire, puis soumettre ce dernier.</p>
-<pre><code class="language-javascript">function includeReCaptchaToken(e) {
+<pre><code class=" source.js">function includeReCaptchaToken(e) {
     /* 1. */ e.preventDefault();
     /* 2. */ e.stopImmediatePropagation();
 
@@ -55,7 +55,7 @@
     C’est la première chose à faire, car si cet événement est annulé par un écouteur on doit lui laisser le gérer.
     Nous allons donc créer notre version la plus fidèle de l’événement natif, qui bouillonne en plus d’être annulable :
 </p>
-<pre><code class="language-javascript">const event = new Event("submit", {
+<pre><code class=" source.js">const event = new Event("submit", {
     bubbles: true,
     cancelable: true,
 });
@@ -67,7 +67,7 @@
     si au moins un a annulé l’événement. Dans ce cas, le formulaire ne doit pas être soumis et notre fonction
     <code>submitForm</code> peut retourner.
 </p>
-<pre><code class="language-javascript">if (!form.dispatchEvent(event)) {
+<pre><code class=" source.js">if (!form.dispatchEvent(event)) {
     return;
 }
 </code></pre>
@@ -78,7 +78,7 @@
     du formulaire. En cas d’échec, elle retournera <code>false</code> et signalera les erreurs à l’utilisateur. Inutile
     alors de soumettre le formulaire.
 </p>
-<pre><code class="language-javascript">if (!form.reportValidity()) {
+<pre><code class=" source.js">if (!form.reportValidity()) {
     return;
 }
 </code></pre>
@@ -87,7 +87,7 @@
     J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire ; c’est tout ce qu’il nous reste à
     faire ! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code> :
 </p>
-<pre><code class="language-javascript">function submitForm(form) {
+<pre><code class=" source.js">function submitForm(form) {
     const event = new Event("submit", {
         bubbles: true,
         cancelable: true,
