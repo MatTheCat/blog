@@ -109,6 +109,7 @@ mark {
 blockquote {
     background: #f1f3f5;
     border-left: .5rem solid #dee2e6;
+    box-sizing: border-box;
     font-style: italic;
     padding: 1rem 2rem 1rem 1.5rem;
 }
