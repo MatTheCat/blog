@@ -33,15 +33,15 @@
     <li>Il possède sa propre sémantique : une césure thématique entre deux paragraphes.</li>
 </ul>
 <p>Notre visuel évoque plutôt un titre de niveau un. Le <abbr>HTML</abbr> approprié serait donc</p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-markup">&lt;h1 class=&quot;hr&quot;&gt;Les arômes du vin&lt;/h1&gt;</code></pre>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" text.html.basic">&lt;h1 class=&quot;hr&quot;&gt;Les arômes du vin&lt;/h1&gt;</code></pre>
 <p>
     Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser une bordure sur les pseudo-éléments
     <code>::before</code> et <code>::after</code> pour tracer les deux parties du trait. Il faudra ensuite faire en
     sorte que ces derniers se partagent la largeur restante tout en étant verticalement centrés par rapport au texte.
     Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet !
 </p>
-<pre><code class="language-css">.hr {
+<pre><code class=" source.css">.hr {
     /* centre verticalement les enfants entre eux */
     align-items: center;
 

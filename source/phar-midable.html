@@ -39,8 +39,8 @@
     Sinon, suivez le guide !
 </p>
 <h2>Créer un dossier commun</h2>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-makefile">tools:
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.makefile">tools:
 	mkdir $@</code></pre>
 <p>
     Nous avons ici une <b>règle</b> dont <code>tools</code> est la <b>cible</b>, suivie d’une <b>commande</b>.
@@ -48,8 +48,8 @@
     <a href="https://docs.microsoft.com/fr-fr/cpp/build/reference/nmake-reference?view=msvc-160"><code>nmake</code></a>
     sous Windows) pour exécuter les commandes d’une règle en lui passant sa cible en argument :
 </p>
-<pre><code class="language-shell-session">$ make tools
-mkdir tools</code></pre>
+<pre><kbd class=" source.shell">make tools</kbd>
+<samp>mkdir tools</samp></pre>
 <p>
     <code>$@</code> est une
     <a href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" hreflang="en">variable automatique</a>
@@ -64,7 +64,7 @@ mkdir tools</code></pre>
 </p>
 
 <h2>Installer le PHAR</h2>
-<pre><code class="language-makefile">tools/php-cs-fixer-%.phar: tools
+<pre><code class=" source.makefile">tools/php-cs-fixer-%.phar: tools
 	rm -f tools/php-cs-fixer-*.phar
 	curl -LSso $@ \
 		"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$*/php-cs-fixer.phar"</code></pre>
@@ -79,11 +79,11 @@ mkdir tools</code></pre>
     le retrouve à droite de la cible, comme <b>composant</b> : la cible d’une règle qui devra être exécutée avant les
     commandes.
 </p>
-<pre><code class="language-shell-session">$ make tools/php-cs-fixer-2.17.3.phar
-mkdir tools
+<pre><kbd class=" source.shell">make tools/php-cs-fixer-2.17.3.phar</kbd>
+<samp>mkdir tools
 rm -f tools/php-cs-fixer-*.phar
 curl -LsSo tools/php-cs-fixer-2.17.3.phar \
-		"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.17.3/php-cs-fixer.phar"</code></pre>
+		"https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.17.3/php-cs-fixer.phar"</samp></pre>
 <p>Ces dernières sont relativement simples :</p>
 <ol>
     <li>On supprime toute autre version de PHP CS Fixer éventuellement présente dans le dossier <code>tools</code>.</li>
@@ -121,9 +121,9 @@ curl -LsSo tools/php-cs-fixer-2.17.3.phar \
 </p>
 
 <h2>Utiliser le PHAR</h2>
-<pre><code class="language-makefile">.PHONY: php-cs-fixer
+<pre><code class=" source.makefile">.PHONY: php-cs-fixer
 php-cs-fixer: tools/php-cs-fixer-2.17.3.phar
-	php $< $(arguments)</code></pre>
+	php $&lt; $(arguments)</code></pre>
 <p>
     <code>php-cs-fixer</code> est également une cible spéciale car ce n’est pas un fichier à créer, juste une action à
     exécuter. Il est conseillé de déclarer une telle cible
@@ -144,16 +144,16 @@ php-cs-fixer: tools/php-cs-fixer-2.17.3.phar
     <code>make</code> est une assignation, la variable concernée sera accessible au sein du Makefile avec la valeur
     spécifiée.</a> Ici nous faisons référence à une variable <code>arguments</code>, et pouvons donc écrire
 </p>
-<pre><code class="language-shell-session">$ make php-cs-fixer arguments=-V
-php tools/php-cs-fixer-2.17.3.phar -V
-PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f5d)</code></pre>
+<pre><kbd class=" source.shell">make php-cs-fixer arguments=-V</kbd>
+<samp>php tools/php-cs-fixer-2.17.3.phar -V
+PHP CS Fixer 2.17.3 Desert Beast by Fabien Potencier and Dariusz Ruminski (bd32f5d)</samp></pre>
 <p>
     Nous avons maintenant la liberté de passer n’importe quels arguments à PHP CS Fixer, mais au prix d’une
     syntaxe assez contraignante. La plupart du temps, le nombre de cas d’utilisation est très limité. Par exemple ici,
     nous aurons principalement besoin de corriger le style de programmation, ou de vérifier qu’il adhère à nos
     standards. Pour cela, nous pouvons créer des règles spécifiques qui simplifieront l’utilisation du PHAR :
 </p>
-<pre><code class="language-makefile">.PHONY: fix-php-cs
+<pre><code class=" source.makefile">.PHONY: fix-php-cs
 fix-php-cs:
 	$(MAKE) php-cs-fixer arguments="fix ."
 
@@ -172,14 +172,14 @@ check-php-cs:
     plus un message d’entrée et sortie du <i lang="en">sub-make</i>. On s’en préviendra grâce à l’option
     <code>-s</code>.
 </p>
-<pre><code class="language-shell-session">$ make -s fix-php-cs
-Loaded config default.
+<pre><kbd class=" source.shell">make -s fix-php-cs</kbd>
+<samp>Loaded config default.
 Using cache file ".php_cs.cache".
 
-Fixed all files in 0.160 seconds, 12.000 MB memory used</code></pre>
+Fixed all files in 0.160 seconds, 12.000 MB memory used</samp></pre>
 
 <h2>Le Makefile complet</h2>
-<pre><code class="language-makefile">tools:
+<pre><code class=" source.makefile">tools:
 	mkdir $@
 
 tools/php-cs-fixer-%.phar: tools
@@ -189,7 +189,7 @@ tools/php-cs-fixer-%.phar: tools
 
 .PHONY: php-cs-fixer
 php-cs-fixer: tools/php-cs-fixer-2.17.3.phar
-	php $< $(arguments)
+	php $&lt; $(arguments)
 
 .PHONY: fix-php-cs
 fix-php-cs:
@@ -222,14 +222,14 @@ check-php-cs:
     Nous venons de gérer PHP CS Fixer avec brio, mais notre Makefile est facilement extensible ; il serait
     dommage de s’arrêter là !
 </p>
-<pre><code class="language-makefile">tools/phpunit-%.phar: tools
+<pre><code class=" source.makefile">tools/phpunit-%.phar: tools
 	rm -f tools/phpunit-*.phar
 	curl -LSso $@ \
 		"https://phar.phpunit.de/phpunit-$*.phar"
 
 .PHONY: phpunit
 phpunit: tools/phpunit-9.5.0.phar
-	php $< $(arguments)
+	php $&lt; $(arguments)
 
 .PHONY: unit-test-php
 unit-test-php:

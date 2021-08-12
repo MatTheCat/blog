@@ -6,20 +6,23 @@
 <link rel="stylesheet" href="assets/article.css">
 <h1>Aligner icône et texte</h1>
 <p>Par défaut, une image adjacente à du texte ne s’aligne probablement pas comme souhaité.</p>
-<link rel="stylesheet" href="assets/prism.css">
 <figure>
-    <pre><code class="language-css">svg {
-    height: 1em;
-    width: 1em;
-}</code></pre>
-    <pre><code class="language-markup">&lt;svg viewBox="0 0 24 24"&gt;
+    <link rel="stylesheet" href="assets/code.css">
+    <pre><code class=" text.html.basic">&lt;style&gt;
+    svg {
+        height: 1em;
+        width: 1em;
+    }
+&lt;/style&gt;
+
+&lt;svg viewBox="0 0 24 24"&gt;
     &lt;path d="M0 0h24v24H0z" fill="none"/&gt;
     &lt;path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92A3.4 3.4 0 0 0 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8a4 4 0 1 1 8 0c0 .88-.36 1.68-.93 2.25z"/&gt;
 &lt;/svg&gt; WTF</code></pre>
     <style>
         .samp {
             font-size: 3rem;
-            line-height: 1;
+            line-height: 0;
             margin: 1rem 0;
             text-align: center;
         }
@@ -42,8 +45,8 @@
     Ceci, car la valeur par défaut de la propriété <code>vertical-align</code> est <code>baseline</code>. C’est donc la
     <strong>ligne de base</strong> de l’icône et du texte qui sont alignées :
 </p>
-<aside class="samp" style="background: linear-gradient(0, #1864ab 1px, transparent 1px) 0 1em;">
-    <svg style="box-shadow: inset 0 0 0 1px #1864ab;"><use xlink:href="#?"></use></svg> WTF
+<aside class="samp" style="background: linear-gradient(0, #0969da 1px, transparent 1px) 0 1em;">
+    <svg style="box-shadow: inset 0 0 0 1px #0969da;"><use xlink:href="#?"></use></svg> WTF
 </aside>
 <p>
     Pour être plaisant à l’œil, le centre vertical de l’icône doit être aligné avec la moitié de la hauteur de capitale
@@ -55,10 +58,10 @@
     <footer><a href="https://www.w3.org/TR/CSS22/visudet.html#propdef-vertical-align" hreflang="en">https://www.w3.org/TR/CSS22/visudet.html#propdef-vertical-align</a></footer>
 </blockquote>
 <p>Notre icône est alors centrée par rapport à la hauteur d’x (<i lang="en">x-height</i>) du parent.</p>
-<aside class="samp" style="background: linear-gradient(0, #1864ab 1px, transparent 1px) 0 -.5em;">
+<aside class="samp" style="background: linear-gradient(0, #0969da 1px, transparent 1px) 0 -.5em;">
     <svg style="vertical-align: middle;"><use xlink:href="#?"></use></svg>
     x
-    <span style="font-size: .5ex; color: #1864ab;">½ x-height</span>
+    <span style="font-size: .5ex; color: #0969da;">½ x-height</span>
 </aside>
 <p>
     Reste à la déplacer vers le haut de la moitié de la différence entre <i lang="en">cap height</i> et
@@ -77,7 +80,7 @@
     leur différence est égale à <code>.47ex</code> qui divisée par deux donne <code>.235ex</code>.
 </p>
 <p>En tout cas chez moi ça marche.</p>
-<pre><code class="language-css">svg {
+<pre><code class=" source.css">svg {
     margin-top: -.235ex;
     vertical-align: middle;
 }</code></pre>

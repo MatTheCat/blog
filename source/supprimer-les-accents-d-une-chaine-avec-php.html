@@ -11,8 +11,8 @@
     (Par exemple la cédille de « ç » est un diacritique.)
 </p>
 <p>Dans ce cas, vous êtes au bon endroit :</p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-php">echo
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.php">echo
     \Transliterator::create('NFD; [:Nonspacing Mark:] Remove; NFC')
     -&gt;transliterate('Héhé, ça marche !')
 ;
@@ -22,7 +22,7 @@
 <h2>Comment ça marche ?</h2>
 <p>
     Le code ci-dessus utilise la classe
-    <a href="https://www.php.net/manual/fr/class.transliterator.php"><code class="language-php">Transliterator</code></a>
+    <a href="https://www.php.net/manual/fr/class.transliterator.php"><code>Transliterator</code></a>
     de l’extension <a href="https://www.php.net/manual/fr/book.intl.php" lang="en">intl</a>, interface entre
     <a href="http://site.icu-project.org/" hreflang="en"><abbr title="International Components for Unicode" lang="en">ICU</abbr></a>
     et PHP.

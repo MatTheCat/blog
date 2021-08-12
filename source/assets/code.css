@@ -1,0 +1,527 @@
+[class*=" strong"] {
+    font-weight: bold;
+}
+[class*=" string"] {
+    color: #a31515;
+}
+[class*=" comment"] {
+    color: #008000;
+}
+[class*=" invalid"] {
+    color: #cd3131;
+}
+[class*=" storage"] {
+    color: #0000ff;
+}
+[class*=" keyword"] {
+    color: #0000ff;
+}
+[class*=" emphasis"] {
+    font-style: italic;
+}
+[class*=" variable"] {
+    color: #001080;
+}
+[class*=" markup.bold"] {
+    font-weight: bold;
+    color: #000080;
+}
+[class*=" storage.type"] {
+    color: #0000ff;
+}
+[class*=" variable.css"] {
+    color: #ff0000;
+}
+[class*=" support.type"] {
+    color: #267f99;
+}
+[class*=" meta.embedded"] {
+    color: #000000ff;
+}
+[class*=" markup.italic"] {
+    font-style: italic;
+}
+[class*=" string.regexp"] {
+    color: #811f3f;
+}
+[class*=" variable.scss"] {
+    color: #ff0000;
+}
+[class*=" support.class"] {
+    color: #267f99;
+}
+[class*=" markup.heading"] {
+    font-weight: bold;
+    color: #800000;
+}
+[class*=" markup.deleted"] {
+    color: #a31515;
+}
+[class*=" markup.changed"] {
+    color: #0451a5;
+}
+[class*=" constant.regexp"] {
+    color: #811f3f;
+}
+[class*=" entity.name.tag"] {
+    color: #800000;
+}
+[class*=" markup.inserted"] {
+    color: #098658;
+}
+[class*=" keyword.control"] {
+    color: #AF00DB;
+}
+[class*=" storage.type.cs"] {
+    color: #267f99;
+}
+[class*=" meta.diff.header"] {
+    color: #000080;
+}
+[class*=" constant.numeric"] {
+    color: #098658;
+}
+[class*=" markup.underline"] {
+    text-decoration: underline;
+}
+[class*=" storage.modifier"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator"] {
+    color: #000000;
+}
+[class*=" support.function"] {
+    color: #795E26;
+}
+[class*=" meta.return-type"] {
+    color: #267f99;
+}
+[class*=" entity.name.type"] {
+    color: #267f99;
+}
+[class*=" support.variable"] {
+    color: #001080;
+}
+[class*=" constant.language"] {
+    color: #0000ff;
+}
+[class*=" markup.inline.raw"] {
+    color: #800000;
+}
+[class*=" meta.preprocessor"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.pug"] {
+    color: #0000ff;
+}
+[class*=" variable.language"] {
+    color: #0000ff;
+}
+[class*=" entity.name.class"] {
+    color: #267f99;
+}
+[class*=" storage.type.java"] {
+    color: #267f99;
+}
+[class*=" entity.name.label"] {
+    color: #000000;
+}
+[class*=" keyword.other.unit"] {
+    color: #098658;
+}
+[class*=" meta.type.new.expr"] {
+    color: #267f99;
+}
+[class*=" constant.character"] {
+    color: #0000ff;
+}
+[class*=" variable.other.less"] {
+    color: #ff0000;
+}
+[class*=" storage.type.groovy"] {
+    color: #267f99;
+}
+[class*=" meta.type.cast.expr"] {
+    color: #267f99;
+}
+[class*=" keyword.other.using"] {
+    color: #AF00DB;
+}
+[class*=" entity.name.selector"] {
+    color: #800000;
+}
+[class*=" string.unquoted.html"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.new"] {
+    color: #0000ff;
+}
+[class*=" entity.name.function"] {
+    color: #795E26;
+}
+[class*=" storage.type.byte.go"] {
+    color: #267f99;
+}
+[class*=" storage.type.rune.go"] {
+    color: #267f99;
+}
+[class*=" support.constant.dom"] {
+    color: #267f99;
+}
+[class*=" entity.name.operator"] {
+    color: #AF00DB;
+}
+[class*=" entity.name.variable"] {
+    color: #001080;
+}
+[class*=" keyword.operator.cast"] {
+    color: #0000ff;
+}
+[class*=" entity.name.namespace"] {
+    color: #267f99;
+}
+[class*=" storage.type.error.go"] {
+    color: #267f99;
+}
+[class*=" support.constant.math"] {
+    color: #267f99;
+}
+[class*=" support.constant.json"] {
+    color: #267f99;
+}
+[class*=" source.groovy.embedded"] {
+    color: #000000ff;
+}
+[class*=" meta.embedded.assembly"] {
+    color: #a31515;
+}
+[class*=" support.constant.media"] {
+    color: #0451a5;
+}
+[class*=" support.constant.color"] {
+    color: #0451a5;
+}
+[class*=" source.coffee.embedded"] {
+    color: #ff0000;
+}
+[class*=" entity.other.attribute"] {
+    color: #267f99;
+}
+[class*=" storage.type.string.go"] {
+    color: #267f99;
+}
+[class*=" keyword.other.operator"] {
+    color: #AF00DB;
+}
+[class*=" string.interpolated.pug"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.sizeof"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.typeid"] {
+    color: #0000ff;
+}
+[class*=" constant.sha.git-rebase"] {
+    color: #098658;
+}
+[class*=" storage.type.numeric.go"] {
+    color: #267f99;
+}
+[class*=" storage.type.boolean.go"] {
+    color: #267f99;
+}
+[class*=" storage.type.uintptr.go"] {
+    color: #267f99;
+}
+[class*=" storage.type.generic.cs"] {
+    color: #267f99;
+}
+[class*=" storage.type.token.java"] {
+    color: #267f99;
+}
+[class*=" variable.other.constant"] {
+    color: #0070C1;
+}
+[class*=" meta.object-literal.key"] {
+    color: #001080;
+}
+[class*=" meta.preprocessor.string"] {
+    color: #a31515;
+}
+[class*=" string.quoted.double.xml"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.xml"] {
+    color: #0000ff;
+}
+[class*=" meta.template.expression"] {
+    color: #000000;
+}
+[class*=" constant.other.rgb-value"] {
+    color: #0451a5;
+}
+[class*=" keyword.operator.alignof"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.alignas"] {
+    color: #0000ff;
+}
+[class*=" storage.type.modifier.cs"] {
+    color: #267f99;
+}
+[class*=" storage.type.variable.cs"] {
+    color: #267f99;
+}
+[class*=" variable.other.enummember"] {
+    color: #0070C1;
+}
+[class*=" meta.preprocessor.numeric"] {
+    color: #098658;
+}
+[class*=" keyword.operator.noexcept"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.yaml"] {
+    color: #0000ff;
+}
+[class*=" string.unquoted.cdata.xml"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.double.html"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.html"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.wordlike"] {
+    color: #0000ff;
+}
+[class*=" storage.type.generic.java"] {
+    color: #267f99;
+}
+[class*=" constant.character.escape"] {
+    color: #EE0000;
+}
+[class*=" punctuation.definition.tag"] {
+    color: #800000;
+}
+[class*=" string.unquoted.block.yaml"] {
+    color: #0000ff;
+}
+[class*=" support.constant.font-name"] {
+    color: #0451a5;
+}
+[class*=" support.type.property-name"] {
+    color: #ff0000;
+}
+[class*=" constant.other.placeholder"] {
+    color: #001080;
+}
+[class*=" keyword.operator.or.regexp"] {
+    color: #EE0000;
+}
+[class*=" entity.other.attribute-name"] {
+    color: #ff0000;
+}
+[class*=" support.constant.media-type"] {
+    color: #0451a5;
+}
+[class*=" keyword.operator.expression"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.instanceof"] {
+    color: #0000ff;
+}
+[class*=" support.function.git-rebase"] {
+    color: #0451a5;
+}
+[class*=" support.constant.handlebars"] {
+    color: #795E26;
+}
+[class*=" storage.type.primitive.java"] {
+    color: #267f99;
+}
+[class*=" storage.type.generic.groovy"] {
+    color: #267f99;
+}
+[class*=" punctuation.section.embedded"] {
+    color: #0000ff;
+}
+[class*=" storage.modifier.import.java"] {
+    color: #000000;
+}
+[class*=" entity.name.scope-resolution"] {
+    color: #267f99;
+}
+[class*=" storage.type.annotation.java"] {
+    color: #267f99;
+}
+[class*=" entity.other.inherited-class"] {
+    color: #267f99;
+}
+[class*=" string.unquoted.plain.in.yaml"] {
+    color: #0000ff;
+}
+[class*=" storage.modifier.package.java"] {
+    color: #000000;
+}
+[class*=" storage.type.primitive.groovy"] {
+    color: #267f99;
+}
+[class*=" meta.definition.variable.name"] {
+    color: #001080;
+}
+[class*=" constant.character.set.regexp"] {
+    color: #811f3f;
+}
+[class*=" keyword.control.anchor.regexp"] {
+    color: #EE0000;
+}
+[class*=" keyword.operator.plus.exponent"] {
+    color: #098658;
+}
+[class*=" string.unquoted.plain.out.yaml"] {
+    color: #0000ff;
+}
+[class*=" constant.other.color.rgb-value"] {
+    color: #0451a5;
+}
+[class*=" storage.type.object.array.java"] {
+    color: #267f99;
+}
+[class*=" storage.type.annotation.groovy"] {
+    color: #267f99;
+}
+[class*=" storage.type.parameters.groovy"] {
+    color: #267f99;
+}
+[class*=" keyword.operator.minus.exponent"] {
+    color: #098658;
+}
+[class*=" string.quoted.single.handlebars"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.double.handlebars"] {
+    color: #0000ff;
+}
+[class*=" support.constant.property-value"] {
+    color: #0451a5;
+}
+[class*=" support.type.property-name.json"] {
+    color: #0451a5;
+}
+[class*=" keyword.operator.logical.python"] {
+    color: #0000ff;
+}
+[class*=" variable.language.wildcard.java"] {
+    color: #000000;
+}
+[class*=" source.cpp"] [class*=" keyword.operator.new"] {
+    color: #AF00DB;
+}
+[class*=" entity.other.attribute-name.scss"] {
+    color: #800000;
+}
+[class*=" storage.type.object.array.groovy"] {
+    color: #267f99;
+}
+[class*=" keyword.operator.negation.regexp"] {
+    color: #d16969;
+}
+[class*=" support.other.parenthesis.regexp"] {
+    color: #d16969;
+}
+[class*=" entity.name.function.preprocessor"] {
+    color: #0000ff;
+}
+[class*=" string.comment.buffered.block.pug"] {
+    color: #0000ff;
+}
+[class*=" storage.type.primitive.array.java"] {
+    color: #267f99;
+}
+[class*=" entity.other.attribute-name.id.css"] {
+    color: #800000;
+}
+[class*=" source.cpp"] [class*=" keyword.operator.delete"] {
+    color: #AF00DB;
+}
+[class*=" keyword.operator.quantifier.regexp"] {
+    color: #000000;
+}
+[class*=" support.type.vendored.property-name"] {
+    color: #ff0000;
+}
+[class*=" entity.name.operator.custom-literal"] {
+    color: #795E26;
+}
+[class*=" storage.type.primitive.array.groovy"] {
+    color: #267f99;
+}
+[class*=" punctuation.definition.group.regexp"] {
+    color: #d16969;
+}
+[class*=" meta.structure.dictionary.key.python"] {
+    color: #0451a5;
+}
+[class*=" punctuation.section.embedded.end.php"] {
+    color: #800000;
+}
+[class*=" punctuation.character.set.end.regexp"] {
+    color: #d16969;
+}
+[class*=" entity.other.attribute-name.class.css"] {
+    color: #800000;
+}
+[class*=" constant.other.character-class.regexp"] {
+    color: #811f3f;
+}
+[class*=" punctuation.section.embedded.begin.php"] {
+    color: #800000;
+}
+[class*=" punctuation.character.set.begin.regexp"] {
+    color: #d16969;
+}
+[class*=" source.powershell"] [class*=" variable.other.member"] {
+    color: #795E26;
+}
+[class*=" constant.character.character-class.regexp"] {
+    color: #811f3f;
+}
+[class*=" constant.other.character-class.set.regexp"] {
+    color: #811f3f;
+}
+[class*=" punctuation.definition.list.begin.markdown"] {
+    color: #0451a5;
+}
+[class*=" entity.other.attribute-name.class.mixin.css"] {
+    color: #800000;
+}
+[class*=" punctuation.definition.quote.begin.markdown"] {
+    color: #0451a5;
+}
+[class*=" entity.other.attribute-name.pseudo-class.css"] {
+    color: #800000;
+}
+[class*=" punctuation.definition.group.assertion.regexp"] {
+    color: #d16969;
+}
+[class*=" punctuation.definition.character-class.regexp"] {
+    color: #d16969;
+}
+[class*=" entity.other.attribute-name.pseudo-element.css"] {
+    color: #800000;
+}
+[class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
+    color: #800000;
+}
+[class*=" punctuation.definition.template-expression.end"] {
+    color: #0000ff;
+}
+[class*=" entity.other.attribute-name.parent-selector.css"] {
+    color: #800000;
+}
+[class*=" punctuation.definition.template-expression.begin"] {
+    color: #0000ff;
+}

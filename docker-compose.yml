@@ -10,8 +10,8 @@ services:
             - './docker/certs:/etc/ssl/certs:ro'
 
     node:
-        image: node:16.4.1-alpine3.13
-        command: node docker/watch.js
+        image: node:16.6.1-alpine3.14
+        command: node scripts/watch.js
         volumes:
             - '.:/home/node/app'
         working_dir: /home/node/app

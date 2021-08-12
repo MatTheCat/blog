@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {compileAsset, compilePage, manifest, yieldFiles} = require('../compile');
+const {compileAsset, compilePage, manifest, yieldFiles} = require('./compile');
 
 const compileTimeouts = new Map();
 

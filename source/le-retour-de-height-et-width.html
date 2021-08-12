@@ -66,8 +66,10 @@
     Par exemple, cela signifie qu’une image définie avec <code>width="200"</code> et <code>height="100"</code> se verra
     attribuer la déclaration
 </p>
-<link rel="stylesheet" href="assets/prism.css">
-<pre><code class="language-css">aspect-ratio: auto 200 / 100;</code></pre>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.css" data-lines="[2]">img {
+aspect-ratio: auto 200 / 100;
+}</code></pre>
 <p>
     par la feuille de style du navigateur. La première valeur <code>auto</code> signifie que le ratio intrinsèque sera
     utilisé dès qu’il sera disponible, d’où l’importance de spécifier correctement les attributs <code>width</code> et
@@ -79,7 +81,7 @@
     <code>width</code> et <code>height</code>. Surcharger une de ces dernières implique donc de spécifier l’autre à
     <code>auto</code>. Par exemple :
 </p>
-<pre><code class="language-css">img {
+<pre><code class=" source.css">img {
     width: 100%;
     height: auto;
 }</code></pre>
