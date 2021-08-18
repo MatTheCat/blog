@@ -525,3 +525,480 @@
 [class*=" punctuation.definition.template-expression.begin"] {
     color: #0000ff;
 }
+
+@media (prefers-color-scheme: dark) {
+    [class*=" header"] {
+        color: #000080;
+    }
+    [class*=" string"] {
+        color: #ce9178;
+    }
+    [class*=" comment"] {
+        color: #6A9955;
+    }
+    [class*=" invalid"] {
+        color: #f44747;
+    }
+    [class*=" storage"] {
+        color: #569cd6;
+    }
+    [class*=" keyword"] {
+        color: #569cd6;
+    }
+    [class*=" variable"] {
+        color: #9CDCFE;
+    }
+    [class*=" string.tag"] {
+        color: #ce9178;
+    }
+    [class*=" markup.bold"] {
+        color: #569cd6;
+    }
+    [class*=" storage.type"] {
+        color: #569cd6;
+    }
+    [class*=" string.value"] {
+        color: #ce9178;
+    }
+    [class*=" variable.css"] {
+        color: #9cdcfe;
+    }
+    [class*=" support.type"] {
+        color: #4EC9B0;
+    }
+    [class*=" meta.embedded"] {
+        color: #D4D4D4;
+    }
+    [class*=" string.regexp"] {
+        color: #d16969;
+    }
+    [class*=" variable.scss"] {
+        color: #9cdcfe;
+    }
+    [class*=" support.class"] {
+        color: #4EC9B0;
+    }
+    [class*=" markup.heading"] {
+        color: #569cd6;
+    }
+    [class*=" markup.deleted"] {
+        color: #ce9178;
+    }
+    [class*=" markup.changed"] {
+        color: #569cd6;
+    }
+    [class*=" constant.regexp"] {
+        color: #646695;
+    }
+    [class*=" entity.name.tag"] {
+        color: #569cd6;
+    }
+    [class*=" markup.inserted"] {
+        color: #b5cea8;
+    }
+    [class*=" keyword.control"] {
+        color: #C586C0;
+    }
+    [class*=" storage.type.cs"] {
+        color: #4EC9B0;
+    }
+    [class*=" constant.numeric"] {
+        color: #b5cea8;
+    }
+    [class*=" meta.diff.header"] {
+        color: #569cd6;
+    }
+    [class*=" storage.modifier"] {
+        color: #569cd6;
+    }
+    [class*=" keyword.operator"] {
+        color: #d4d4d4;
+    }
+    [class*=" support.function"] {
+        color: #DCDCAA;
+    }
+    [class*=" meta.return-type"] {
+        color: #4EC9B0;
+    }
+    [class*=" entity.name.type"] {
+        color: #4EC9B0;
+    }
+    [class*=" support.variable"] {
+        color: #9CDCFE;
+    }
+    [class*=" constant.language"] {
+        color: #569cd6;
+    }
+    [class*=" markup.inline.raw"] {
+        color: #ce9178;
+    }
+    [class*=" meta.preprocessor"] {
+        color: #569cd6;
+    }
+    [class*=" variable.language"] {
+        color: #569cd6;
+    }
+    [class*=" entity.name.class"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" entity.name.label"] {
+        color: #C8C8C8;
+    }
+    [class*=" keyword.other.unit"] {
+        color: #b5cea8;
+    }
+    [class*=" meta.type.new.expr"] {
+        color: #4EC9B0;
+    }
+    [class*=" constant.character"] {
+        color: #569cd6;
+    }
+    [class*=" entity.name.tag.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" variable.other.less"] {
+        color: #9cdcfe;
+    }
+    [class*=" storage.type.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" meta.type.cast.expr"] {
+        color: #4EC9B0;
+    }
+    [class*=" keyword.other.using"] {
+        color: #C586C0;
+    }
+    [class*=" keyword.operator.new"] {
+        color: #569cd6;
+    }
+    [class*=" entity.name.function"] {
+        color: #DCDCAA;
+    }
+    [class*=" storage.type.byte.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.rune.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" support.constant.dom"] {
+        color: #4EC9B0;
+    }
+    [class*=" entity.name.operator"] {
+        color: #C586C0;
+    }
+    [class*=" entity.name.variable"] {
+        color: #9CDCFE;
+    }
+    [class*=" keyword.operator.cast"] {
+        color: #569cd6;
+    }
+    [class*=" entity.name.namespace"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.error.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" support.constant.math"] {
+        color: #4EC9B0;
+    }
+    [class*=" support.constant.json"] {
+        color: #4EC9B0;
+    }
+    [class*=" source.groovy.embedded"] {
+        color: #D4D4D4;
+    }
+    [class*=" meta.embedded.assembly"] {
+        color: #ce9178;
+    }
+    [class*=" source.coffee.embedded"] {
+        color: #9cdcfe;
+    }
+    [class*=" entity.other.attribute"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.string.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" keyword.other.operator"] {
+        color: #C586C0;
+    }
+    [class*=" support.constant.media"] {
+        color: #CE9178;
+    }
+    [class*=" support.constant.color"] {
+        color: #CE9178;
+    }
+    [class*=" keyword.operator.sizeof"] {
+        color: #569cd6;
+    }
+    [class*=" keyword.operator.typeid"] {
+        color: #569cd6;
+    }
+    [class*=" constant.sha.git-rebase"] {
+        color: #b5cea8;
+    }
+    [class*=" storage.type.numeric.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.boolean.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.uintptr.go"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.generic.cs"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.token.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" keyword.operator.delete"] {
+        color: #C586C0;
+    }
+    [class*=" variable.other.constant"] {
+        color: #4FC1FF;
+    }
+    [class*=" meta.object-literal.key"] {
+        color: #9CDCFE;
+    }
+    [class*=" meta.preprocessor.string"] {
+        color: #ce9178;
+    }
+    [class*=" meta.template.expression"] {
+        color: #d4d4d4;
+    }
+    [class*=" keyword.operator.alignof"] {
+        color: #569cd6;
+    }
+    [class*=" keyword.operator.alignas"] {
+        color: #569cd6;
+    }
+    [class*=" storage.type.modifier.cs"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.variable.cs"] {
+        color: #4EC9B0;
+    }
+    [class*=" constant.other.rgb-value"] {
+        color: #CE9178;
+    }
+    [class*=" variable.other.enummember"] {
+        color: #4FC1FF;
+    }
+    [class*=" meta.preprocessor.numeric"] {
+        color: #b5cea8;
+    }
+    [class*=" keyword.operator.noexcept"] {
+        color: #569cd6;
+    }
+    [class*=" keyword.operator.wordlike"] {
+        color: #569cd6;
+    }
+    [class*=" storage.type.generic.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" constant.character.escape"] {
+        color: #d7ba7d;
+    }
+    [class*=" punctuation.definition.tag"] {
+        color: #808080;
+    }
+    [class*=" support.type.property-name"] {
+        color: #9cdcfe;
+    }
+    [class*=" constant.other.placeholder"] {
+        color: #9CDCFE;
+    }
+    [class*=" support.constant.font-name"] {
+        color: #CE9178;
+    }
+    [class*=" keyword.operator.or.regexp"] {
+        color: #DCDCAA;
+    }
+    [class*=" entity.other.attribute-name"] {
+        color: #9cdcfe;
+    }
+    [class*=" keyword.operator.expression"] {
+        color: #569cd6;
+    }
+    [class*=" keyword.operator.instanceof"] {
+        color: #569cd6;
+    }
+    [class*=" support.function.git-rebase"] {
+        color: #9cdcfe;
+    }
+    [class*=" support.constant.handlebars"] {
+        color: #DCDCAA;
+    }
+    [class*=" storage.type.primitive.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.generic.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" support.constant.media-type"] {
+        color: #CE9178;
+    }
+    [class*=" punctuation.section.embedded"] {
+        color: #569cd6;
+    }
+    [class*=" storage.modifier.import.java"] {
+        color: #d4d4d4;
+    }
+    [class*=" entity.name.scope-resolution"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.annotation.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" entity.other.inherited-class"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.modifier.package.java"] {
+        color: #d4d4d4;
+    }
+    [class*=" storage.type.primitive.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" meta.definition.variable.name"] {
+        color: #9CDCFE;
+    }
+    [class*=" constant.character.set.regexp"] {
+        color: #d16969;
+    }
+    [class*=" keyword.control.anchor.regexp"] {
+        color: #DCDCAA;
+    }
+    [class*=" keyword.operator.plus.exponent"] {
+        color: #b5cea8;
+    }
+    [class*=" storage.type.object.array.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.annotation.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" storage.type.parameters.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" constant.other.color.rgb-value"] {
+        color: #CE9178;
+    }
+    [class*=" keyword.operator.minus.exponent"] {
+        color: #b5cea8;
+    }
+    [class*=" keyword.operator.logical.python"] {
+        color: #569cd6;
+    }
+    [class*=" variable.language.wildcard.java"] {
+        color: #d4d4d4;
+    }
+    [class*=" source.cpp"] [class*=" keyword.operator.new"] {
+        color: #C586C0;
+    }
+    [class*=" support.constant.property-value"] {
+        color: #CE9178;
+    }
+    [class*=" entity.other.attribute-name.scss"] {
+        color: #d7ba7d;
+    }
+    [class*=" storage.type.object.array.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" keyword.operator.negation.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" support.other.parenthesis.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" entity.name.function.preprocessor"] {
+        color: #569cd6;
+    }
+    [class*=" storage.type.primitive.array.java"] {
+        color: #4EC9B0;
+    }
+    [class*=" entity.other.attribute-name.id.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" keyword.operator.quantifier.regexp"] {
+        color: #d7ba7d;
+    }
+    [class*=" support.type.vendored.property-name"] {
+        color: #9cdcfe;
+    }
+    [class*=" entity.name.operator.custom-literal"] {
+        color: #DCDCAA;
+    }
+    [class*=" storage.type.primitive.array.groovy"] {
+        color: #4EC9B0;
+    }
+    [class*=" punctuation.definition.group.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" meta.structure.dictionary.key.python"] {
+        color: #9cdcfe;
+    }
+    [class*=" punctuation.section.embedded.end.php"] {
+        color: #569cd6;
+    }
+    [class*=" punctuation.character.set.end.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" entity.other.attribute-name.class.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" constant.other.character-class.regexp"] {
+        color: #d16969;
+    }
+    [class*=" punctuation.section.embedded.begin.php"] {
+        color: #569cd6;
+    }
+    [class*=" punctuation.character.set.begin.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" source.powershell"] [class*=" variable.other.member"] {
+        color: #DCDCAA;
+    }
+    [class*=" constant.character.character-class.regexp"] {
+        color: #d16969;
+    }
+    [class*=" constant.other.character-class.set.regexp"] {
+        color: #d16969;
+    }
+    [class*=" punctuation.definition.list.begin.markdown"] {
+        color: #6796e6;
+    }
+    [class*=" entity.other.attribute-name.class.mixin.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" punctuation.definition.quote.begin.markdown"] {
+        color: #6A9955;
+    }
+    [class*=" entity.other.attribute-name.pseudo-class.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" punctuation.definition.group.assertion.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" punctuation.definition.character-class.regexp"] {
+        color: #CE9178;
+    }
+    [class*=" entity.other.attribute-name.pseudo-element.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
+        color: #d7ba7d;
+    }
+    [class*=" punctuation.definition.template-expression.end"] {
+        color: #569cd6;
+    }
+    [class*=" entity.other.attribute-name.parent-selector.css"] {
+        color: #d7ba7d;
+    }
+    [class*=" punctuation.definition.template-expression.begin"] {
+        color: #569cd6;
+    }
+}

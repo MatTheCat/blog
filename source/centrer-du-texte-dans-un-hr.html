@@ -35,9 +35,9 @@
 </ul>
 <p>Notre visuel évoque plutôt un titre de niveau un. Le <abbr>HTML</abbr> approprié serait donc</p>
 <link rel="stylesheet" href="assets/code.css">
-<pre><code class=" text.html.basic">&lt;h1 class=&quot;hr&quot;&gt;Les arômes du vin&lt;/h1&gt;</code></pre>
+<pre><code class=" text.html.basic">&lt;h1 class=&quot;hr&quot;&gt;Chapitre un&lt;/h1&gt;</code></pre>
 <p>
-    Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser une bordure sur les pseudo-éléments
+    Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser les pseudo-éléments
     <code>::before</code> et <code>::after</code> pour tracer les deux parties du trait. Il faudra ensuite faire en
     sorte que ces derniers se partagent la largeur restante tout en étant verticalement centrés par rapport au texte.
     Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet !
@@ -71,8 +71,8 @@
     margin: 0 .5em;
 }</code></pre>
 <p>
-    Cette solution est simple, courte, polyvalente, <i lang="en">responsive</i>, et se dégrade gracieusement en plus
-    d’<a href="https://caniuse.com/#feat=flexbox" hreflang="en">un support déjà excellent</a>. Faites vous une faveur
+    Cette solution est simple, robuste, se dégrade gracieusement et bénéficie
+    d’<a href="https://caniuse.com/#feat=flexbox" hreflang="en">un excellent support</a>. Faites vous une faveur
     et utilisez la !
 </p>
 </html>

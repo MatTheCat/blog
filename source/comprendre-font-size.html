@@ -18,72 +18,115 @@
     différents représentant un seul et même caractère (ce sont des <em>allographes</em>).
 </p>
 <p>
-    Si la hauteur des glyphes dépend de <code>font-size</code>,
-    ce sont toutefois deux valeurs distinctes.
+    Si nous zoomons sur un glyphe dont <code>font-size</code> vaut <code>16px</code>,
+    il n’est pas évident de retrouver cette valeur dans le rendu :
 </p>
-<svg display="none"><symbol id="a" viewBox="0 0 20 20">
-        <path fill="#111310" d="M7 3h1v1H7zm1 2h1v1H8zM5 8h1v1H5zm4 0h1v1H9zm-4 2h5v1H5zm-1 1h1v1H4zm6 0h1v1H10z"/>
-        <path fill="#919390" d="M6 3h1v1H6z"/>
-        <path fill="#929491" d="M8 3h1v1H8z"/>
-        <path fill="#414240" d="M6 4h1v1H6zm2 0h1v1H8z"/>
-        <path fill="#525451" d="M7 4h1v1H7z"/>
-        <path fill="#dee0dd" d="M5 5h1v1H5zm4 0h1v1H9z"/>
-        <path fill="#141513" d="M6 5h1v1H6z"/>
-        <path fill="#d3d5d2" d="M7 5h1v1H7z"/>
-        <path fill="#8d8f8c" d="M5 6h1v1H5z"/>
-        <path fill="#444643" d="M6 6h1v1H6z"/>
-        <path fill="#363835" d="M8 6h1v1H8z"/>
-        <path fill="#8e908d" d="M9 6h1v1H9z"/>
-        <path fill="#3f403e" d="M5 7h1v1H5z"/>
-        <path fill="#868885" d="M6 7h1v1H6z"/>
-        <path fill="#797b78" d="M8 7h1v1H8z"/>
-        <path fill="#3f403e" d="M9 7h1v1H9z"/>
-        <path fill="#d9dbd7" d="M4 8h1v1H4z"/>
-        <path fill="#c7c9c6" d="M6 8h1v1H6z"/>
-        <path fill="#bbbdba" d="M8 8h1v1H8z"/>
-        <path fill="#dcdedb" d="M10 8h1v1H10z"/>
-        <path fill="#8b8d8a" d="M4 9h1v1H4z"/>
-        <path fill="#1b1c1a" d="M5 9h1v1H5z"/>
-        <path fill="#e4e6e3" d="M6 9h1v1H6z"/>
-        <path fill="#e7e9e6" d="M7 9h1v1H7z"/>
-        <path fill="#dfe1de" d="M8 9h1v1H8z"/>
-        <path fill="#171816" d="M9 9h1v1H9z"/>
-        <path fill="#8c8e8b" d="M10 9h1v1H10z"/>
-        <path fill="#3a3b39" d="M4 10h1v1H4z"/>
-        <path fill="#3c3e3b" d="M10 10h1v1H10z"/>
-        <path fill="#d8dad6" d="M3 11h1v1H3z"/>
-        <path fill="#b4b6b3" d="M5 11h1v1H5z"/>
-        <path fill="#a8aaa7" d="M9 11h1v1H9z"/>
-        <path fill="#d9dbd7" d="M11 11h1v1h-1z"/>
-        <path fill="#878986" d="M3 12h1v1H3z"/>
-        <path fill="#212320" d="M4 12h1v1H4z"/>
-        <path fill="#171816" d="M10 12h1v1H10z"/>
-        <path fill="#888a87" d="M11 12h1v1h-1z"/>
-        <path fill="#373936" d="M3 13h1v1H3z"/>
-        <path fill="#6e706d" d="M4 13h1v1H4z"/>
-        <path fill="#60625f" d="M10 13h1v1H10z"/>
-        <path fill="#373936" d="M11 13h1v1h-1z"/>
-    </symbol></svg>
-<style>
-    .svg_sizer {
-        background: linear-gradient(to right, #dee2e6 1px, transparent 1px, transparent calc(100% - 1px), #dee2e6 calc(100% - 1px)),
-            linear-gradient(to bottom, #dee2e6 1px, transparent 1px, transparent calc(100% - 1px), #dee2e6 calc(100% - 1px));
-        background-size: 5% 5%;
-        max-width: 20rem;
-    }
-</style>
-<figure>
-    <link rel="stylesheet" href="assets/code.css">
-    <pre><code class=" text.html.basic">&lt;span style=&quot;font-size: 16px;&quot;&gt;A&lt;span&gt;</code></pre>
-    <div class="svg_sizer">
-        <svg viewBox="0 0 20 20">
-            <use xlink:href="#a"/>
-            <path stroke="#0969da" stroke-width=".1" d="M14 2v13M2 3h13M2 14h13"/>
-            <text x="15" y="9" font-size="1" fill="#0969da">11px</text>
-        </svg>
-    </div>
-</figure>
-<p>Nos 16 pixels ont en réalité servi à dimensionner l’<i lang="en">EM box</i>.</p>
+<div class="svg_sizer pixel-grid" style="background-size: 6.25% 6.25%; max-width: 20rem;">
+    <svg viewBox="0 0 16 16">
+        <style>
+            @media (prefers-color-scheme: dark) {
+                [fill="#EEEEEF"] { fill: #2D333A; }
+                [fill="#272C32"] { fill: #ABB8C5; }
+                [fill="#909396"] { fill: #68717B; }
+                [fill="#3F4348"] { fill: #9CA8B4; }
+                [fill="#585B60"] { fill: #8C97A3; }
+                [fill="#62656A"] { fill: #86909C; }
+                [fill="#474B50"] { fill: #97A2AE; }
+                [fill="#D3D4D5"] { fill: #3E444D; }
+                [fill="#24292F"] { fill: #ADBAC7; }
+                [fill="#A2A4A7"] { fill: #5D656F; }
+                [fill="#AEB0B2"] { fill: #555D66; }
+                [fill="#DCDDDE"] { fill: #383F47; }
+                [fill="#8D8F93"] { fill: #6A747E; }
+                [fill="#262B31"] { fill: #ACB9C6; }
+                [fill="#EAEBEB"] { fill: #2F353C; }
+                [fill="#F3F3F4"] { fill: #2A2F36; }
+                [fill="#2B3036"] { fill: #A9B5C2; }
+                [fill="#7E8185"] { fill: #747D88; }
+                [fill="#C9CACC"] { fill: #444B54; }
+                [fill="#44484D"] { fill: #99A5B1; }
+                [fill="#5D6065"] { fill: #89949F; }
+                [fill="#6A6E72"] { fill: #808B96; }
+                [fill="#A7A9AC"] { fill: #5A626B; }
+                [fill="#B7B9BA"] { fill: #505760; }
+                [fill="#E2E2E3"] { fill: #353B42; }
+                [fill="#8F9295"] { fill: #69727C; }
+                [fill="#EFEFEF"] { fill: #2C3239; }
+                [fill="#F7F7F8"] { fill: #272C33; }
+                [fill="#2F343A"] { fill: #A6B2BF; }
+                [fill="#95979A"] { fill: #666E78; }
+                [fill="#464B50"] { fill: #97A3AF; }
+                [fill="#73767A"] { fill: #7B8590; }
+                [fill="#454A4F"] { fill: #98A4B0; }
+                [fill="#D9DADB"] { fill: #3A4048; }
+                [fill="#ADAEB1"] { fill: #565E68; }
+                [fill="#BFC1C3"] { fill: #4A525A; }
+                [fill="#292E34"] { fill: #AAB7C3; }
+                [fill="#F1F2F2"] { fill: #2B3038; }
+                [fill="#FBFBFB"] { fill: #252A31; }
+                [fill="#34393F"] { fill: #A3AFBC; }
+                [fill="#84878A"] { fill: #707984; }
+                [fill="#676A6F"] { fill: #828D98; }
+                [fill="#7C7F82"] { fill: #757F8A; }
+                [fill="#2E3339"] { fill: #A6B3C0; }
+                [fill="#B2B3B6"] { fill: #535B64; }
+                [fill="#C8C9CB"] { fill: #454C54; }
+                [fill="#2C3136"] { fill: #A8B5C2; }
+                [fill="#F5F5F5"] { fill: #292E35; }
+            }
+        </style>
+
+        <path fill="#EEEEEF" d="M2 12h1v1H2z"/>
+        <path fill="#272C32" d="M3 12h1v1H3zM10 7h1v1h-1z"/>
+        <path fill="#909396" d="M4 12h1v1H4zM8 4h1v1H8z"/>
+        <path fill="#3F4348" d="M11 12h1v1h-1z"/>
+        <path fill="#585B60" d="M12 12h1v1h-1z"/>
+        <path fill="#62656A" d="M3 11h1v1H3zM10 6h1v1h-1z"/>
+        <path fill="#474B50" d="M4 11h1v1H4zM8 3h1v1H8z"/>
+        <path fill="#D3D4D5" d="M10 11h1v1h-1zM7 4h1v1H7z"/>
+        <path fill="#24292F" d="M11 11h1v1h-1zM4 10h1v1H4zM5 8h6v1H5zM5 7h1v1H5zM9 5h1v1H9zM6 4h1v1H6zM8 2h1v1H8zM7 1h1v1H7z"/>
+        <path fill="#A2A4A7" d="M12 11h1v1h-1z"/>
+        <path fill="#AEB0B2" d="M3 10h1v1H3z"/>
+        <path fill="#DCDDDE" d="M5 10h1v1H5z"/>
+        <path fill="#8D8F93" d="M10 10h1v1h-1z"/>
+        <path fill="#262B31" d="M11 10h1v1h-1z"/>
+        <path fill="#EAEBEB" d="M12 10h1v1h-1z"/>
+        <path fill="#F3F3F4" d="M3 9h1v1H3z"/>
+        <path fill="#2B3036" d="M4 9h1v1H4z"/>
+        <path fill="#7E8185" d="M5 9h1v1H5z"/>
+        <path fill="#C9CACC" d="M6 9h4v1H6z"/>
+        <path fill="#44484D" d="M10 9h1v1h-1z"/>
+        <path fill="#5D6065" d="M11 9h1v1h-1z"/>
+        <path fill="#6A6E72" d="M4 8h1v1H4z"/>
+        <path fill="#A7A9AC" d="M11 8h1v1h-1z"/>
+        <path fill="#B7B9BA" d="M4 7h1v1H4z"/>
+        <path fill="#E2E2E3" d="M6 7h1v1H6z"/>
+        <path fill="#8F9295" d="M9 7h1v1H9z"/>
+        <path fill="#EFEFEF" d="M11 7h1v1h-1z"/>
+        <path fill="#F7F7F8" d="M4 6h1v1H4z"/>
+        <path fill="#2F343A" d="M5 6h1v1H5z"/>
+        <path fill="#95979A" d="M6 6h1v1H6z"/>
+        <path fill="#464B50" d="M9 6h1v1H9z"/>
+        <path fill="#73767A" d="M5 5h1v1H5z"/>
+        <path fill="#454A4F" d="M6 5h1v1H6z"/>
+        <path fill="#D9DADB" d="M8 5h1v1H8z"/>
+        <path fill="#ADAEB1" d="M10 5h1v1h-1z"/>
+        <path fill="#BFC1C3" d="M5 4h1v1H5z"/>
+        <path fill="#292E34" d="M9 4h1v1H9z"/>
+        <path fill="#F1F2F2" d="M10 4h1v1h-1z"/>
+        <path fill="#FBFBFB" d="M5 3h1v1H5z"/>
+        <path fill="#34393F" d="M6 3h1v1H6z"/>
+        <path fill="#84878A" d="M7 3h1v1H7z"/>
+        <path fill="#676A6F" d="M9 3h1v1H9z"/>
+        <path fill="#7C7F82" d="M6 2h1v1H6z"/>
+        <path fill="#2E3339" d="M7 2h1v1H7z"/>
+        <path fill="#B2B3B6" d="M9 2h1v1H9z"/>
+        <path fill="#C8C9CB" d="M6 1h1v1H6z"/>
+        <path fill="#2C3136" d="M8 1h1v1H8z"/>
+        <path fill="#F5F5F5" d="M9 1h1v1H9z"/>
+    </svg>
+</div>
+<p>Ces 16 pixels ont en fait servi à dimensionner l’<i lang="en">EM box</i>.</p>
 
 <h2 lang="en">EM box</h2>
 <p>
@@ -103,16 +146,21 @@
     Le caractère typographique ci-dessus provient d’une fonte de 12 points ; c’est donc la hauteur de son épaule ainsi
     que la valeur de son <i lang="en">EM</i>.
 </p>
+<p>
+    Si les glyphes apparaissent si haut dans leur <i lang="en">EM box</i>, c’est qu’ils reposent sur leur
+    <a href="https://fr.wikipedia.org/wiki/Ligne_de_base_(typographie)">ligne de base</a>, qui prend en considération
+    un éventuel <a href="https://fr.wikipedia.org/wiki/Jambage">jambage</a>.
+</p>
 
 <h2>Polices vectorielles</h2>
 <p>
-    Cependant le web utilise des polices numériques dont les glyphes n’ont ni existence physique,
+    Sur le web, nous utilisons des polices numériques dont les glyphes n’ont ni existence physique,
     ni dimensions intrinsèques. Au lieu d’être gravés sur un caractère typographique (ou
     <a href="https://en.wikipedia.org/wiki/Phototypesetting#/media/File:Neue_Helvetica_phototypesetting_lower_case_a_with_circumflex_(8277798760).jpg" hreflang="en">coupés dans une frisquette</a>),
     ils sont définis comme des images vectorielles dont le canevas est l’<i lang="en">EM box</i>.
 </p>
 <aside>
-    <img src="assets/comprendre-font-size/a-source-sans.png" alt="" width="556" height="791">
+    <img src="assets/comprendre-font-size/a-noto-sans.png" alt="" width="596" height="746" class="windows">
 </aside>
 <p>
     Pour afficher un tel glyphe il faut donner une valeur à son <i lang="en">EM</i>. C’est exactement ce que fait
@@ -124,26 +172,16 @@
         <footer><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-size" hreflang="en">https://drafts.csswg.org/css-fonts-3/#propdef-font-size</a></footer>
     </blockquote>
 </aside>
-<aside>
-    <div class="svg_sizer">
-        <svg viewBox="0 0 20 20">
-            <use xlink:href="#a"/>
-            <path stroke="#0969da" stroke-width=".1" d="M14 1v18M2 2h13M2 18h13"/>
-            <text x="15" y="10.5" font-size="1" fill="#0969da">16px</text>
-        </svg>
-    </div>
-</aside>
 
 <h2>Polices matricielles</h2>
 <p>
     Les polices matricielles — également appelées polices <i lang="en">bitmap</i> — constituent un cas
-    à part. Les fontes d’une telle police nécessitent un fichier par taille, car leurs glyphes sont
-    définis comme des images matricielles. En conséquence, chaque police n’implémente qu’une sélection
-    de fontes. Par exemple <a href="http://terminus-font.sourceforge.net/" hreflang="en">Terminus</a>
-    implémente 19 fontes, combinaisons de neuf tailles et trois graisses.
+    à part. Les fontes d’une telle police nécessitent un fichier par combinaison de taille, graisse et style,
+    car leurs glyphes sont définis comme des images matricielles. En conséquence, chaque police n’en implémente
+    qu’une sélection, comme <a href="http://terminus-font.sourceforge.net/" hreflang="en">Terminus</a>.
 </p>
 <aside>
-    <img src="assets/comprendre-font-size/a-terminus-12px.png" alt="" height="560" width="370">
+    <img src="assets/comprendre-font-size/a-terminus-12.png" alt="" height="576" width="377" class="windows">
 </aside>
 <p>
     Leur seul cas d’usage sur le web est de les définir comme police par défaut sur les navigateurs qui
