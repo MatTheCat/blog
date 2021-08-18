@@ -53,9 +53,8 @@
 <p>
     <code>$@</code> est une
     <a href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html" hreflang="en">variable automatique</a>
-    dont la valeur est la cible courante. Comme <strong>les commandes d’une règle ne sont exécutées que si sa
-    cible n’existe pas</strong>, <code>make tools</code> créera un dossier <code>tools</code> seulement si ce dernier
-    n’existe pas. Sinon, vous obtiendrez simplement
+    dont la valeur est la cible courante. En l’occurrence, la commande ne sera exécutée que si cette cible n’existe pas.
+    Sinon, vous obtiendrez simplement
 </p>
 <pre><samp>make: « tools » est à jour.</samp></pre>
 <p>
@@ -76,8 +75,8 @@
 </p>
 <p>
     Pour placer le PHAR dans le dossier <code>tools</code>, nous avons besoin que ce dernier existe. C’est pourquoi on
-    le retrouve à droite de la cible, comme <b>composant</b> : la cible d’une règle qui devra être exécutée avant les
-    commandes.
+    le retrouve à droite de la cible, comme <b>composant</b> : en l’occurrence, la cible d’une règle qui devra être
+    exécutée avant les commandes.
 </p>
 <pre><kbd class=" source.shell">make tools/php-cs-fixer-2.17.3.phar</kbd>
 <samp>mkdir tools
