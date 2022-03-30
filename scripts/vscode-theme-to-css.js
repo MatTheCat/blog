@@ -9,7 +9,7 @@ for (const style of tokenColors) {
   for (const scope of Array.isArray(style.scope) ? style.scope : [style.scope]) {
     const declarations = ruleSets.get(scope) || new Map();
 
-    for (const [property, value] of  Object.entries(style.settings)) {
+    for (const [property, value] of Object.entries(style.settings)) {
       if (value.includes('bold')) {
         declarations.set('font-weight', 'bold');
       }

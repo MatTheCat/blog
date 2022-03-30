@@ -10,7 +10,7 @@ services:
             - './docker/certs:/etc/ssl/certs:ro'
 
     node:
-        image: node:17.6.0-alpine3.15
+        image: node:17.8.0-alpine3.15
         command: node scripts/watch.js
         volumes:
             - '.:/home/node/app'
