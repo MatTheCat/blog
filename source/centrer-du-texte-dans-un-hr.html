@@ -16,13 +16,14 @@
 
     .hr::before,
     .hr::after {
-        border-top: .0625em solid;
+        background: currentColor;
         content: "";
         flex: 1;
+        height: .025em;
         margin: 0 .5em;
     }
 </style>
-<div class="hr">Les arômes du vin</div>
+<div class="hr">Chapitre un</div>
 <p>
     Le trait horizontal nous rappelle probablement l’élément <code>&lt;hr&gt;</code>, après tout il
     signifie <i lang="en">horizontal rule</i> qui se traduit par… trait horizontal ! Mais il ne peut pas être utilisé
@@ -54,14 +55,17 @@
 
 .hr::before,
 .hr::after {
-    /* la couleur est volontairement absente ; ainsi elle sera celle du texte */
-    border-top: .0625em solid;
+    /* remplir le fond du trait permet également d’utiliser des images ou dégradés ! */
+    background: currentColor;
 
     /* nécessaire pour afficher les pseudo-éléments */
     content: "";
 
     /* partage le reste de la largeur disponible */
     flex: 1;
+
+    /* l’unité « em » garantit un ratio constant avec la taille du texte */
+    height: .025em;
 
     /* espace les traits du texte */
     margin: 0 .5em;
