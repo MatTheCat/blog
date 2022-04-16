@@ -6,7 +6,9 @@ on:
     paths:
       - source/**
       - package-lock.json
-      - compile.js
+      - scripts/compile.js
+      - scripts/tokenizer.js
+      - scripts/grammar/*
 jobs:
   publish:
     runs-on: ubuntu-20.04
@@ -16,11 +18,12 @@ jobs:
         with:
           persist-credentials: false
       - name: setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '17.8.0'
+          cache: npm
+          node-version: '17.9.0'
       - name: install dependencies
-        run: npm ci
+        run: npm ci --no-audit --prefer-offline
       - name: build
         run: node scripts/compile.js
       - name: deploy
