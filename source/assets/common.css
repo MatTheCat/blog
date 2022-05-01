@@ -22,6 +22,12 @@ html {
     margin: 4rem 0;
     overflow-y: scroll;
 }
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #22272e;
+        color: #adbac7;
+    }
+}
 @media print {
     body {
         background: none;

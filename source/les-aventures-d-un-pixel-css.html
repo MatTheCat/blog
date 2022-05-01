@@ -5,26 +5,19 @@
 <link rel="stylesheet" href="assets/common.css">
 <link rel="stylesheet" href="assets/article.css">
 <h1>Les aventures d’un pixel CSS</h1>
-<p>Il était une fois un carré d’un pixel CSS de côté…</p>
-<link rel="stylesheet" href="assets/code.css">
-<pre><code class=" text.html.basic">&lt;style&gt;
-    div {
-        background: #0969da;
-        height: 1px;
-        width: 1px;
-    }
-&lt;/style&gt;
-&lt;div&gt;&lt;/div&gt;</code></pre>
-<p>
-    affiché sur l’écran d’un
-    <a href="https://www.sony.fr/electronics/support/mobile-phones-tablets-mobile-phones/xperia-xz1-compact/specifications">Xperia XZ1 Compact</a>.
+<p>Codons un carré d’un pixel CSS de côté, et affichons le sur l’écran d’un
+    <a href="https://www.sony.fr/electronics/support/mobile-phones-tablets-mobile-phones/xperia-xz1-compact/specifications">XZ1 Compact</a> :
 </p>
-<div class="svg_sizer" style="max-width: 15rem;">
-    <svg shape-rendering="crispEdges" viewBox="0 0 400 400">
-        <path fill="#fcfdfe" d="M100 100h100v100H100z"/>
-        <path fill="#edf3f9" d="M200 100h100v100H200zM100 200h100v100H100z"/>
-        <path fill="#a8c4df" d="M200 200h100v100H200z"/>
-        <path stroke="#ced4da" d="M0 100.5h400M0 200.5h400M0 300.5h400M100.5 0v400M200.5 0v400M300.5 0v400" vector-effect="non-scaling-stroke"/>
+<div class="svg_sizer pixel-grid" style="background-size: 25% 25%; max-width: 15rem;">
+    <svg viewBox="0 0 4 4">
+        <style>
+            @media (prefers-color-scheme: dark) {
+                [fill="#CDE1F8"] { fill: #2C3F57; }
+                [fill="#ACCCF2"] { fill: #334E70;}
+            }
+        </style>
+        <path fill="#CDE1F8" d="M1 1h2v1H1zM1 2h1v1H1z"/>
+        <path fill="#ACCCF2" d="M2 2h1v1H2z"/>
     </svg>
 </div>
 <p>Qu’a-t-il bien pu lui arriver entre deux ? Suivons son périple du code à l’écran !</p>
@@ -88,7 +81,8 @@
     <a href="https://fr.wikipedia.org/wiki/Taille_apparente">taille <em>apparente</em></a>. Le concept c’est que deux
     objets de même taille apparente <em>apparaissent</em> à la même taille, quelles que soient leur taille et leur
     distance.
-    Comme lors d’une éclipse totale par exemple : le soleil et la lune ont alors une taille apparente très proche.
+    Comme lors d’une éclipse totale par exemple : il apparaît clairement que le soleil et la lune ont une taille
+    apparente très proche.
 </p>
 <p>
     Comme je suis le pixel de référence, ton but c’est d’avoir la même taille apparente <span class="math">V</span>
@@ -106,7 +100,13 @@
     distance d’observation. Je t’épargne les maths.
 </p>
 <div class="svg_sizer" style="max-width: 35rem;">
-    <svg viewBox="0 0 512 256" stroke="#495057" font-size="12">
+    <svg viewBox="0 0 512 256" stroke="currentColor" font-size="12">
+        <style>
+            @media (prefers-color-scheme: dark) {
+                [stroke="#0969da"] { stroke: #539bf5; }
+                [stroke="#868e96"] { stroke: #768390; }
+            }
+        </style>
         <defs fill="none">
             <marker id="arrow-start" viewBox="0 0 7 10" refX=".5" refY="5" orient="auto" markerWidth="7" markerHeight="10">
                 <path d="M6.5.5L.5 5l6 4.5"/>
@@ -115,10 +115,10 @@
                 <path d="M.5.5l6 4.5-6 4.5"/>
             </marker>
         </defs>
-        <path stroke="#ced4da" d="M48 128L496 0M48 128l448 128"/>
+        <path stroke="#868e96" d="M48 128L496 0M48 128l448 128"/>
         <circle r="32" cx="48" cy="128" fill="none"/>
         <g stroke-width="2">
-            <path stroke="#868e96" d="M192 64v128M384 0v256"/>
+            <path d="M192 64v128M384 0v256"/>
             <path stroke="#0969da" d="M192 87v82M384 32v192"/>
         </g>
         <g marker-start="url(#arrow-start)" marker-end="url(#arrow-end)">
@@ -194,18 +194,21 @@
 </p>
 <style>
     .screen {
+        box-shadow: 0 0 0 1px #393939;
         height: 512px;
         width: 288px;
     }
     @media (min-width: 404px) {
         .screen {
-            background: #212529;
-            border: solid #000;
-            border-radius: 2px;
-            border-width: 1px 0;
-            box-shadow: 0 -5px 0 0 #adb5bd, 0 5px 0 0 #adb5bd;
+            background:
+                linear-gradient(90deg, #595959, #6B6B6D) 0 0/100% 4px no-repeat,
+                linear-gradient(90deg, #595959, #6B6B6D) 0 100%/100% 4px no-repeat,
+                linear-gradient(90deg, #403F3D, #373735)
+            ;
+            border-radius: 5px/2px;
+            box-shadow: none;
             height: 640px;
-            padding: 79px 22px 74px;
+            padding: 66px 22px;
             width: 360px;
         }
     }
@@ -223,7 +226,7 @@
 <p>— Presque : il reste encore à le multiplier par le zoom « navigateur ». Celui qu’on active avec <kbd>Ctrl</kbd>.
 </p>
 <figure>
-    <img src="assets/les-aventures-d-un-pixel-css/browser-zoom.png" alt="" width="508" height="322">
+    <img src="assets/les-aventures-d-un-pixel-css/browser-zoom.png" alt="" height="244" width="572" class="windows">
 </figure>
 <p>— Parce qu’il y a plusieurs types de zoom…?</p>
 <p>— Wep, et encore heureux. Celui-là provoque un <i lang="en">reflow</i> à chaque changement ; pour minimiser l’impact
@@ -294,7 +297,7 @@
 </p>
 <iframe
     class="screen"
-    style="display: block; margin: auto;"
+    style="border: 0; display: block; margin: auto;"
     src="https://www.youtube.com/embed/S38WTbtgqlY?rel=0&amp;showinfo=0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 ></iframe>
