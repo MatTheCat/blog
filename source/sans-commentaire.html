@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Sans commentaire</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Sans commentaire</h1>
+<p>Je ne compte plus les fois où je remarque ce genre de structure :</p>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.php">class EmailEventManager
+{
+    /**
+     * EmailEventManager constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param EmailManager $emailManager
+     */
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private EmailManager $emailManager,
+        private Registry $workflows
+    ) {}
+
+    // …
+}</code></pre>
+<p>
+    Que ce soit clair : je n’ai pas inventé ce code pour les besoins de ce post. Il provient d’une
+    <i lang="en">pull request</i> récente sur un projet en activité. Et ce n’est qu’un des innombrables exemples que
+    j’aurais pu choisir.
+</p>
+<p>
+    Ces blocs de commentaires
+    (<a href="https://docs.phpdoc.org/3.0/guide/references/phpdoc/basic-syntax.html#what-is-a-docblock" hreflang="en" lang="en">DocBlock</a>)
+    me hérissent le poil :
+</p>
+<ul>
+    <li>
+        le résumé
+        (<a href="https://docs.phpdoc.org/3.0/guide/references/phpdoc/basic-syntax.html#summary" hreflang="en" lang="en">summary</a>)
+        ne donne aucune information que le code ne donne pas déjà,
+    </li>
+    <li>
+        les <a href="https://docs.phpdoc.org/3.0/guide/references/phpdoc/basic-syntax.html#tags" hreflang="en" lang="en">tags</a>
+        <a href="https://docs.phpdoc.org/3.0/guide/references/phpdoc/tags/param.html#param" hreflang="en" lang="en"><code>@param</code></a>
+        dupliquent la signature de la fonction, mais sans offrir aucune garantie sur le type des arguments —
+        contrairement au code,
+    </li>
+    <li>
+        le bloc de commentaires est incomplet : le paramètre <code>$workflows</code> n’y est pas présent.
+    </li>
+</ul>
+<p>
+    Nous violons donc allégrement deux des
+    <a href="https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/" hreflang="en">neuf règles
+        à suivre pour des commentaires utiles</a> :
+</p>
+<ul>
+    <li><em lang="en">Comments should not duplicate the code.</em></li>
+    <li><em lang="en">Comments should dispel confusion, not cause it.</em></li>
+</ul>
+<p>
+    Comme le mentionne également l’article lié ci-dessus (je vous conseille grandement sa lecture), les commentaires
+    sont coûteux à maintenir. Si <code>$workflows</code> n’y apparaît pas, c’est certainement qu’il a été
+    ajouté après génération du bloc. Ou alors le bloc a été copié d’une autre classe, et laissé tel quel.
+    Ce code n’est même pas en production, et il est déjà obsolète.
+    Et cette obsolescence va empirer, causant de plus en plus de confusion.
+</p>
+<p>
+    On est donc face à des commentaires qui sont <em>au mieux</em> inutiles et <em>toujours</em> nuisibles.
+    Pourtant, un déprimant pourcentage de développeurs va les ajouter de toute façon.
+    Pire, ils vont même <em>refuser</em> leur suppression.
+</p>
+<p><strong>Pourquoi ?</strong></p>
+<p>N’en faites pas partie. S’il vous plaît.</p>
+
+<h2>Mais le projet ne définit aucun style de programmation !</h2>
+<p>
+    Admettons que vous ayez besoin d’un style de programmation pour ça (🙄).
+    La règle
+    <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/doc/rules/phpdoc/no_superfluous_phpdoc_tags.rst" hreflang="en" lang="en">no_superfluous_phpdoc_tags</a>
+    de <a href="https://cs.symfony.com/" hreflang="en">PHP CS Fixer</a> supprimera toutes les annotations
+    <code>@var</code>, <code>@param</code> et <code>@return</code> inutiles. Cependant le plus efficace reste de ne pas
+    les ajouter…
+</p>
+
+<h2>Mais mon <abbr>IDE</abbr> ajoute les DocBlocks automatiquement !</h2>
+<p>
+    S’il est impensable de perdre du temps à les supprimer (🙄), alors configurer ledit <abbr>IDE</abbr> est
+    probablement la solution logique.
+</p>
+<p>
+    Par exemple, les utilisateurs de PhpStorm pourront se rendre dans l’onglet « Code » de
+    <a href="https://www.jetbrains.com/help/idea/settings-file-and-code-templates.html" hreflang="en" lang="en">File and Code Templates</a>
+    et supprimer les DocBlocks des templates PHP.
+</p>
+<figure>
+    <img src="assets/sans-commentaire/phpstorm-file-and-code-template.png" height="737" width="1022" alt="" class="windows">
+</figure>
+<p>
+    Si vous connaissez la technique pour d’autres <abbr>IDEs</abbr>, vous pouvez
+    <a href="https://github.com/MatTheCat/blog/edit/master/source/sans-commentaire.html" hreflang="en">ouvrir une pull request</a> pour les voir
+    mentionnées ici. Sans commentaires inutiles bien entendu !
+</p>
+</html>
