@@ -85,7 +85,7 @@ async function tokenizeCode (document) {
     document.querySelectorAll('[class^=" "]'),
     code => tokenize(
       code.textContent,
-      code.className.trimLeft(),
+      code.className.trimStart(),
       JSON.parse(code.dataset.lines || null)
     )
       .then(html => code.innerHTML = html)
@@ -156,12 +156,6 @@ async function rewriteMath (document) {
 }
 
 (async () => {
-  fs.mkdir('public', { recursive: true }).then(() => {
-    fs.writeFile('public/.nojekyll', '')
-    fs.writeFile('public/CNAME', 'www.matthecat.com')
-    fs.copyFile('source/assets/favicon.ico', 'public/favicon.ico')
-  })
-
   for await (const asset of yieldFiles('source/assets', true)) {
     compileAsset(asset)
   }
