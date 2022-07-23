@@ -3,12 +3,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - source/**
-      - package-lock.json
-      - scripts/compile.js
-      - scripts/tokenizer.js
-      - scripts/grammar/*
 jobs:
   publish:
     runs-on: ubuntu-20.04
