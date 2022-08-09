@@ -7,13 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
 
-      - name: setup node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           cache: npm
           node-version: '18.7.0'
@@ -24,8 +22,7 @@ jobs:
       - name: compile
         run: node scripts/compile.js
 
-      - name: upload
-        uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v1
         with:
           path: ./public
 
@@ -39,5 +36,6 @@ jobs:
       pages: write
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/deploy-pages@v1
+      - id: deployment
+        uses: actions/deploy-pages@v1
 
