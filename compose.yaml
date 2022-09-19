@@ -10,7 +10,7 @@ services:
 
     node:
         command: scripts/watch.js
-        image: node:18.7.0-alpine3.16
+        image: node:18.9.0-alpine3.16
         user: ${HOST_UID:?}
         volumes:
             - '.:/home/node/app'
