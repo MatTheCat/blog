@@ -5,11 +5,11 @@
   "version": "1.0.0",
   "dependencies": {
     "cssnano": "^5.1.12",
-    "jsdom": "^20.0.0",
+    "jsdom": "^20.0.1",
     "mathjax-node": "^2.1.1",
     "onigasm": "^2.2.5",
-    "postcss": "^8.4.16",
-    "vscode-textmate": "^7.0.1"
+    "postcss": "^8.4.18",
+    "vscode-textmate": "^7.0.3"
   },
   "devDependencies": {
     "require-jsonc": "^0.1.1"
