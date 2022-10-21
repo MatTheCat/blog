@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version: '18.9.0'
+          node-version: '19.0.0'
 
       - name: install dependencies
         run: npm ci --no-audit --prefer-offline
@@ -38,4 +38,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v1
-
