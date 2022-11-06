@@ -15,6 +15,14 @@ www.matthecat.test {
 
 	file_server
 
+	handle_errors {
+		@page file /{err.status_code}.html
+		handle @page {
+			rewrite * {file_match.relative}
+			file_server
+		}
+	}
+
 	header Strict-Transport-Security "max-age=31536000"
 	header /assets/* Cache-Control "public, max-age=31536000, immutable"
 
