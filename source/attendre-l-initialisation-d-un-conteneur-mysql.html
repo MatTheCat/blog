@@ -12,11 +12,11 @@
     <code>mysql</code></a> n'existe pas), ce dernier va, entre autres :
 </p>
 <ol>
-    <li>initialiser son dossier de données ;</li>
-    <li>démarrer un serveur temporaire inaccessible de l’extérieur ;</li>
-    <li>créer l’utilisateur <code>root</code> ;</li>
-    <li>le cas échéant, créer la base <code>MYSQL_DATABASE</code> et l’utilisateur <code>MYSQL_USER</code> ;</li>
-    <li>exécuter tous les scripts (<code>sh</code> ou <code>sql</code>) du dossier <code>/docker-entrypoint-initdb.d</code> ;</li>
+    <li>initialiser son dossier de données ;</li>
+    <li>démarrer un serveur temporaire inaccessible de l’extérieur ;</li>
+    <li>créer l’utilisateur <code>root</code> ;</li>
+    <li>le cas échéant, créer la base <code>MYSQL_DATABASE</code> et l’utilisateur <code>MYSQL_USER</code> ;</li>
+    <li>exécuter tous les scripts (<code>sh</code> ou <code>sql</code>) du dossier <code>/docker-entrypoint-initdb.d</code> ;</li>
     <li>stopper le serveur temporaire.</li>
 </ol>
 <p>
@@ -59,6 +59,6 @@ bash: /dev/tcp/127.0.0.1/3306: Connection refused</samp></pre>
 </p>
 <pre><code class=" source.shell">docker exec CONTAINER bash -c 'until echo 2> /dev/null >/dev/tcp/127.0.0.1/3306; do sleep 2; done'</code></pre>
 <p>
-    Une fois terminée, vous êtes certain de pouvoir accéder à votre conteneur MySQL !
+    Une fois terminée, vous êtes certain de pouvoir accéder à votre conteneur MySQL !
 </p>
 </html>

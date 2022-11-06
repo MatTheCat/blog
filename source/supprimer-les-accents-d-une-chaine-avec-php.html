@@ -15,12 +15,12 @@
 <link rel="stylesheet" href="assets/code.css">
 <pre><code class=" source.php">echo
     \Transliterator::create('NFD; [:Nonspacing Mark:] Remove; NFC')
-    -&gt;transliterate('Héhé, ça marche !')
+    -&gt;transliterate('Héhé, ça marche !')
 ;
-// Hehe, ca marche !
+// Hehe, ca marche !
 </code></pre>
 
-<h2>Comment ça marche ?</h2>
+<h2>Comment ça marche ?</h2>
 <p>
     Le code ci-dessus utilise la classe
     <a href="https://www.php.net/manual/fr/class.transliterator.php"><code>Transliterator</code></a>
@@ -56,7 +56,7 @@
     Ici la transformation « <i lang="en">Remove</i> » ne s’appliquera qu’aux caractères faisant partie de
     <a href="https://graphemica.com/categories/nonspacing-mark" hreflang="en">la catégorie Unicode
     « <i lang="en">Nonspacing Mark</i> »</a>. Hors, tous les caractères combinants en font partie : puisqu’ils se lient
-    au caractère qui les précède, ils n’occupent pas leur propre espace !
+    au caractère qui les précède, ils n’occupent pas leur propre espace !
 </p>
 <p>
     La transformation précédente servait à séparer les caractères de leurs diacritiques, et celle-ci va les supprimer.
@@ -70,7 +70,7 @@
 
 <h3><code>NFC</code></h3>
 <p>
-    <code>NFD</code> a précédemment décomposé tous nos caractères ; il peut être pertinent de recomposer ceux qui
+    <code>NFD</code> a précédemment décomposé tous nos caractères ; il peut être pertinent de recomposer ceux qui
     restent (le sujet est débattable mais NFC semble privilégié). Par exemple les syllabes de l’alphabet
     <a href="https://fr.wikipedia.org/wiki/Hangeul">hangeul</a> ont leur propre caractère mais peuvent également être
     encodées par une combinaison de
@@ -89,5 +89,5 @@
     <li>transformations : <a href="https://unicode-org.github.io/icu/userguide/transforms/" hreflang="en">http://userguide.icu-project.org/transforms/general</a></li>
     <li>normalisation : <a href="https://unicode.org/reports/tr15/" hreflang="en">http://unicode.org/reports/tr15/</a></li>
 </ul>
-<p>Le sujet est vaste ; bon courage !</p>
+<p>Le sujet est vaste ; bon courage !</p>
 </html>

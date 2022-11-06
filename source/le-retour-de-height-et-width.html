@@ -47,7 +47,7 @@
 <p>
     L’idée est d’empêcher toute utilisation de <code>width</code> et <code>height</code> à des fins stylistiques, les
     seules valeurs admises étant désormais des multiples des dimensions intrinsèques d’une ressource. On peut donc en
-    déduire le ratio d’aspect intrinsèque ; précisément la donnée qu’il nous manquait !
+    déduire le ratio d’aspect intrinsèque ; précisément la donnée qu’il nous manquait !
 </p>
 <p>
     C’est pourquoi à la place
@@ -74,7 +74,7 @@ aspect-ratio: auto 200 / 100;
 <p>
     par la feuille de style du navigateur. La première valeur <code>auto</code> signifie que le ratio intrinsèque sera
     utilisé dès qu’il sera disponible, d’où l’importance de spécifier correctement les attributs <code>width</code> et
-    <code>height</code> (sinon vous provoqueriez vous-même un <i lang="en">jank</i> !)
+    <code>height</code> (sinon vous provoqueriez vous-même un <i lang="en">jank</i> !)
 </p>
 <p>
     Notez qu’une telle image ferait par défaut 200 × 100 pixels, car les attributs <code>width</code> et
@@ -87,8 +87,8 @@ aspect-ratio: auto 200 / 100;
     height: auto;
 }</code></pre>
 <p>
-    Ainsi, le navigateur pourra réserver l’espace correspondant avant même le téléchargement de l’image !
+    Ainsi, le navigateur pourra réserver l’espace correspondant avant même le téléchargement de l’image !
     Plus récemment, ceci est également valable pour les vidéos, canevas et boutons <code>image</code>. Alors pensez à
-    ajouter leurs attributs <code>width</code> et <code>height</code> !
+    ajouter leurs attributs <code>width</code> et <code>height</code> !
 </p>
 </html>

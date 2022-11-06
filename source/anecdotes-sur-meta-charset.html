@@ -13,12 +13,12 @@
     Elle est un moyen d’indiquer aux <i lang="en">user agents</i>
     l’encodage du document HTML dans lequel elle se trouve.
 </p>
-<p>Aussi familière qu’elle soit, saviez-vous ce qui suit ?</p>
+<p>Aussi familière qu’elle soit, saviez-vous ce qui suit ?</p>
 
 <h2>Elle est rétrocompatible</h2>
 <p>
     Il peut sembler étrange d’avoir introduit un nouvel attribut <code>charset</code> plutôt que d’utiliser
-    <code>name</code> et <code>content</code> ; c’est en fait un moyen ingénieux de raccourcir la déclaration
+    <code>name</code> et <code>content</code> ; c’est en fait un moyen ingénieux de raccourcir la déclaration
 </p>
 <pre><code class=" text.html.basic">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
 <p>
@@ -28,7 +28,7 @@
 </p>
 <pre><code class=" text.html.basic">&lt;meta http-equiv=Content-Type content=text/html; charset=utf-8&gt;</code></pre>
 <p>
-    <code>charset</code> devient alors un attribut ! S’il est déjà supporté, il ne reste qu’à le rendre valide.
+    <code>charset</code> devient alors un attribut ! S’il est déjà supporté, il ne reste qu’à le rendre valide.
     On supprime également les attributs <code>http-equiv</code> et <code>content</code> devenus inutiles, et paf.
 </p>
 <aside>
@@ -57,7 +57,7 @@
 <p>
     Dans un soucis de rétrocompatibilité, le
     <abbr title="Web Hypertext Application Technology Working Group" lang="en">WHATWG</abbr> a spécifié quels encodages
-    doivent continuer à être supportés — et comment — dans son
+    doivent continuer à être supportés — et comment — dans son
     <a href="https://encoding.spec.whatwg.org/" hreflang="en">Encoding standard</a>.
     La promotion d’UTF-8 rend toutefois leur utilisation <strong>invalide</strong>.
 </p>
@@ -80,12 +80,12 @@
 <p>
     De la même façon, déclarer l’encodage d’un document dans ce même document force le <i lang="en">user agent</i> à
     trouver cette déclaration avant de pouvoir parser le document. Dans un soucis d’optimisation, vous êtes tenus de
-    la faire tenir dans les 1 024 premiers octets, ce qui permet d’abandonner la recherche cette limite passée.
+    la faire tenir dans les 1 024 premiers octets, ce qui permet d’abandonner la recherche cette limite passée.
 </p>
 <aside>
     <blockquote lang="en">
         The authoring conformance requirements for character encoding declarations limit them to only appearing in the
-        first 1024 bytes. User agents are therefore encouraged […] not to stall beyond that.
+        first 1024 bytes. User agents are therefore encouraged […] not to stall beyond that.
         <footer><a href="https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm" hreflang="en">https://html.spec.whatwg.org/multipage/parsing.html#encoding-sniffing-algorithm</a></footer>
     </blockquote>
 </aside>
@@ -102,7 +102,7 @@
 <p>Si vous n’êtes pas en mesure de configurer le serveur, deux solutions :</p>
 <ul>
     <li>
-        Votre document doit être encodé en UTF-8 ; vous pouvez donc préfixer son contenu d’un
+        Votre document doit être encodé en UTF-8 ; vous pouvez donc préfixer son contenu d’un
         <abbr lang="en" title="Byte Order Mark">BOM</abbr>.
         <a href="https://www.w3.org/International/questions/qa-byte-order-mark#problems" hreflang="en">&Agrave; vos risques et périls.</a>
     </li>
@@ -125,7 +125,7 @@
 <p>
     Heureusement, une terminologie a été proposée par le Consortium Unicode en 1998 et standardisée en 2004 dans
     son <a href="https://www.unicode.org/reports/tr17/" hreflang="en" lang="en">Unicode Technical Report #17</a> :
-    le <i lang="en">Unicode Character Encoding Model</i>. Quelles sont ses définitions ?
+    le <i lang="en">Unicode Character Encoding Model</i>. Quelles sont ses définitions ?
 </p>
 
 <h3><i lang="en">Character set</i></h3>
@@ -134,8 +134,8 @@
     <a href="https://www.ibm.com/docs/en/i/7.4?topic=representation-encoding-scheme" hreflang="en"><abbr title="Character Data Representation Architecture" lang="en">CDRA</abbr></a>
     où il désigne un ensemble de caractères à encoder. Par exemple
     <a href="https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange#Table_des_128_caract%C3%A8res_ASCII">ASCII</a>
-    définit un jeu de 128 caractères fermé, ce qui signifie qu’aucun caractère ne lui sera ajouté.
-    En comparaison celui d’Unicode (le <i lang="en">Universal Character Set</i>) est ouvert et compte 137 928 caractères
+    définit un jeu de 128 caractères fermé, ce qui signifie qu’aucun caractère ne lui sera ajouté.
+    En comparaison celui d’Unicode (le <i lang="en">Universal Character Set</i>) est ouvert et compte 137 928 caractères
     dans sa version 12 (où 554 ont été ajoutés).
 </p>
 <p>Pour éviter toute ambiguïté, on préfèrera parler d’<strong lang="en">Abstract Character Repertoire</strong>.</p>
@@ -157,7 +157,7 @@
     <li>
         Une <strong lang="en">Character Encoding Form</strong> transforme ces points de code en séquences de bits de
         taille fixe (<i lang="en">code units</i>). Par exemple UTF-16 transformera <code>U+1F635</code> en
-        <code>0xD83D 0xDE35</code> ; deux <i lang="en">code units</i> de… 16 bits !
+        <code>0xD83D 0xDE35</code> ; deux <i lang="en">code units</i> de… 16 bits !
     </li>
     <li>
         Un <strong lang="en">Character Encoding Scheme</strong> transforme ces <i lang="en">code units</i> en séquences
@@ -167,8 +167,8 @@
     </li>
 </ol>
 <p>
-    Le <i lang="en">charset</i> de notre exemple transforme 😵 — une séquence d’un caractère — en
-    <code>0x3D 0xD8 0x35 0xDE</code> — une séquence d’octets sérialisée.
+    Le <i lang="en">charset</i> de notre exemple transforme 😵 — une séquence d’un caractère — en
+    <code>0x3D 0xD8 0x35 0xDE</code> — une séquence d’octets sérialisée.
 </p>
 <p>Pour éviter toute ambiguïté, on préfèrera parler de <strong lang="en">Character Map</strong>.</p>
 </html>

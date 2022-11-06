@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="assets/common.css">
 <link rel="stylesheet" href="assets/article.css">
 <h1>Centrer du texte dans un <code>&lt;hr&gt;</code></h1>
-<p>Comment intègreriez-vous le visuel suivant ?</p>
+<p>Comment intègreriez-vous le visuel suivant ?</p>
 <style>
     .hr {
         align-items: center;
@@ -27,7 +27,7 @@
 <div class="hr">Chapitre un</div>
 <p>
     Le trait horizontal nous rappelle probablement l’élément <code>&lt;hr&gt;</code>, après tout il
-    signifie <i lang="en">horizontal rule</i> qui se traduit par… trait horizontal ! Mais il ne peut pas être utilisé
+    signifie <i lang="en">horizontal rule</i> qui se traduit par… trait horizontal ! Mais il ne peut pas être utilisé
     pour deux raisons :
 </p>
 <ul>
@@ -41,7 +41,7 @@
     Ainsi le style ne dépend que de la classe <code>hr</code>. Nous allons utiliser les pseudo-éléments
     <code>::before</code> et <code>::after</code> pour tracer les deux parties du trait. Il faudra ensuite faire en
     sorte que ces derniers se partagent la largeur restante tout en étant verticalement centrés par rapport au texte.
-    Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet !
+    Tout ceci, <a href="https://www.w3.org/TR/css-flexbox-1/" hreflang="en">flexbox</a> le permet !
 </p>
 <pre><code class=" source.css">.hr {
     /* centre verticalement les enfants entre eux */
@@ -56,7 +56,7 @@
 
 .hr::before,
 .hr::after {
-    /* remplir le fond du trait permet également d’utiliser des images ou dégradés ! */
+    /* remplir le fond du trait permet également d’utiliser des images ou dégradés ! */
     background: currentColor;
 
     /* nécessaire pour afficher les pseudo-éléments */
@@ -74,6 +74,6 @@
 <p>
     Cette solution est simple, robuste, se dégrade gracieusement et bénéficie
     d’<a href="https://caniuse.com/#feat=flexbox" hreflang="en">un excellent support</a>. Faites vous une faveur
-    et utilisez la !
+    et utilisez la !
 </p>
 </html>
