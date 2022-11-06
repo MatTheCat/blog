@@ -1,6 +1,7 @@
 /.env
 
 /public/*
-!/public/.nojekyll
 !/public/CNAME
 !/public/favicon.ico
+
+/rootCA-key.pem
