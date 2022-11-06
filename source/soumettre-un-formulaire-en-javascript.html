@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="assets/common.css">
 <link rel="stylesheet" href="assets/article.css">
 <h1>Soumettre un formulaire en JavaScript</h1>
-<h2><abbr lang="en" title="Too Long ; Didn’t Read">TL;DR</abbr></h2>
+<h2><abbr lang="en" title="Too Long; Didn’t Read">TL;DR</abbr></h2>
 <link rel="stylesheet" href="assets/code.css">
 <pre><code class=" source.js">form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }))
     && form.reportValidity()
     && form.submit();</code></pre>
-<h2><abbr lang="en" title="Too Long ; Read Anyway">TL;RA</abbr></h2>
+<h2><abbr lang="en" title="Too Long; Read Anyway">TL;RA</abbr></h2>
 <p>
     Le besoin était simple : inclure <a href="https://developers.google.com/recaptcha/docs/v3" hreflang="en">reCAPTCHA v3</a>
     sur des formulaires de contact. À leur soumission, on leur ajoute un token qui pourra être utilisé par le backend
@@ -49,7 +49,7 @@
     Tout formulaire dispose d’une méthode
     <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit" hreflang="en"><code>submit</code></a>.
     Seulement… celle-ci <strong>ne déclenche pas l’événement
-    <code>submit</code></strong>, et <strong>ne valide pas le formulaire</strong> ; il va falloir le faire nous-même !
+    <code>submit</code></strong>, et <strong>ne valide pas le formulaire</strong> ; il va falloir le faire nous-même !
 </p>
 <h3>Déclencher l’événement <code>submit</code></h3>
 <p>
@@ -62,7 +62,7 @@
 });
 </code></pre>
 <p>
-    Un événement peut être envoyé par toute cible potentielle — et donc notre formulaire — grâce à la méthode
+    Un événement peut être envoyé par toute cible potentielle — et donc notre formulaire — grâce à la méthode
     <a href="https://developer.mozilla.org/fr/docs/Web/API/EventTarget/dispatchEvent"><code>dispatchEvent</code></a>.
     Cette dernière appelera tous les écouteurs de manière synchrone, ce qui lui permet de retourner <code>false</code>
     si au moins un a annulé l’événement. Dans ce cas, le formulaire ne doit pas être soumis et notre fonction
@@ -85,8 +85,8 @@
 </code></pre>
 <h3>Soumettre le formulaire</h3>
 <p>
-    J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire ; c’est tout ce qu’il nous reste à
-    faire ! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code> :
+    J’espère que vous n’avez pas oublié la méthode <code>submit</code> du formulaire ; c’est tout ce qu’il nous reste à
+    faire ! Empilons les blocs de code ci-dessus pour implémenter <code>submitForm</code> :
 </p>
 <pre><code class=" source.js">function submitForm(form) {
     const event = new Event("submit", {
