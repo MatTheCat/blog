@@ -9,7 +9,8 @@
     "mathjax-node": "^2.1.1",
     "onigasm": "^2.2.5",
     "postcss": "^8.4.19",
-    "vscode-textmate": "^7.0.4"
+    "vscode-textmate": "^7.0.4",
+    "yargs": "^17.6.2"
   },
   "devDependencies": {
     "require-jsonc": "^0.1.1"
