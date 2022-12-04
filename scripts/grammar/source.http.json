@@ -8,44 +8,17 @@
   "name": "http",
   "patterns": [
     {
-      "begin": "\\s*{{\\s*",
-      "name": "http.request.body.javascript",
-      "end": "\\s*}}\\s*",
-      "contentName": "source.js",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.http"
-        }
-      },
+      "begin": "^\\s*(?=curl)",
+      "name": "http.request.curl",
+      "end": "^\\s*(\\#{3,}.*?)?\\s*$",
       "endCaptures": {
         "0": {
-          "name": "comment.line.http"
+          "name": "comment.line.sharp.http"
         }
       },
       "patterns": [
         {
-          "include": "source.js"
-        }
-      ]
-    },
-    {
-      "begin": "^\\s*>\\s{1}{%?\\s*",
-      "name": "http.request.body.javascript",
-      "contentName": "source.js",
-      "end": "^\\s*%}\\s*",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.http"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "comment.line.http"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.js"
+          "include": "source.shell"
         }
       ]
     },
@@ -53,7 +26,6 @@
       "begin": "\\s*(?=(\\[|{[^{]))",
       "name": "http.request.body.json",
       "end": "^\\s*(\\#{3,}.*?)?\\s*$",
-      "contentName": "source.json",
       "endCaptures": {
         "0": {
           "name": "comment.line.sharp.http"
@@ -81,10 +53,9 @@
       ]
     },
     {
-      "begin": "\\s*(?=(query|mutation|fragment))",
+      "begin": "\\s*(?=(query|mutation))",
       "name": "http.request.body.graphql",
       "end": "^\\s*(\\#{3,}.*?)?\\s*$",
-      "contentName": "source.graphql",
       "endCaptures": {
         "0": {
           "name": "comment.line.sharp.http"
@@ -97,15 +68,35 @@
       ]
     },
     {
-      "begin": "\\s*(?=(query|mutation|fragment))",
+      "begin": "\\s*(?=(query|mutation))",
       "name": "http.request.body.graphql",
       "end": "^\\{\\s*$",
-      "contentName": "source.graphql",
       "patterns": [
         {
           "include": "source.graphql"
         }
       ]
+    },
+    {
+      "include": "#metadata"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.other.http"
+        },
+        "2": {
+          "name": "variable.other.http"
+        },
+        "3": {
+          "name": "string.other.http"
+        }
+      },
+      "match": "^\\s*(@)([^\\s=]+)\\s*=\\s*(.*?)\\s*$",
+      "name": "http.filevariable"
     },
     {
       "captures": {
@@ -134,33 +125,24 @@
           "name": "string.other.http"
         }
       },
-      "match": "^([\\w\\-]+)\\s*(\\:)\\s*(.*?)\\s*$",
+      "match": "^([\\w\\-]+)\\s*(\\:)\\s*([^\/].*?)\\s*$",
       "name": "http.headers"
     },
     {
-      "include": "#metadata"
-    },
-    {
-      "include": "#variable"
-    },
-    {
-      "include": "#comments"
+      "include": "#request-line"
     },
     {
       "include": "#response-line"
-    },
-    {
-      "include": "#request-line"
     }
   ],
   "repository": {
     "metadata": {
       "patterns": [
         {
-          "match": "^\\s*#+\\s+(@([^\\s]*))\\s+(.*)?$",
+          "match": "^\\s*\\#{1,}\\s+(?:((@)name)\\s+([^\\s\\.]+))$",
           "captures": {
             "1": {
-              "name": "keyword.name.http"
+              "name": "entity.other.attribute-name"
             },
             "2": {
               "name": "punctuation.definition.block.tag.metadata"
@@ -170,48 +152,93 @@
             }
           },
           "name": "comment.line.sharp.http"
-        }
-      ]
-    },
-    "variable": {
-      "patterns": [
+        },
         {
-          "match": "^\\s*(@[^(\\s=)]*)(?:(\\s*=\\s*)|(\\s+))(?<value>.*)$",
+          "match": "^\\s*\\/{2,}\\s+(?:((@)name)\\s+([^\\s\\.]+))$",
           "captures": {
             "1": {
-              "name": "keyword.name.http"
+              "name": "entity.other.attribute-name"
             },
             "2": {
+              "name": "punctuation.definition.block.tag.metadata"
+            },
+            "3": {
+              "name": "entity.name.type.http"
+            }
+          },
+          "name": "comment.line.double-slash.http"
+        },
+        {
+          "match": "^\\s*\\#{1,}\\s+((@)note)\\s*$",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name"
+            },
+            "2": {
+              "name": "punctuation.definition.block.tag.metadata"
+            }
+          },
+          "name": "comment.line.sharp.http"
+        },
+        {
+          "match": "^\\s*\\/{2,}\\s+((@)note)\\s*$",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name"
+            },
+            "2": {
+              "name": "punctuation.definition.block.tag.metadata"
+            }
+          },
+          "name": "comment.line.double-slash.http"
+        },
+        {
+          "match": "^\\s*\\#{1,}\\s+(?:((@)prompt)\\s+([^\\s]+)(?:\\s+(.*))?\\s*)$",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name"
+            },
+            "2": {
+              "name": "punctuation.definition.block.tag.metadata"
+            },
+            "3": {
+              "name": "variable.other.http"
+            },
+            "4": {
               "name": "string.other.http"
             }
-          }
+          },
+          "name": "comment.line.sharp.http"
+        },
+        {
+          "match": "^\\s*\\/{2,}\\s+(?:((@)prompt)\\s+([^\\s]+)(?:\\s+(.*))?\\s*)$",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name"
+            },
+            "2": {
+              "name": "punctuation.definition.block.tag.metadata"
+            },
+            "3": {
+              "name": "variable.other.http"
+            },
+            "4": {
+              "name": "string.other.http"
+            }
+          },
+          "name": "comment.line.double-slash.http"
         }
       ]
     },
     "comments": {
       "patterns": [
         {
-          "begin": "^\\s*\\/\\*.*",
-          "name": "comment.block.http",
-          "end": "^\\s*\\*\\/\\s*",
-          "beginCaptures": {
-            "0": {
-              "name": "comment.block.http"
-            }
-          },
-          "endCaptures": {
-            "0": {
-              "name": "comment.block.http"
-            }
-          }
-        },
-        {
-          "match": "^\\s*\\#+.*$",
+          "match": "^\\s*\\#{1,}.*$",
           "name": "comment.line.sharp.http"
         },
         {
-          "match": "^\\s*\\/{2}.*$",
-          "name": "comment.line.sharp.http"
+          "match": "^\\s*\\/{2,}.*$",
+          "name": "comment.line.double-slash.http"
         }
       ]
     },
@@ -231,7 +258,7 @@
           ]
         }
       },
-      "match": "^\\s*(?:(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS|CONNECT|TRACE|PROPFIND|PROPPATCH|MKCOL|COPY|MOVE|LOCK|UNLOCK|CHECKOUT|CHECKIN|REPORT|MERGE|MKACTIVITY|MKWORKSPACE|VERSION-CONTROL|BASELINE-CONTROL)\\s+)?\\s*(.+?)(?:\\s+(HTTP\\/\\S+))?$",
+      "match": "(?i)^(?:(get|post|put|delete|patch|head|options|connect|trace)\\s+)?\\s*(.+?)(?:\\s+(HTTP\\/\\S+))?$",
       "name": "http.requestline"
     },
     "response-line": {
@@ -250,7 +277,7 @@
           "name": "string.other.http"
         }
       },
-      "match": "^\\s*(HTTP\\/\\S+)\\s*([1-5][0-9][0-9])\\s*(.*)$",
+      "match": "(?i)^\\s*(HTTP\\/\\S+)\\s([1-5][0-9][0-9])\\s(.*)$",
       "name": "http.responseLine"
     },
     "protocol": {
