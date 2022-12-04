@@ -1,8 +1,8 @@
-[class*=" strong"] {
-    font-weight: bold;
-}
 [class*=" string"] {
     color: #a31515;
+}
+[class*=" strong"] {
+    font-weight: bold;
 }
 [class*=" comment"] {
     color: #008000;
@@ -10,10 +10,10 @@
 [class*=" invalid"] {
     color: #cd3131;
 }
-[class*=" storage"] {
+[class*=" keyword"] {
     color: #0000ff;
 }
-[class*=" keyword"] {
+[class*=" storage"] {
     color: #0000ff;
 }
 [class*=" emphasis"] {
@@ -29,36 +29,36 @@
 [class*=" storage.type"] {
     color: #0000ff;
 }
-[class*=" variable.css"] {
-    color: #ff0000;
-}
 [class*=" support.type"] {
     color: #267f99;
 }
-[class*=" meta.embedded"] {
-    color: #000000ff;
+[class*=" variable.css"] {
+    color: #e50000;
 }
 [class*=" markup.italic"] {
     font-style: italic;
 }
+[class*=" meta.embedded"] {
+    color: #000000ff;
+}
 [class*=" string.regexp"] {
     color: #811f3f;
-}
-[class*=" variable.scss"] {
-    color: #ff0000;
 }
 [class*=" support.class"] {
     color: #267f99;
 }
-[class*=" markup.heading"] {
-    font-weight: bold;
-    color: #800000;
+[class*=" variable.scss"] {
+    color: #e50000;
+}
+[class*=" markup.changed"] {
+    color: #0451a5;
 }
 [class*=" markup.deleted"] {
     color: #a31515;
 }
-[class*=" markup.changed"] {
-    color: #0451a5;
+[class*=" markup.heading"] {
+    font-weight: bold;
+    color: #800000;
 }
 [class*=" constant.regexp"] {
     color: #811f3f;
@@ -66,38 +66,35 @@
 [class*=" entity.name.tag"] {
     color: #800000;
 }
-[class*=" markup.inserted"] {
-    color: #098658;
-}
 [class*=" keyword.control"] {
     color: #AF00DB;
+}
+[class*=" markup.inserted"] {
+    color: #098658;
 }
 [class*=" storage.type.cs"] {
     color: #267f99;
 }
-[class*=" meta.diff.header"] {
-    color: #000080;
-}
 [class*=" constant.numeric"] {
     color: #098658;
 }
-[class*=" markup.underline"] {
-    text-decoration: underline;
-}
-[class*=" storage.modifier"] {
-    color: #0000ff;
+[class*=" entity.name.type"] {
+    color: #267f99;
 }
 [class*=" keyword.operator"] {
     color: #000000;
 }
+[class*=" markup.underline"] {
+    text-decoration: underline;
+}
+[class*=" meta.diff.header"] {
+    color: #000080;
+}
+[class*=" storage.modifier"] {
+    color: #0000ff;
+}
 [class*=" support.function"] {
     color: #795E26;
-}
-[class*=" meta.return-type"] {
-    color: #267f99;
-}
-[class*=" entity.name.type"] {
-    color: #267f99;
 }
 [class*=" support.variable"] {
     color: #001080;
@@ -105,11 +102,20 @@
 [class*=" constant.language"] {
     color: #0000ff;
 }
+[class*=" entity.name.class"] {
+    color: #267f99;
+}
+[class*=" entity.name.label"] {
+    color: #000000;
+}
 [class*=" markup.inline.raw"] {
     color: #800000;
 }
 [class*=" meta.preprocessor"] {
     color: #0000ff;
+}
+[class*=" storage.type.java"] {
+    color: #267f99;
 }
 [class*=" string.quoted.pug"] {
     color: #0000ff;
@@ -117,14 +123,8 @@
 [class*=" variable.language"] {
     color: #0000ff;
 }
-[class*=" entity.name.class"] {
-    color: #267f99;
-}
-[class*=" storage.type.java"] {
-    color: #267f99;
-}
-[class*=" entity.name.label"] {
-    color: #000000;
+[class*=" constant.character"] {
+    color: #0000ff;
 }
 [class*=" keyword.other.unit"] {
     color: #098658;
@@ -132,32 +132,34 @@
 [class*=" meta.type.new.expr"] {
     color: #267f99;
 }
-[class*=" constant.character"] {
-    color: #0000ff;
-}
-[class*=" variable.other.less"] {
-    color: #ff0000;
-}
-[class*=" storage.type.groovy"] {
-    color: #267f99;
+[class*=" keyword.other.using"] {
+    color: #AF00DB;
 }
 [class*=" meta.type.cast.expr"] {
     color: #267f99;
 }
-[class*=" keyword.other.using"] {
+[class*=" storage.type.groovy"] {
+    color: #267f99;
+}
+[class*=" variable.other.less"] {
+    color: #e50000;
+}
+[class*=" entity.name.function"] {
+    color: #795E26;
+}
+[class*=" entity.name.operator"] {
     color: #AF00DB;
 }
 [class*=" entity.name.selector"] {
     color: #800000;
 }
-[class*=" string.unquoted.html"] {
-    color: #0000ff;
+[class*=" entity.name.variable"] {
+    color: #001080;
 }
 [class*=" keyword.operator.new"] {
     color: #0000ff;
 }
-[class*=" entity.name.function"] {
-    color: #795E26;
+[class*=" markup.strikethrough"] {
 }
 [class*=" storage.type.byte.go"] {
     color: #267f99;
@@ -165,56 +167,53 @@
 [class*=" storage.type.rune.go"] {
     color: #267f99;
 }
+[class*=" string.unquoted.html"] {
+    color: #0000ff;
+}
 [class*=" support.constant.dom"] {
     color: #267f99;
-}
-[class*=" entity.name.operator"] {
-    color: #AF00DB;
-}
-[class*=" entity.name.variable"] {
-    color: #001080;
-}
-[class*=" keyword.operator.cast"] {
-    color: #0000ff;
 }
 [class*=" entity.name.namespace"] {
     color: #267f99;
 }
-[class*=" storage.type.error.go"] {
-    color: #267f99;
+[class*=" keyword.operator.cast"] {
+    color: #0000ff;
 }
-[class*=" support.constant.math"] {
+[class*=" storage.type.error.go"] {
     color: #267f99;
 }
 [class*=" support.constant.json"] {
     color: #267f99;
 }
-[class*=" source.groovy.embedded"] {
-    color: #000000ff;
-}
-[class*=" meta.embedded.assembly"] {
-    color: #a31515;
-}
-[class*=" support.constant.media"] {
-    color: #0451a5;
-}
-[class*=" support.constant.color"] {
-    color: #0451a5;
-}
-[class*=" source.coffee.embedded"] {
-    color: #ff0000;
-}
-[class*=" entity.other.attribute"] {
+[class*=" support.constant.math"] {
     color: #267f99;
 }
-[class*=" storage.type.string.go"] {
+[class*=" entity.other.attribute"] {
     color: #267f99;
 }
 [class*=" keyword.other.operator"] {
     color: #AF00DB;
 }
-[class*=" string.interpolated.pug"] {
-    color: #0000ff;
+[class*=" meta.embedded.assembly"] {
+    color: #a31515;
+}
+[class*=" source.coffee.embedded"] {
+    color: #e50000;
+}
+[class*=" source.groovy.embedded"] {
+    color: #000000ff;
+}
+[class*=" storage.type.string.go"] {
+    color: #267f99;
+}
+[class*=" support.constant.color"] {
+    color: #0451a5;
+}
+[class*=" support.constant.media"] {
+    color: #0451a5;
+}
+[class*=" constant.sha.git-rebase"] {
+    color: #098658;
 }
 [class*=" keyword.operator.sizeof"] {
     color: #0000ff;
@@ -222,50 +221,44 @@
 [class*=" keyword.operator.typeid"] {
     color: #0000ff;
 }
-[class*=" constant.sha.git-rebase"] {
-    color: #098658;
-}
-[class*=" storage.type.numeric.go"] {
-    color: #267f99;
+[class*=" meta.object-literal.key"] {
+    color: #001080;
 }
 [class*=" storage.type.boolean.go"] {
-    color: #267f99;
-}
-[class*=" storage.type.uintptr.go"] {
     color: #267f99;
 }
 [class*=" storage.type.generic.cs"] {
     color: #267f99;
 }
+[class*=" storage.type.numeric.go"] {
+    color: #267f99;
+}
 [class*=" storage.type.token.java"] {
     color: #267f99;
+}
+[class*=" storage.type.uintptr.go"] {
+    color: #267f99;
+}
+[class*=" string.interpolated.pug"] {
+    color: #0000ff;
 }
 [class*=" variable.other.constant"] {
     color: #0070C1;
 }
-[class*=" meta.object-literal.key"] {
-    color: #001080;
-}
-[class*=" meta.preprocessor.string"] {
-    color: #a31515;
-}
-[class*=" string.quoted.double.xml"] {
-    color: #0000ff;
-}
-[class*=" string.quoted.single.xml"] {
-    color: #0000ff;
-}
-[class*=" meta.template.expression"] {
-    color: #000000;
-}
 [class*=" constant.other.rgb-value"] {
     color: #0451a5;
+}
+[class*=" keyword.operator.alignas"] {
+    color: #0000ff;
 }
 [class*=" keyword.operator.alignof"] {
     color: #0000ff;
 }
-[class*=" keyword.operator.alignas"] {
-    color: #0000ff;
+[class*=" meta.preprocessor.string"] {
+    color: #a31515;
+}
+[class*=" meta.template.expression"] {
+    color: #000000;
 }
 [class*=" storage.type.modifier.cs"] {
     color: #267f99;
@@ -273,13 +266,31 @@
 [class*=" storage.type.variable.cs"] {
     color: #267f99;
 }
-[class*=" variable.other.enummember"] {
-    color: #0070C1;
+[class*=" string.quoted.double.xml"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.xml"] {
+    color: #0000ff;
+}
+[class*=" constant.character.escape"] {
+    color: #EE0000;
+}
+[class*=" keyword.operator.noexcept"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.wordlike"] {
+    color: #0000ff;
 }
 [class*=" meta.preprocessor.numeric"] {
     color: #098658;
 }
-[class*=" keyword.operator.noexcept"] {
+[class*=" storage.type.generic.java"] {
+    color: #267f99;
+}
+[class*=" string.quoted.double.html"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.html"] {
     color: #0000ff;
 }
 [class*=" string.quoted.single.yaml"] {
@@ -288,19 +299,13 @@
 [class*=" string.unquoted.cdata.xml"] {
     color: #0000ff;
 }
-[class*=" string.quoted.double.html"] {
-    color: #0000ff;
+[class*=" variable.other.enummember"] {
+    color: #0070C1;
 }
-[class*=" string.quoted.single.html"] {
-    color: #0000ff;
+[class*=" constant.other.placeholder"] {
+    color: #001080;
 }
-[class*=" keyword.operator.wordlike"] {
-    color: #0000ff;
-}
-[class*=" storage.type.generic.java"] {
-    color: #267f99;
-}
-[class*=" constant.character.escape"] {
+[class*=" keyword.operator.or.regexp"] {
     color: #EE0000;
 }
 [class*=" punctuation.definition.tag"] {
@@ -313,19 +318,10 @@
     color: #0451a5;
 }
 [class*=" support.type.property-name"] {
-    color: #ff0000;
-}
-[class*=" constant.other.placeholder"] {
-    color: #001080;
-}
-[class*=" keyword.operator.or.regexp"] {
-    color: #EE0000;
+    color: #e50000;
 }
 [class*=" entity.other.attribute-name"] {
-    color: #ff0000;
-}
-[class*=" support.constant.media-type"] {
-    color: #0451a5;
+    color: #e50000;
 }
 [class*=" keyword.operator.expression"] {
     color: #0000ff;
@@ -333,16 +329,25 @@
 [class*=" keyword.operator.instanceof"] {
     color: #0000ff;
 }
-[class*=" support.function.git-rebase"] {
-    color: #0451a5;
-}
-[class*=" support.constant.handlebars"] {
-    color: #795E26;
+[class*=" storage.type.generic.groovy"] {
+    color: #267f99;
 }
 [class*=" storage.type.primitive.java"] {
     color: #267f99;
 }
-[class*=" storage.type.generic.groovy"] {
+[class*=" support.constant.handlebars"] {
+    color: #795E26;
+}
+[class*=" support.constant.media-type"] {
+    color: #0451a5;
+}
+[class*=" support.function.git-rebase"] {
+    color: #0451a5;
+}
+[class*=" entity.name.scope-resolution"] {
+    color: #267f99;
+}
+[class*=" entity.other.inherited-class"] {
     color: #267f99;
 }
 [class*=" punctuation.section.embedded"] {
@@ -351,26 +356,8 @@
 [class*=" storage.modifier.import.java"] {
     color: #000000;
 }
-[class*=" entity.name.scope-resolution"] {
-    color: #267f99;
-}
 [class*=" storage.type.annotation.java"] {
     color: #267f99;
-}
-[class*=" entity.other.inherited-class"] {
-    color: #267f99;
-}
-[class*=" string.unquoted.plain.in.yaml"] {
-    color: #0000ff;
-}
-[class*=" storage.modifier.package.java"] {
-    color: #000000;
-}
-[class*=" storage.type.primitive.groovy"] {
-    color: #267f99;
-}
-[class*=" meta.definition.variable.name"] {
-    color: #001080;
 }
 [class*=" constant.character.set.regexp"] {
     color: #811f3f;
@@ -378,31 +365,49 @@
 [class*=" keyword.control.anchor.regexp"] {
     color: #EE0000;
 }
-[class*=" keyword.operator.plus.exponent"] {
-    color: #098658;
+[class*=" meta.definition.variable.name"] {
+    color: #001080;
 }
-[class*=" string.unquoted.plain.out.yaml"] {
+[class*=" storage.modifier.package.java"] {
+    color: #000000;
+}
+[class*=" storage.type.primitive.groovy"] {
+    color: #267f99;
+}
+[class*=" string.unquoted.plain.in.yaml"] {
     color: #0000ff;
 }
 [class*=" constant.other.color.rgb-value"] {
     color: #0451a5;
 }
-[class*=" storage.type.object.array.java"] {
-    color: #267f99;
+[class*=" keyword.operator.plus.exponent"] {
+    color: #098658;
 }
 [class*=" storage.type.annotation.groovy"] {
+    color: #267f99;
+}
+[class*=" storage.type.object.array.java"] {
     color: #267f99;
 }
 [class*=" storage.type.parameters.groovy"] {
     color: #267f99;
 }
+[class*=" string.unquoted.plain.out.yaml"] {
+    color: #0000ff;
+}
+[class*=" keyword.operator.logical.python"] {
+    color: #0000ff;
+}
 [class*=" keyword.operator.minus.exponent"] {
     color: #098658;
 }
-[class*=" string.quoted.single.handlebars"] {
-    color: #0000ff;
+[class*=" source.cpp"] [class*=" keyword.operator.new"] {
+    color: #AF00DB;
 }
 [class*=" string.quoted.double.handlebars"] {
+    color: #0000ff;
+}
+[class*=" string.quoted.single.handlebars"] {
     color: #0000ff;
 }
 [class*=" support.constant.property-value"] {
@@ -411,23 +416,17 @@
 [class*=" support.type.property-name.json"] {
     color: #0451a5;
 }
-[class*=" keyword.operator.logical.python"] {
-    color: #0000ff;
-}
 [class*=" variable.language.wildcard.java"] {
     color: #000000;
-}
-[class*=" source.cpp"] [class*=" keyword.operator.new"] {
-    color: #AF00DB;
 }
 [class*=" entity.other.attribute-name.scss"] {
     color: #800000;
 }
-[class*=" storage.type.object.array.groovy"] {
-    color: #267f99;
-}
 [class*=" keyword.operator.negation.regexp"] {
     color: #d16969;
+}
+[class*=" storage.type.object.array.groovy"] {
+    color: #267f99;
 }
 [class*=" support.other.parenthesis.regexp"] {
     color: #d16969;
@@ -435,53 +434,56 @@
 [class*=" entity.name.function.preprocessor"] {
     color: #0000ff;
 }
-[class*=" string.comment.buffered.block.pug"] {
-    color: #0000ff;
-}
 [class*=" storage.type.primitive.array.java"] {
     color: #267f99;
+}
+[class*=" string"] [class*=" meta.image.inline.markdown"] {
+    color: #000000ff;
+}
+[class*=" string.comment.buffered.block.pug"] {
+    color: #0000ff;
 }
 [class*=" entity.other.attribute-name.id.css"] {
     color: #800000;
 }
-[class*=" source.cpp"] [class*=" keyword.operator.delete"] {
-    color: #AF00DB;
-}
 [class*=" keyword.operator.quantifier.regexp"] {
     color: #000000;
 }
-[class*=" support.type.vendored.property-name"] {
-    color: #ff0000;
+[class*=" source.cpp"] [class*=" keyword.operator.delete"] {
+    color: #AF00DB;
 }
 [class*=" entity.name.operator.custom-literal"] {
     color: #795E26;
 }
+[class*=" punctuation.definition.group.regexp"] {
+    color: #d16969;
+}
 [class*=" storage.type.primitive.array.groovy"] {
     color: #267f99;
 }
-[class*=" punctuation.definition.group.regexp"] {
-    color: #d16969;
+[class*=" support.type.vendored.property-name"] {
+    color: #e50000;
 }
 [class*=" meta.structure.dictionary.key.python"] {
     color: #0451a5;
 }
-[class*=" punctuation.section.embedded.end.php"] {
-    color: #800000;
-}
 [class*=" punctuation.character.set.end.regexp"] {
     color: #d16969;
 }
-[class*=" entity.other.attribute-name.class.css"] {
+[class*=" punctuation.section.embedded.end.php"] {
     color: #800000;
 }
 [class*=" constant.other.character-class.regexp"] {
     color: #811f3f;
 }
-[class*=" punctuation.section.embedded.begin.php"] {
+[class*=" entity.other.attribute-name.class.css"] {
     color: #800000;
 }
 [class*=" punctuation.character.set.begin.regexp"] {
     color: #d16969;
+}
+[class*=" punctuation.section.embedded.begin.php"] {
+    color: #800000;
 }
 [class*=" source.powershell"] [class*=" variable.other.member"] {
     color: #795E26;
@@ -504,20 +506,20 @@
 [class*=" entity.other.attribute-name.pseudo-class.css"] {
     color: #800000;
 }
-[class*=" punctuation.definition.group.assertion.regexp"] {
+[class*=" punctuation.definition.character-class.regexp"] {
     color: #d16969;
 }
-[class*=" punctuation.definition.character-class.regexp"] {
+[class*=" punctuation.definition.group.assertion.regexp"] {
     color: #d16969;
 }
 [class*=" entity.other.attribute-name.pseudo-element.css"] {
     color: #800000;
 }
-[class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
-    color: #800000;
-}
 [class*=" punctuation.definition.template-expression.end"] {
     color: #0000ff;
+}
+[class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
+    color: #800000;
 }
 [class*=" entity.other.attribute-name.parent-selector.css"] {
     color: #800000;
@@ -525,480 +527,495 @@
 [class*=" punctuation.definition.template-expression.begin"] {
     color: #0000ff;
 }
-
 @media (prefers-color-scheme: dark) {
     [class*=" header"] {
         color: #000080;
-    }
+}
     [class*=" string"] {
         color: #ce9178;
-    }
+}
+    [class*=" strong"] {
+        font-weight: bold;
+}
     [class*=" comment"] {
         color: #6A9955;
-    }
+}
     [class*=" invalid"] {
         color: #f44747;
-    }
-    [class*=" storage"] {
-        color: #569cd6;
-    }
+}
     [class*=" keyword"] {
         color: #569cd6;
-    }
+}
+    [class*=" storage"] {
+        color: #569cd6;
+}
+    [class*=" emphasis"] {
+        font-style: italic;
+}
     [class*=" variable"] {
         color: #9CDCFE;
-    }
+}
     [class*=" string.tag"] {
         color: #ce9178;
-    }
+}
     [class*=" markup.bold"] {
+        font-weight: bold;
         color: #569cd6;
-    }
+}
     [class*=" storage.type"] {
         color: #569cd6;
-    }
+}
     [class*=" string.value"] {
         color: #ce9178;
-    }
-    [class*=" variable.css"] {
-        color: #9cdcfe;
-    }
+}
     [class*=" support.type"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" variable.css"] {
+        color: #9cdcfe;
+}
+    [class*=" markup.italic"] {
+        font-style: italic;
+}
     [class*=" meta.embedded"] {
         color: #D4D4D4;
-    }
+}
     [class*=" string.regexp"] {
         color: #d16969;
-    }
-    [class*=" variable.scss"] {
-        color: #9cdcfe;
-    }
+}
     [class*=" support.class"] {
         color: #4EC9B0;
-    }
-    [class*=" markup.heading"] {
-        color: #569cd6;
-    }
-    [class*=" markup.deleted"] {
-        color: #ce9178;
-    }
+}
+    [class*=" variable.scss"] {
+        color: #9cdcfe;
+}
     [class*=" markup.changed"] {
         color: #569cd6;
-    }
+}
+    [class*=" markup.deleted"] {
+        color: #ce9178;
+}
+    [class*=" markup.heading"] {
+        font-weight: bold;
+        color: #569cd6;
+}
     [class*=" constant.regexp"] {
         color: #646695;
-    }
+}
     [class*=" entity.name.tag"] {
         color: #569cd6;
-    }
-    [class*=" markup.inserted"] {
-        color: #b5cea8;
-    }
+}
     [class*=" keyword.control"] {
         color: #C586C0;
-    }
+}
+    [class*=" markup.inserted"] {
+        color: #b5cea8;
+}
     [class*=" storage.type.cs"] {
         color: #4EC9B0;
-    }
+}
     [class*=" constant.numeric"] {
         color: #b5cea8;
-    }
-    [class*=" meta.diff.header"] {
-        color: #569cd6;
-    }
-    [class*=" storage.modifier"] {
-        color: #569cd6;
-    }
-    [class*=" keyword.operator"] {
-        color: #d4d4d4;
-    }
-    [class*=" support.function"] {
-        color: #DCDCAA;
-    }
-    [class*=" meta.return-type"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" entity.name.type"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" keyword.operator"] {
+        color: #d4d4d4;
+}
+    [class*=" markup.underline"] {
+        text-decoration: underline;
+}
+    [class*=" meta.diff.header"] {
+        color: #569cd6;
+}
+    [class*=" storage.modifier"] {
+        color: #569cd6;
+}
+    [class*=" support.function"] {
+        color: #DCDCAA;
+}
     [class*=" support.variable"] {
         color: #9CDCFE;
-    }
+}
     [class*=" constant.language"] {
         color: #569cd6;
-    }
-    [class*=" markup.inline.raw"] {
-        color: #ce9178;
-    }
-    [class*=" meta.preprocessor"] {
-        color: #569cd6;
-    }
-    [class*=" variable.language"] {
-        color: #569cd6;
-    }
+}
     [class*=" entity.name.class"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.type.java"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" entity.name.label"] {
         color: #C8C8C8;
-    }
-    [class*=" keyword.other.unit"] {
-        color: #b5cea8;
-    }
-    [class*=" meta.type.new.expr"] {
+}
+    [class*=" markup.inline.raw"] {
+        color: #ce9178;
+}
+    [class*=" meta.preprocessor"] {
+        color: #569cd6;
+}
+    [class*=" storage.type.java"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" variable.language"] {
+        color: #569cd6;
+}
     [class*=" constant.character"] {
         color: #569cd6;
-    }
+}
+    [class*=" keyword.other.unit"] {
+        color: #b5cea8;
+}
+    [class*=" meta.type.new.expr"] {
+        color: #4EC9B0;
+}
     [class*=" entity.name.tag.css"] {
         color: #d7ba7d;
-    }
-    [class*=" variable.other.less"] {
-        color: #9cdcfe;
-    }
-    [class*=" storage.type.groovy"] {
-        color: #4EC9B0;
-    }
-    [class*=" meta.type.cast.expr"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" keyword.other.using"] {
         color: #C586C0;
-    }
-    [class*=" keyword.operator.new"] {
-        color: #569cd6;
-    }
+}
+    [class*=" meta.type.cast.expr"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.groovy"] {
+        color: #4EC9B0;
+}
+    [class*=" variable.other.less"] {
+        color: #9cdcfe;
+}
     [class*=" entity.name.function"] {
         color: #DCDCAA;
-    }
-    [class*=" storage.type.byte.go"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.rune.go"] {
-        color: #4EC9B0;
-    }
-    [class*=" support.constant.dom"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" entity.name.operator"] {
         color: #C586C0;
-    }
+}
     [class*=" entity.name.variable"] {
         color: #9CDCFE;
-    }
-    [class*=" keyword.operator.cast"] {
+}
+    [class*=" keyword.operator.new"] {
         color: #569cd6;
-    }
+}
+    [class*=" markup.strikethrough"] {
+}
+    [class*=" storage.type.byte.go"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.rune.go"] {
+        color: #4EC9B0;
+}
+    [class*=" support.constant.dom"] {
+        color: #4EC9B0;
+}
     [class*=" entity.name.namespace"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" keyword.operator.cast"] {
+        color: #569cd6;
+}
     [class*=" storage.type.error.go"] {
         color: #4EC9B0;
-    }
-    [class*=" support.constant.math"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" support.constant.json"] {
         color: #4EC9B0;
-    }
-    [class*=" source.groovy.embedded"] {
-        color: #D4D4D4;
-    }
-    [class*=" meta.embedded.assembly"] {
-        color: #ce9178;
-    }
-    [class*=" source.coffee.embedded"] {
-        color: #9cdcfe;
-    }
+}
+    [class*=" support.constant.math"] {
+        color: #4EC9B0;
+}
     [class*=" entity.other.attribute"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.type.string.go"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" keyword.other.operator"] {
         color: #C586C0;
-    }
-    [class*=" support.constant.media"] {
-        color: #CE9178;
-    }
+}
+    [class*=" meta.embedded.assembly"] {
+        color: #ce9178;
+}
+    [class*=" source.coffee.embedded"] {
+        color: #9cdcfe;
+}
+    [class*=" source.groovy.embedded"] {
+        color: #D4D4D4;
+}
+    [class*=" storage.type.string.go"] {
+        color: #4EC9B0;
+}
     [class*=" support.constant.color"] {
         color: #CE9178;
-    }
-    [class*=" keyword.operator.sizeof"] {
-        color: #569cd6;
-    }
-    [class*=" keyword.operator.typeid"] {
-        color: #569cd6;
-    }
+}
+    [class*=" support.constant.media"] {
+        color: #CE9178;
+}
     [class*=" constant.sha.git-rebase"] {
         color: #b5cea8;
-    }
-    [class*=" storage.type.numeric.go"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.boolean.go"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.uintptr.go"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.generic.cs"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.token.java"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" keyword.operator.delete"] {
         color: #C586C0;
-    }
-    [class*=" variable.other.constant"] {
-        color: #4FC1FF;
-    }
+}
+    [class*=" keyword.operator.sizeof"] {
+        color: #569cd6;
+}
+    [class*=" keyword.operator.typeid"] {
+        color: #569cd6;
+}
     [class*=" meta.object-literal.key"] {
         color: #9CDCFE;
-    }
-    [class*=" meta.preprocessor.string"] {
-        color: #ce9178;
-    }
-    [class*=" meta.template.expression"] {
-        color: #d4d4d4;
-    }
-    [class*=" keyword.operator.alignof"] {
-        color: #569cd6;
-    }
-    [class*=" keyword.operator.alignas"] {
-        color: #569cd6;
-    }
-    [class*=" storage.type.modifier.cs"] {
+}
+    [class*=" storage.type.boolean.go"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.type.variable.cs"] {
+}
+    [class*=" storage.type.generic.cs"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" storage.type.numeric.go"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.token.java"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.uintptr.go"] {
+        color: #4EC9B0;
+}
+    [class*=" variable.other.constant"] {
+        color: #4FC1FF;
+}
     [class*=" constant.other.rgb-value"] {
         color: #CE9178;
-    }
-    [class*=" variable.other.enummember"] {
-        color: #4FC1FF;
-    }
-    [class*=" meta.preprocessor.numeric"] {
-        color: #b5cea8;
-    }
-    [class*=" keyword.operator.noexcept"] {
+}
+    [class*=" keyword.operator.alignas"] {
         color: #569cd6;
-    }
-    [class*=" keyword.operator.wordlike"] {
+}
+    [class*=" keyword.operator.alignof"] {
         color: #569cd6;
-    }
-    [class*=" storage.type.generic.java"] {
+}
+    [class*=" meta.preprocessor.string"] {
+        color: #ce9178;
+}
+    [class*=" meta.template.expression"] {
+        color: #d4d4d4;
+}
+    [class*=" storage.type.modifier.cs"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" storage.type.variable.cs"] {
+        color: #4EC9B0;
+}
     [class*=" constant.character.escape"] {
         color: #d7ba7d;
-    }
-    [class*=" punctuation.definition.tag"] {
-        color: #808080;
-    }
-    [class*=" support.type.property-name"] {
-        color: #9cdcfe;
-    }
+}
+    [class*=" keyword.operator.noexcept"] {
+        color: #569cd6;
+}
+    [class*=" keyword.operator.wordlike"] {
+        color: #569cd6;
+}
+    [class*=" meta.preprocessor.numeric"] {
+        color: #b5cea8;
+}
+    [class*=" storage.type.generic.java"] {
+        color: #4EC9B0;
+}
+    [class*=" variable.other.enummember"] {
+        color: #4FC1FF;
+}
     [class*=" constant.other.placeholder"] {
         color: #9CDCFE;
-    }
-    [class*=" support.constant.font-name"] {
-        color: #CE9178;
-    }
+}
     [class*=" keyword.operator.or.regexp"] {
         color: #DCDCAA;
-    }
+}
+    [class*=" punctuation.definition.tag"] {
+        color: #808080;
+}
+    [class*=" support.constant.font-name"] {
+        color: #CE9178;
+}
+    [class*=" support.type.property-name"] {
+        color: #9cdcfe;
+}
     [class*=" entity.other.attribute-name"] {
         color: #9cdcfe;
-    }
+}
     [class*=" keyword.operator.expression"] {
         color: #569cd6;
-    }
+}
     [class*=" keyword.operator.instanceof"] {
         color: #569cd6;
-    }
-    [class*=" support.function.git-rebase"] {
-        color: #9cdcfe;
-    }
-    [class*=" support.constant.handlebars"] {
-        color: #DCDCAA;
-    }
-    [class*=" storage.type.primitive.java"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" storage.type.generic.groovy"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" storage.type.primitive.java"] {
+        color: #4EC9B0;
+}
+    [class*=" support.constant.handlebars"] {
+        color: #DCDCAA;
+}
     [class*=" support.constant.media-type"] {
         color: #CE9178;
-    }
-    [class*=" punctuation.section.embedded"] {
-        color: #569cd6;
-    }
-    [class*=" storage.modifier.import.java"] {
-        color: #d4d4d4;
-    }
+}
+    [class*=" support.function.git-rebase"] {
+        color: #9cdcfe;
+}
     [class*=" entity.name.scope-resolution"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.type.annotation.java"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" entity.other.inherited-class"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.modifier.package.java"] {
+}
+    [class*=" punctuation.section.embedded"] {
+        color: #569cd6;
+}
+    [class*=" storage.modifier.import.java"] {
         color: #d4d4d4;
-    }
-    [class*=" storage.type.primitive.groovy"] {
+}
+    [class*=" storage.type.annotation.java"] {
         color: #4EC9B0;
-    }
-    [class*=" meta.definition.variable.name"] {
-        color: #9CDCFE;
-    }
+}
     [class*=" constant.character.set.regexp"] {
         color: #d16969;
-    }
+}
     [class*=" keyword.control.anchor.regexp"] {
         color: #DCDCAA;
-    }
-    [class*=" keyword.operator.plus.exponent"] {
-        color: #b5cea8;
-    }
-    [class*=" storage.type.object.array.java"] {
+}
+    [class*=" meta.definition.variable.name"] {
+        color: #9CDCFE;
+}
+    [class*=" storage.modifier.package.java"] {
+        color: #d4d4d4;
+}
+    [class*=" storage.type.primitive.groovy"] {
         color: #4EC9B0;
-    }
-    [class*=" storage.type.annotation.groovy"] {
-        color: #4EC9B0;
-    }
-    [class*=" storage.type.parameters.groovy"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" constant.other.color.rgb-value"] {
         color: #CE9178;
-    }
-    [class*=" keyword.operator.minus.exponent"] {
+}
+    [class*=" keyword.operator.plus.exponent"] {
         color: #b5cea8;
-    }
+}
+    [class*=" storage.type.annotation.groovy"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.object.array.java"] {
+        color: #4EC9B0;
+}
+    [class*=" storage.type.parameters.groovy"] {
+        color: #4EC9B0;
+}
     [class*=" keyword.operator.logical.python"] {
         color: #569cd6;
-    }
-    [class*=" variable.language.wildcard.java"] {
-        color: #d4d4d4;
-    }
+}
+    [class*=" keyword.operator.minus.exponent"] {
+        color: #b5cea8;
+}
     [class*=" source.cpp"] [class*=" keyword.operator.new"] {
         color: #C586C0;
-    }
+}
     [class*=" support.constant.property-value"] {
         color: #CE9178;
-    }
+}
+    [class*=" variable.language.wildcard.java"] {
+        color: #d4d4d4;
+}
     [class*=" entity.other.attribute-name.scss"] {
         color: #d7ba7d;
-    }
-    [class*=" storage.type.object.array.groovy"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" keyword.operator.negation.regexp"] {
         color: #CE9178;
-    }
+}
+    [class*=" storage.type.object.array.groovy"] {
+        color: #4EC9B0;
+}
     [class*=" support.other.parenthesis.regexp"] {
         color: #CE9178;
-    }
+}
     [class*=" entity.name.function.preprocessor"] {
         color: #569cd6;
-    }
+}
     [class*=" storage.type.primitive.array.java"] {
         color: #4EC9B0;
-    }
+}
+    [class*=" string"] [class*=" meta.image.inline.markdown"] {
+        color: #D4D4D4;
+}
     [class*=" entity.other.attribute-name.id.css"] {
         color: #d7ba7d;
-    }
+}
     [class*=" keyword.operator.quantifier.regexp"] {
         color: #d7ba7d;
-    }
-    [class*=" support.type.vendored.property-name"] {
-        color: #9cdcfe;
-    }
+}
     [class*=" entity.name.operator.custom-literal"] {
         color: #DCDCAA;
-    }
-    [class*=" storage.type.primitive.array.groovy"] {
-        color: #4EC9B0;
-    }
+}
     [class*=" punctuation.definition.group.regexp"] {
         color: #CE9178;
-    }
+}
+    [class*=" storage.type.primitive.array.groovy"] {
+        color: #4EC9B0;
+}
+    [class*=" support.type.vendored.property-name"] {
+        color: #9cdcfe;
+}
     [class*=" meta.structure.dictionary.key.python"] {
         color: #9cdcfe;
-    }
-    [class*=" punctuation.section.embedded.end.php"] {
-        color: #569cd6;
-    }
+}
     [class*=" punctuation.character.set.end.regexp"] {
         color: #CE9178;
-    }
-    [class*=" entity.other.attribute-name.class.css"] {
-        color: #d7ba7d;
-    }
+}
+    [class*=" punctuation.section.embedded.end.php"] {
+        color: #569cd6;
+}
     [class*=" constant.other.character-class.regexp"] {
         color: #d16969;
-    }
-    [class*=" punctuation.section.embedded.begin.php"] {
-        color: #569cd6;
-    }
+}
+    [class*=" entity.other.attribute-name.class.css"] {
+        color: #d7ba7d;
+}
     [class*=" punctuation.character.set.begin.regexp"] {
         color: #CE9178;
-    }
+}
+    [class*=" punctuation.section.embedded.begin.php"] {
+        color: #569cd6;
+}
     [class*=" source.powershell"] [class*=" variable.other.member"] {
         color: #DCDCAA;
-    }
+}
     [class*=" constant.character.character-class.regexp"] {
         color: #d16969;
-    }
+}
     [class*=" constant.other.character-class.set.regexp"] {
         color: #d16969;
-    }
+}
     [class*=" punctuation.definition.list.begin.markdown"] {
         color: #6796e6;
-    }
+}
     [class*=" entity.other.attribute-name.class.mixin.css"] {
         color: #d7ba7d;
-    }
+}
     [class*=" punctuation.definition.quote.begin.markdown"] {
         color: #6A9955;
-    }
+}
     [class*=" entity.other.attribute-name.pseudo-class.css"] {
         color: #d7ba7d;
-    }
-    [class*=" punctuation.definition.group.assertion.regexp"] {
-        color: #CE9178;
-    }
+}
     [class*=" punctuation.definition.character-class.regexp"] {
         color: #CE9178;
-    }
+}
+    [class*=" punctuation.definition.group.assertion.regexp"] {
+        color: #CE9178;
+}
     [class*=" entity.other.attribute-name.pseudo-element.css"] {
         color: #d7ba7d;
-    }
-    [class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
-        color: #d7ba7d;
-    }
+}
     [class*=" punctuation.definition.template-expression.end"] {
         color: #569cd6;
-    }
+}
+    [class*=" source.css.less"] [class*=" entity.other.attribute-name.id"] {
+        color: #d7ba7d;
+}
     [class*=" entity.other.attribute-name.parent-selector.css"] {
         color: #d7ba7d;
-    }
+}
     [class*=" punctuation.definition.template-expression.begin"] {
         color: #569cd6;
-    }
+}
 }
