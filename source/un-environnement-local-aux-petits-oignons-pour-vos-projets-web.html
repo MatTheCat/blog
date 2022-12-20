@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Un environnement local aux petits oignons pour vos projets web</title>
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Un environnement local aux petits oignons pour vos projets web</h1>
+<h2>Le <i>repository</i></h2>
+<p>
+    Si vous êtes seul à travailler sur un projet constitué d’une unique application, vous pouvez vous simplifier la
+    vie et intégrer l’environnement local au dépôt de celle-ci. Sinon, un dépôt dédié (appellons-le
+    <code>local-environment</code>) offrira moult avantages :
+</p>
+<ul>
+    <li>
+        L’intention est évidente.
+        Dans une liste de dépôts, on saura immédiatement lequel cloner pour commencer à travailler.
+    </li>
+    <li>
+        La gestion de l’environnement est centralisée.
+        Si plusieurs applications composent le projet, on n’a pas à se demander laquelle gère quoi et comment.
+    </li>
+    <li>
+        L’administration est facilitée.
+        Des règles et permissions distinctes peuvent être mises en place pour chaque dépôt.
+    </li>
+    <li>
+        L’environnement et les applications sont séparés.
+        Les sources et documentation de l’un ne se mélangent pas avec celles des autres.
+    </li>
+</ul>
+<p>
+    Ceci étant dit, l’environnement local aura bien entendu besoin des sources des applications afin de pouvoir les
+    servir, et il aura également besoin de savoir où les trouver.
+    Si on en a qu’une, on pourra la placer à la racine du dépôt. Sinon, on pourra les regrouper sous un même dossier
+    <code>applications</code> par exemple :
+</p>
+<style>
+    .tree, .tree ul {
+        list-style: none;
+    }
+    .tree ul, .tree li {
+        margin: 0;
+    }
+    .folder::before {
+        content: '';
+        display: inline-block;
+        height: 1rem;
+        margin-right: .25rem;
+        position: relative;
+        top: .125rem;
+        width: 1rem;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23424242' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.01087 2.5L1.51087 2H6.50713L6.86068 2.14645L7.71349 2.99925H14.5011L15.0011 3.49925V8.99512L14.9903 9.00599V13.5021L14.4903 14.0021H1.5L1 13.5021V6.50735L1.01087 6.49648V2.5ZM14.0011 3.99925V5.00311H7.5005L7.14695 5.14956L6.28915 6.00735H2.01087V3H6.30002L7.15283 3.8528L7.50638 3.99925H14.0011ZM6.49626 7.00735H2.01087V7.49588H1.99963V11.4929H2V13.0021H13.9903V11.4929H13.9906V7.49588H13.9903V6.00311H7.70761L6.84981 6.8609L6.49626 7.00735Z'/%3E%3C/svg%3E");
+    }
+    [open] > .folder::before {
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23424242' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 3.5V6H12V4H6.5L6.146 3.854L5.293 3H1V10.418L0.025 13.342L0.5 14L0 13.5V2.5L0.5 2H5.5L5.854 2.146L6.707 3H12.5L13 3.5Z'/%3E%3Cpath d='M15.151 6H8.50002L8.14602 6.146L7.29302 7H2.50002L2.02502 7.342L0.0250244 13.342L0.500024 14L12.516 14L13 13.629L15.634 6.629L15.151 6ZM12.133 13L1.19302 13L2.86002 8H7.50002L7.85402 7.854L8.70702 7H14.5L12.133 13Z'/%3E%3C/svg%3E");
+    }
+    @media (prefers-color-scheme: dark) {
+        .folder::before {
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23C5C5C5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.01087 2.5L1.51087 2H6.50713L6.86068 2.14645L7.71349 2.99925H14.5011L15.0011 3.49925V8.99512L14.9903 9.00599V13.5021L14.4903 14.0021H1.5L1 13.5021V6.50735L1.01087 6.49648V2.5ZM14.0011 3.99925V5.00311H7.5005L7.14695 5.14956L6.28915 6.00735H2.01087V3H6.30002L7.15283 3.8528L7.50638 3.99925H14.0011ZM6.49626 7.00735H2.01087V7.49588H1.99963V11.4929H2V13.0021H13.9903V11.4929H13.9906V7.49588H13.9903V6.00311H7.70761L6.84981 6.8609L6.49626 7.00735Z'/%3E%3C/svg%3E");
+        }
+        [open] > .folder::before {
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23C5C5C5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 3.5V6H12V4H6.5L6.146 3.854L5.293 3H1V10.418L0.025 13.342L0.5 14L0 13.5V2.5L0.5 2H5.5L5.854 2.146L6.707 3H12.5L13 3.5Z'/%3E%3Cpath d='M15.151 6H8.50002L8.14602 6.146L7.29302 7H2.50002L2.02502 7.342L0.0250244 13.342L0.500024 14L12.516 14L13 13.629L15.634 6.629L15.151 6ZM12.133 13L1.19302 13L2.86002 8H7.50002L7.85402 7.854L8.70702 7H14.5L12.133 13Z'/%3E%3C/svg%3E");
+        }
+    }
+</style>
+<ul class="tree">
+    <li>
+        <details open>
+            <summary class="folder">local-environment</summary>
+            <ul>
+                <li>
+                    <details open>
+                        <summary class="folder">applications</summary>
+                        <ul>
+                            <li class="folder">foo</li>
+                            <li class="folder">bar</li>
+                            <li>…</li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </details>
+    </li>
+</ul>
+<p>Cette approche rend l’arborescence plus intuitive au prix de chemins plus longs ; à vous de voir…</p>
+<p>
+    Si vous êtes parti sur un dépôt dédié à votre environnement, vous vous demandez peut-être comment y inclure ceux de
+    vos applications. Ceci est rendu possible par Git grâce aux
+    <a href="https://git-scm.com/book/fr/v2/Utilitaires-Git-Sous-modules"><strong>sous-modules</strong></a> :
+</p>
+<blockquote>
+    Les sous-modules vous permettent de gérer un dépôt Git comme un sous-répertoire d’un autre dépôt Git.
+</blockquote>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.shell">git submodule add https://github.com/chaconinc/DbConnector</code></pre>
+</html>
