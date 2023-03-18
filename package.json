@@ -4,13 +4,13 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
-    "cssnano": "^5.1.14",
-    "jsdom": "^20.0.3",
+    "cssnano": "^5.1.15",
+    "jsdom": "^21.1.1",
     "mathjax-node": "^2.1.1",
     "onigasm": "^2.2.5",
-    "postcss": "^8.4.20",
-    "vscode-textmate": "^8.0.0",
-    "yargs": "^17.6.2"
+    "postcss": "^8.4.21",
+    "vscode-textmate": "^9.0.0",
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
     "require-jsonc": "^0.1.1"
