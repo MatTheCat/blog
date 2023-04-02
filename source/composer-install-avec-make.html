@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>composer install avec make</title>
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1><code>composer install</code> avec Make</h1>
+<p>
+    Je vois très souvent Make utilisé comme un simple lanceur de scripts
+    (<a href="https://getcomposer.org/doc/articles/scripts.md#running-scripts-manually" hreflang="en">chose que
+    Composer sait déjà faire</a>), ce qui est passer à côté de sa plus intéressante fonctionnalité : ne faire
+    quelque chose que lorsque c’est nécessaire.
+</p>
+<figure>
+    <blockquote lang="en">
+        Make figures out automatically which files it needs to update, based on which source files have changed.
+        <footer><a href="https://www.gnu.org/software/make/" hreflang="en">https://www.gnu.org/software/make/</a></footer>
+    </blockquote>
+</figure>
+<p>
+    Pour ce faire, on ajoute des <strong>prérequis</strong> à nos <strong>cibles</strong> :
+    une cible est ce qu’on veut créer (ou mettre à jour), et ses prérequis de quoi elle dépend.
+    Les commandes qui vont créer ou mettre à jour une cible constituent une <strong>recette</strong>.
+    Ce trio compose une <strong>règle</strong>, à placer dans un <strong>Makefile</strong> pour être
+    lue par Make :
+</p>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.makefile">cible: prérequis
+	recette</code></pre>
+<p>Si l’on exécute <code>make cible</code>, alors</p>
+<ul>
+    <li>si la <code>cible</code> n’existe pas, la <code>recette</code> sera évaluée pour la créer ;</li>
+    <li>
+        si la <code>cible</code> est plus ancienne qu’au moins un de ses <code>prérequis</code>,
+        la <code>recette</code> sera évaluée pour la mettre à jour ;
+    </li>
+    <li>sinon, Make ne fera rien car les mêmes prérequis produisent nécessairement la même cible.</li>
+</ul>
+<p>
+    Revenons à Composer : notre cible est le dossier <code>vendor</code> qui est créé ou mis à jour par
+    <code>composer install</code>, faisant de cette commande la recette. Celle-ci se basant sur le seul fichier
+    <code>composer.lock</code>, ce dernier est donc le prérequis. CQFD !
+</p>
+<pre><code class=" source.makefile">vendor: composer.lock
+	composer install</code></pre>
+<p>
+    — Make se base sur le <i lang="en">mtime</i>, ça ne pose pas de problème avec le fait que <code>vendor</code>
+    est un dossier ?
+</p>
+<p>
+    <i lang="en">mtime</i> pose <a href="https://apenwarr.ca/log/20181113" hreflang="en">tout un tas de problèmes</a>…
+    Notamment, celui d’un dossier n’est mis à jour que lorsqu’un fichier est ajouté, supprimé ou renommé
+    <strong>à sa racine</strong>, ce qui empêche généralement d’en faire une cible convenable… si la recette ne met
+    pas elle-même à jour le <i lang="en">mtime</i> !
+</p>
+<p>
+    En l’occurrence, Composer « <a href="https://fr.wikipedia.org/wiki/Touch_(Unix)">touche</a> » le dossier
+    <code>vendor</code> après une installation
+    <a href="https://github.com/composer/composer/issues/2764" hreflang="en">pour cette exacte raison</a> ; son
+    <i lang="en">mtime</i> sera donc toujours correct.
+</p>
+<p>— Et <code>composer.json</code> alors ?</p>
+<p>
+    On peut effectivement trouver sur Internet des versions de cette règle ajoutant <code>composer.json</code>
+    comme prérequis.
+    C’est une mauvaise idée.
+</p>
+<p>
+    Composer met lui-même <code>composer.lock</code> à jour à partir de
+    <a href="https://github.com/composer/composer/blob/4e1774518002b0be4365fe62ce220b2011c2b4bf/src/Composer/Package/Locker.php#L84-L96" hreflang="en">certaines
+    données présentes dans <code>composer.json</code></a>. Si ces dernières changent, la présence de
+    <code>composer.json</code> dans les prérequis est donc inutile.
+</p>
+<p>
+    Imaginez maintenant qu’une autre donnée change, comme <code>description</code>. Make exécuterait de nouveau
+    <code>composer install</code>, mais puisque changer la description n’implique aucun changement dans le dossier
+    <code>vendor</code>, le <i lang="en">mtime</i> de ce dernier ne serait pas mis à jour. Il se retrouverait donc plus
+    vieux que <code>composer.json</code>, poussant Make à tenter de le mettre à jour encore et encore, pour rien.
+</p>
+</html>
