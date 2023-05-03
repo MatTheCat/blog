@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<title>Activer les contraintes d’intégrité référentielle de SQLite avec le DoctrineBundle</title>
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/common.css">
+<link rel="stylesheet" href="assets/article.css">
+<h1>Activer les contraintes d’intégrité référentielle de SQLite avec le DoctrineBundle</h1>
+<p>
+    J’ai eu l’occasion de réutiliser SQLite il y a peu, et de redécouvrir ce qui m’avait déjà surpris auparavant :
+    si les contraintes d’intégrité référentielle sont supportées depuis la version 3.6.19,
+    <strong>elles sont désactivées par défaut</strong>.
+</p>
+<figure>
+    <blockquote lang="en">
+        Foreign key constraints are disabled by default (for backwards compatibility),
+        so must be enabled separately for each database connection.
+        <footer><a href="https://www.sqlite.org/foreignkeys.html" hreflang="en">https://www.sqlite.org/foreignkeys.html</a></footer>
+    </blockquote>
+</figure>
+<p>
+    SQLite mettant à disposition l’instruction <code>PRAGMA foreign_keys</code>,
+    j’ai créé la commande Symfony
+    <a href="https://gist.github.com/MatTheCat/1bf31a300eacbfa8f953e701f8c6f078" hreflang="en">CheckSQLiteForeignKeySupportCommand.php</a>.
+    Une fois intégrée à votre application, vous pouvez lancer
+</p>
+<link rel="stylesheet" href="assets/code.css">
+<pre><code class=" source.shell">bin/console sqlite:check-foreign-key-support</code></pre>
+<p>
+    pour tester le statut des contraintes d’intégrité référentielle de la connexion Doctrine par défaut.
+    Pour tester une autre connexion, passez son nom à l’option <code>--connection</code> (<code>-c</code>) :
+</p>
+<pre><code class=" source.shell">bin/console sqlite:check-foreign-key-support -c sqlite</code></pre>
+<p>Si votre installation n’est pas antédiluvienne, vous devriez obtenir</p>
+<pre><samp> [WARNING] Foreign keys support is disabled.</samp></pre>
+<p>Le but est maintenant de changer ce message !</p>
+<p>
+    Dans l’invite de commande de SQLite, on pourrait lancer <code>PRAGMA foreign_keys = ON</code> pour les activer le
+    temps de la session. Ici, nous voulons plutôt que cette commande soit exécutée par Doctrine dès qu’une connexion
+    est ouverte. Il fut un temps où une telle fonctionnalité aurait été implémentée en souscrivant à l'événement
+    <code>postConnect</code>,
+    <a href="https://github.com/doctrine/dbal/blob/3.6.x/UPGRADE.md#deprecated-extension-via-connection-events" hreflang="en">mais plus maintenant</a>.
+    Maintenant, place aux
+    <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/architecture.html#middlewares" hreflang="en"><i lang="en">middlewares</i></a>.
+</p>
+<figure>
+    <blockquote lang="en">
+        The logic implemented on top of these events can be implemented using driver middlewares.
+        <footer><a href="https://github.com/doctrine/dbal/issues/5784" hreflang="en">https://github.com/doctrine/dbal/issues/5784</a></footer>
+    </blockquote>
+</figure>
+<p>
+    Et devinez quoi ? Parmi les <i lang="en">middlewares</i> fournis par Doctrine, on peut trouver un
+    <a href="https://github.com/doctrine/dbal/blob/3.5.0/src/Driver/AbstractSQLiteDriver/Middleware/EnableForeignKeys.php" hreflang="en"><code>EnableForeignKeys</code></a> !
+    Reste à l’activer.
+</p>
+<p>
+    Depuis la version 2.6 du DoctrineBundle, les services implémentant <code>Doctrine\DBAL\Driver\Middleware</code> se
+    voient attribuer le <i lang="en">tag</i> <code>doctrine.middleware</code> qui provoque leur activation pour toutes
+    les connexions. Tout ce que nous avons à faire, c’est donc de configurer un service pour
+    <code>EnableForeignKeys</code> !
+</p>
+<pre><code class=" source.yaml">services:
+    Doctrine\DBAL\Driver\AbstractSQLiteDriver\Middleware\EnableForeignKeys: ~</code></pre>
+<p>
+    Si vous ne voulez l’activer que pour des connexions spécifiques, il faudra définir vous-mêmes un tag
+    <code>doctrine.middleware</code> par connexion dont l’attribut <code>connection</code> sera son nom.
+</p>
+<pre><code class=" source.yaml">services:
+    Doctrine\DBAL\Driver\AbstractSQLiteDriver\Middleware\EnableForeignKeys:
+        tags:
+            - doctrine.middleware:
+                  connection: sqlite</code></pre>
+<p>Et voilà !</p>
+<pre><code class=" source.shell">bin/console sqlite:check-foreign-key-support</code>
+<samp>
+ [OK] Foreign keys support is enabled.</samp></pre>
+</html>
