@@ -173,6 +173,9 @@
 [class*=" support.constant.dom"] {
     color: #267f99;
 }
+[class*=" constant.other.option"] {
+    color: #0000ff;
+}
 [class*=" entity.name.namespace"] {
     color: #267f99;
 }
@@ -705,6 +708,9 @@
 }
     [class*=" support.constant.dom"] {
         color: #4EC9B0;
+}
+    [class*=" constant.other.option"] {
+        color: #569cd6;
 }
     [class*=" entity.name.namespace"] {
         color: #4EC9B0;

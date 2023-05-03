@@ -12,7 +12,7 @@ services:
 
     node:
         command: scripts/watch.js
-        image: node:19.8.1-alpine3.17
+        image: node:20.0.0-alpine3.17
         init: true
         user: ${HOST_UID:?}
         volumes:
