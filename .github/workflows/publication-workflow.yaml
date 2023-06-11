@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version: '20.0.0'
+          cache-dependency-path: package-lock.json
+          node-version: '20.3.0'
 
       - name: install dependencies
         run: npm ci --no-audit --prefer-offline
