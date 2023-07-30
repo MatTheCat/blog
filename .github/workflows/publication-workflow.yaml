@@ -15,10 +15,10 @@ jobs:
         with:
           cache: npm
           cache-dependency-path: package-lock.json
-          node-version: '20.3.0'
+          node-version: '20.5.0'
 
       - name: install dependencies
-        run: npm ci --no-audit --prefer-offline
+        run: npm ci --no-audit --omit=dev --prefer-offline
 
       - name: compile
         run: node scripts/compile.js
