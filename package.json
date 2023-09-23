@@ -8,7 +8,7 @@
     "jsdom": "^22.1.0",
     "mathjax-node": "^2.1.1",
     "onigasm": "^2.2.5",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.30",
     "vscode-textmate": "^9.0.0",
     "yargs": "^17.7.2"
   },

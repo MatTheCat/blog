@@ -7,15 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          show-progress: false
 
       - uses: actions/setup-node@v3
         with:
           cache: npm
           cache-dependency-path: package-lock.json
-          node-version: '20.5.0'
+          node-version: '20.7.0'
 
       - name: install dependencies
         run: npm ci --no-audit --omit=dev --prefer-offline
@@ -23,7 +24,7 @@ jobs:
       - name: compile
         run: node scripts/compile.js
 
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
 
