@@ -12,11 +12,11 @@ jobs:
           persist-credentials: false
           show-progress: false
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: npm
           cache-dependency-path: package-lock.json
-          node-version: '20.7.0'
+          node-version: '21.1.0'
 
       - name: install dependencies
         run: npm ci --no-audit --omit=dev --prefer-offline
