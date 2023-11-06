@@ -38,10 +38,8 @@
     Dans l’invite de commande de SQLite, on pourrait lancer <code>PRAGMA foreign_keys = ON</code> pour les activer le
     temps de la session. Ici, nous voulons plutôt que cette commande soit exécutée par Doctrine dès qu’une connexion
     est ouverte. Il fut un temps où une telle fonctionnalité aurait été implémentée en souscrivant à l'événement
-    <code>postConnect</code>,
-    <a href="https://github.com/doctrine/dbal/blob/3.6.x/UPGRADE.md#deprecated-extension-via-connection-events" hreflang="en">mais plus maintenant</a>.
-    Maintenant, place aux
-    <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/architecture.html#middlewares" hreflang="en"><i lang="en">middlewares</i></a>.
+    <code>postConnect</code>, mais on préférera maintenant passer par un
+    <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/architecture.html#middlewares" hreflang="en"><i lang="en">middleware</i></a>.
 </p>
 <figure>
     <blockquote lang="en">
