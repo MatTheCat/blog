@@ -16,7 +16,7 @@ jobs:
         with:
           cache: npm
           cache-dependency-path: package-lock.json
-          node-version: '21.1.0'
+          node-version: '21.5.0'
 
       - name: install dependencies
         run: npm ci --no-audit --omit=dev --prefer-offline
@@ -24,7 +24,7 @@ jobs:
       - name: compile
         run: node scripts/compile.js
 
-      - uses: actions/upload-pages-artifact@v2
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
@@ -39,4 +39,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,6 @@
 services:
     caddy:
-        image: caddy:2.7.5-alpine
+        image: caddy:2.7.6-alpine
         ports:
             - 80:80
             - 443:443
@@ -12,7 +12,7 @@ services:
 
     node:
         command: scripts/watch.js
-        image: node:21.1.0-alpine3.18
+        image: node:21.5.0-alpine3.19
         init: true
         user: ${HOST_UID:?}
         volumes:

@@ -4,11 +4,11 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
-    "cssnano": "^6.0.1",
-    "jsdom": "^22.1.0",
+    "cssnano": "^6.0.2",
+    "jsdom": "^23.0.1",
     "mathjax-node": "^2.1.1",
     "onigasm": "^2.2.5",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.32",
     "vscode-textmate": "^9.0.0",
     "yargs": "^17.7.2"
   },
