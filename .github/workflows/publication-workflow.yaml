@@ -16,7 +16,7 @@ jobs:
         with:
           cache: npm
           cache-dependency-path: package-lock.json
-          node-version: '21.7.1'
+          node-version: '22.0.0'
 
       - name: install dependencies
         run: npm ci --no-audit --omit=dev --prefer-offline
