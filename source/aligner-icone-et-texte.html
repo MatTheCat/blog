@@ -22,9 +22,9 @@
 &lt;/svg&gt; WTF</code></pre>
     <style>
         .samp {
-            font-size: 3rem;
+            font-size: 4rem;
             line-height: 0;
-            margin: 1rem 0;
+            margin: 2rem 0;
             text-align: center;
         }
         .samp svg {
@@ -76,9 +76,10 @@
     <svg><use xlink:href="#?"></use></svg> WTF
 </aside>
 <p>
-    Pour être plaisant à l’œil, le centre vertical de l’icône doit être aligné avec la moitié de la hauteur de capitale
-    (<i lang="en">cap height</i>) du texte adjacent. Or, une seule valeur de <code>vertical-align</code> permet
-    d’aligner le centre vertical de notre icône : <code>middle</code>.
+    Pour être plaisant à l’œil,
+    le centre vertical de l’icône doit être aligné avec la moitié de la hauteur visuelle du texte adjacent.
+    Or, une seule valeur de <code>vertical-align</code> permet d’aligner le centre vertical de notre icône :
+    <code>middle</code>.
 </p>
 <blockquote lang="en">
     Align the vertical midpoint of the box with the baseline of the parent box plus half the x-height of the parent.
@@ -91,20 +92,35 @@
     <span style="font-size: .5ex;">½ x-height</span>
 </aside>
 <p>
-    Reste à la déplacer vers le haut de la moitié de la différence entre <i lang="en">cap height</i> et
-    <i lang="en">x-height</i>. CSS dispose justement de l’unité
-    <a href="https://www.w3.org/TR/css-values-4/#ex" hreflang="en"><code>ex</code></a>, multiple de cette dernière.
+    Si le texte n’est constitué que de minuscules, nous pouvons donc nous arrêter là !
+    Si non, il nous faut remonter l’icône pour la centrer par rapport à la hauteur de majuscule
+    (<i lang="en">cap height</i>). De quelle distance ?
 </p>
 <p>
-    <i lang="en">cap height</i> est une autre paire de manches. Idéalement on utiliserait l’unité
-    <a href="https://www.w3.org/TR/css-values-4/#cap" hreflang="en"><code>cap</code></a> mais son support est
-    limité à Firefox ≥ 97. Dommage.
+    Comme notre icône est actuellement centrée par rapport à la <i lang="en">x-height</i>,
+    il s’agira de la moitié de la différence entre cette dernière et la <i lang="en">cap height</i>.
+    Par chance, CSS dispose respectivement des unités
+    <a href="https://www.w3.org/TR/css-values-4/#ex" hreflang="en"><code>ex</code></a> et
+    <a href="https://www.w3.org/TR/css-values-4/#cap" hreflang="en"><code>cap</code></a> !
+    Nous pouvons donc écrire
 </p>
+<pre><code class=" source.css">svg {
+    margin-top: calc(.5ex - .5cap);
+    vertical-align: middle;
+}</code></pre>
+<div class="samp">
+    <svg style="vertical-align: middle; margin-top: calc(.5ex - .5cap);"><use xlink:href="#?"></use></svg> WTF
+</div>
 <p>
-    Cependant nous pouvons généraliser la hauteur de capitale en fonction de la hauteur d’x car la lisibilité d’une
-    fonte dépend entre autres de leur ratio. Les rares ressources que j’ai pu trouver à ce sujet permettent d’estimer
-    une valeur nominale de 147%. Autrement dit, <code>1cap</code> ≊ <code>1.47ex</code>. Partant de cette approximation
-    leur différence est égale à <code>.47ex</code> qui divisée par deux donne <code>.235ex</code>.
+    Notez que si l’unité <code>cap</code> profite
+    d’<a href="https://caniuse.com/mdn-css_types_length_cap" hreflang="en">un support tout à fait honorable</a>,
+    il reste éventuellement moyen de s’en passer si vous devez supporter des navigateurs plus anciens :
+    nous pouvons généraliser <i lang="en">cap height</i> en fonction de <i lang="en">x-height</i> car la lisibilité
+    d’une fonte dépend entre autres de leur ratio.
+    Les rares ressources que j’ai pu trouver à ce sujet permettent d’estimer une valeur nominale de 147%.
+    Autrement dit, <code>1cap</code> ≊ <code>1.47ex</code>.
+    Partant de cette approximation leur différence est égale à <code>.47ex</code> qui divisée par deux donne
+    <code>.235ex</code>.
 </p>
 <p>En tout cas chez moi ça marche.</p>
 <pre><code class=" source.css">svg {
