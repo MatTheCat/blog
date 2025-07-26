@@ -1,12 +1,12 @@
 const { promises: fs } = require('fs');
-const onigasm = require('onigasm');
+const oniguruma = require('vscode-oniguruma');
 const vsctm = require('vscode-textmate');
 
-const onigLib = fs.readFile(require.resolve('onigasm/lib/onigasm.wasm'))
-  .then(wasmBin => onigasm.loadWASM(wasmBin.buffer))
+const onigLib = fs.readFile(require.resolve('vscode-oniguruma/release/onig.wasm'))
+  .then(wasmBin => oniguruma.loadWASM(wasmBin.buffer))
   .then(() => ({
-    createOnigScanner: patterns => new onigasm.OnigScanner(patterns),
-    createOnigString: s => new onigasm.OnigString(s),
+    createOnigScanner: patterns => new oniguruma.OnigScanner(patterns),
+    createOnigString: s => new oniguruma.OnigString(s),
   }));
 
 const loadGrammar = scopeName => {
